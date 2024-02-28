@@ -1,13 +1,24 @@
 {
   "name": "rest-data-validator",
   "version": "1.0.0",
-  "description": "",
+  "description": "A versatile data validation library for RESTful APIs, supporting a wide range of data types and validation rules.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SeanLuis/rest-data-validator.gitt"
+  },
+  "keywords": [
+    "validation",
+    "rest",
+    "api",
+    "data-validation",
+    "schema",
+    "typescript"
+  ],
+  "author": "Sean Luis Guada Rodriguez (https://sean-rodriguez.vercel.app)",
   "license": "ISC",
   "devDependencies": {
     "typescript": "^5.3.3"
