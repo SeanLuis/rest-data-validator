@@ -1,9 +1,9 @@
-import { ClassValidator, FileValidator } from "../../src";
+import { ClassValidator, File } from "../../src";
 import { IGenericFile } from "../../src/utils/file/IGenericFile";
 
 @ClassValidator
 class UserProfile {
-      @FileValidator({
+      @File({
         mimeTypes: ['image/jpeg', 'image/png'],
         maxSize: 5000000, // 5MB
         minSize: 10000, // 10KB
@@ -35,7 +35,7 @@ function createFile(originalName: string, size: number, mimeType: string): IGene
 
 
 // Suponiendo que tienes una forma de simular o crear objetos de archivo (File) para pruebas
-describe('UserProfile with FileValidator Decorator', () => {
+describe('UserProfile with File Decorator', () => {
   it('should accept a valid file', () => {
       const validFile = createFile('image.png', 1024 * 1024, 'image/png');
       expect(() => new UserProfile(validFile)).not.toThrow();

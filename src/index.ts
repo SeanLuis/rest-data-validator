@@ -10,15 +10,15 @@ export { validateString } from './validators/ValidateString';
 
 export { Required } from './decorators/Required';
 export { ClassValidator } from './decorators/ClassValidator';
-// export { ArrayValidator } from './decorators/ArrayValidator';
-export { DateValidator } from './decorators/DateValidator';
-export { DomainValidator } from './decorators/DomainValidator';
-export { EnumValidator } from './decorators/EnumValidator';
-export { FileValidator } from './decorators/FileValidator';
-export { NumberValidator } from './decorators/NumberValidator';
-export { RangeValidator } from './decorators/RangeValidator';
-export { RegexValidator } from './decorators/RegexValidator';
-export { StringValidator } from './decorators/StringValidator';
+export { Array } from './decorators/ArrayValidator';
+export { Date } from './decorators/DateValidator';
+export { Domain } from './decorators/DomainValidator';
+export { Enum } from './decorators/EnumValidator';
+export { File } from './decorators/FileValidator';
+export { Number } from './decorators/NumberValidator';
+export { Range } from './decorators/RangeValidator';
+export { Regex } from './decorators/RegexValidator';
+export { String } from './decorators/StringValidator';
 
 export { ValidationUtils } from './utils/validations/ValidationUtils';
 export { ValidationMetadata } from './utils/validations/ValidationMetadata';

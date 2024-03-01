@@ -1,8 +1,8 @@
-import { ClassValidator, DomainValidator } from "../../src";
+import { ClassValidator, Domain } from "../../src";
 
 @ClassValidator
 class Website {
-    @DomainValidator({ type: 'url', mustBeSecure: true })
+    @Domain({ type: 'url', mustBeSecure: true })
     domain: string;
 
     constructor(domain: string) {
@@ -10,7 +10,7 @@ class Website {
     }
 }
 
-describe('Website with DomainValidator Decorator', () => {
+describe('Website with Domain Decorator', () => {
   it('should create an instance without throwing errors for a valid domain', () => {
       expect(() => new Website('https://example.com')).not.toThrow();
   });

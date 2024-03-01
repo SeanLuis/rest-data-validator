@@ -1,8 +1,8 @@
-import { ClassValidator, RangeValidator } from "../../src";
+import { ClassValidator, Range } from "../../src";
 
 @ClassValidator
 class Event {
-    @RangeValidator<Date>({
+    @Range<Date>({
       min: new Date('2023-01-01'),
       max: new Date('2023-12-31'),
       inclusive: true,
@@ -12,7 +12,7 @@ class Event {
     })
     date: Date;
 
-    @RangeValidator<number>({
+    @Range<number>({
         min: 1,
         max: 100,
         step: 10,
@@ -27,7 +27,7 @@ class Event {
     }
 }
 
-describe('Event with RangeValidator Decorator', () => {
+describe('Event with Range Decorator', () => {
   it('should accept valid date and score values', () => {
       expect(() => new Event(new Date('2023-06-15'), 10)).not.toThrow();
   });

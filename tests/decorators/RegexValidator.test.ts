@@ -1,8 +1,8 @@
-import { ClassValidator, RegexValidator } from "../../src";
+import { ClassValidator, Regex } from "../../src";
 
 @ClassValidator
 class UserWithEmptyEmailAllowed {
-    @RegexValidator({
+    @Regex({
         pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
         message: "Invalid email format",
         allowEmptyString: true
@@ -16,7 +16,7 @@ class UserWithEmptyEmailAllowed {
 
 @ClassValidator
 class UserWithEmptyEmailNotAllowed {
-    @RegexValidator({
+    @Regex({
         pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
         message: "Invalid email format",
         allowEmptyString: false
@@ -28,7 +28,7 @@ class UserWithEmptyEmailNotAllowed {
     }
 }
 
-describe('User with RegexValidator Decorator', () => {
+describe('User with Regex Decorator', () => {
   it('should accept a valid email for UserWithEmptyEmailNotAllowed', () => {
       expect(() => new UserWithEmptyEmailNotAllowed('user@example.com')).not.toThrow();
   });
@@ -42,7 +42,7 @@ describe('User with RegexValidator Decorator', () => {
   });
 });
 
-describe('UserWithEmptyEmailAllowed with RegexValidator Decorator', () => {
+describe('UserWithEmptyEmailAllowed with Regex Decorator', () => {
   it('should accept a valid email', () => {
       expect(() => new UserWithEmptyEmailAllowed('user@example.com')).not.toThrow();
   });

@@ -1,4 +1,4 @@
-import { ClassValidator, EnumValidator } from "../../src";
+import { ClassValidator, Enum } from "../../src";
 
 enum UserRole {
     Admin = 'ADMIN',
@@ -8,7 +8,7 @@ enum UserRole {
 
 @ClassValidator
 class User {
-    @EnumValidator<UserRole>({ enum: Object.values(UserRole), message: "Invalid role" })
+    @Enum<UserRole>({ enum: Object.values(UserRole), message: "Invalid role" })
     role: UserRole;
 
     constructor(role: UserRole) {
@@ -16,7 +16,7 @@ class User {
     }
 }
 
-describe('User with EnumValidator Decorator', () => {
+describe('User with Enum Decorator', () => {
   // Prueba para un valor válido
   it.each(Object.values(UserRole))('should create an instance without throwing errors for a valid role %s', (validRole) => {
     expect(() => new User(validRole)).not.toThrow();
@@ -34,7 +34,7 @@ describe('User with EnumValidator Decorator', () => {
       // Simula no proporcionar un mensaje personalizado en las opciones
       @ClassValidator
       class UserWithoutCustomMessage {
-          @EnumValidator<UserRole>({ enum: Object.values(UserRole) })
+          @Enum<UserRole>({ enum: Object.values(UserRole) })
           role: UserRole;
 
           constructor(role: UserRole) {

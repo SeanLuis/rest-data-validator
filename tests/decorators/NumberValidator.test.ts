@@ -1,11 +1,11 @@
-import { ClassValidator, NumberValidator } from "../../src";
+import { ClassValidator, Number } from "../../src";
 
 @ClassValidator
 class Product {
-    @NumberValidator({ min: 0, max: 100, integerOnly: true })
+    @Number({ min: 0, max: 100, integerOnly: true })
     stock: number;
 
-    @NumberValidator({ positiveOnly: true })
+    @Number({ positiveOnly: true })
     price: number;
 
     constructor(stock: number, price: number) {
@@ -14,7 +14,7 @@ class Product {
     }
 }
 
-describe('Product with NumberValidator Decorator', () => {
+describe('Product with Number Decorator', () => {
     it('should accept valid stock and price values', () => {
         expect(() => new Product(50, 19.99)).not.toThrow();
     });

@@ -1,14 +1,14 @@
-import { ClassValidator, StringValidator } from "../../src";
+import { ClassValidator, String } from "../../src";
 
 @ClassValidator
 class UserProfile {
-    @StringValidator({
+    @String({
         minLength: 2,
         maxLength: 5
     })
     username: string;
 
-    @StringValidator({
+    @String({
         regexPattern: /^[a-z]+$/
     })
     nickname: string;
@@ -19,7 +19,7 @@ class UserProfile {
     }
 }
 
-describe('UserProfile with StringValidator Decorator', () => {
+describe('UserProfile with String Decorator', () => {
   it('should accept valid username, nickname, and role', () => {
       expect(() => new UserProfile("John", "joe")).not.toThrow();
   });

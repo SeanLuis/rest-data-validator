@@ -1,8 +1,8 @@
-import { ClassValidator, DateValidator } from "../../src";
+import { ClassValidator, Date } from "../../src";
 
 @ClassValidator
 class User {
-    @DateValidator({ format: "YYYY-MM-DD" })
+    @Date({ format: "YYYY-MM-DD" })
     birthDate: string;
 
     constructor(birthDate: string) {
@@ -12,7 +12,7 @@ class User {
 
 
 // Pruebas unitarias para el decorador ClassValidator
-describe('User with DateValidator Decorator', () => {
+describe('User with Date Decorator', () => {
     it('should create an instance without throwing errors for valid birthDate', () => {
         expect(() => new User('2023-01-01')).not.toThrow();
     });
