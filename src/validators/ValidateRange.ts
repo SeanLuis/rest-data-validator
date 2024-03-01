@@ -2,7 +2,7 @@ import { ValidationResult } from "../types/ValidationResult";
 import { RangeValidationOptions } from "../interfaces/IRangeValidationOptions";
 import { isValidDate } from "../utils/date/DateValidation";
 
-function validateRange<T extends number | Date>(
+export function validateRange<T extends number | Date>(
     value: T,
     options: RangeValidationOptions<T>
 ): ValidationResult {
