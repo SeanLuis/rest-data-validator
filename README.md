@@ -1,4 +1,3 @@
-
 # REST Data Validator
 
 REST Data Validator is a versatile library designed to offer comprehensive validation for data in RESTful APIs. It supports a wide range of data types, validation rules, and is designed with extensibility in mind, making it ideal for ensuring data integrity and compliance with API specifications.
@@ -31,15 +30,15 @@ yarn add rest-data-validator
 Basic usage involves importing the validators and applying them to your data models:
 
 ```typescript
-import { ClassValidator, String, Number, validate } from 'rest-data-validator';
+import { ClassValidator, String, Number, validate } from "rest-data-validator";
 
 @ClassValidator
 class User {
-    @String({ minLength: 3, maxLength: 30 })
-    name: string;
+  @String({ minLength: 3, maxLength: 30 })
+  name: string;
 
-    @Number({ min: 0 })
-    age: number;
+  @Number({ min: 0 })
+  age: number;
 }
 
 const user = new User();
@@ -55,20 +54,30 @@ console.log(validationResult);
 Decorators can be applied to class properties to specify the validation rules directly in the model definition:
 
 ```typescript
-import { String, Number, Enum, ClassValidator, validate } from 'rest-data-validator';
+import {
+  String,
+  Number,
+  Enum,
+  ClassValidator,
+  validate,
+} from "rest-data-validator";
 
-enum Role { Admin, User, Guest }
+enum Role {
+  Admin,
+  User,
+  Guest,
+}
 
 @ClassValidator
 class UserProfile {
-    @String({ minLength: 2, maxLength: 100 })
-    username: string;
+  @String({ minLength: 2, maxLength: 100 })
+  username: string;
 
-    @Number({ min: 1, max: 100 })
-    level: number;
+  @Number({ min: 1, max: 100 })
+  level: number;
 
-    @Enum({ enum: Role })
-    role: Role;
+  @Enum({ enum: Role })
+  role: Role;
 }
 
 const profile = new UserProfile();
@@ -78,9 +87,9 @@ profile.role = Role.User;
 
 const result = validate(profile);
 if (!result.isValid) {
-    console.error(result.errors);
+  console.error(result.errors);
 } else {
-    console.log("Validation passed.");
+  console.log("Validation passed.");
 }
 ```
 
@@ -89,14 +98,16 @@ if (!result.isValid) {
 For more complex validation scenarios, custom validators can be created and used:
 
 ```typescript
-import { ValidationResult, validateCustom } from 'rest-data-validator';
+import { ValidationResult, validateCustom } from "rest-data-validator";
 
 function customUsernameValidator(value: string): ValidationResult {
-    const isValid = /^[a-zA-Z0-9]+$/.test(value);
-    return {
-        isValid,
-        errors: isValid ? [] : ["Username must only contain alphanumeric characters."]
-    };
+  const isValid = /^[a-zA-Z0-9]+$/.test(value);
+  return {
+    isValid,
+    errors: isValid
+      ? []
+      : ["Username must only contain alphanumeric characters."],
+  };
 }
 
 const result = validateCustom("user123", customUsernameValidator);
@@ -114,15 +125,19 @@ To use the `ClassValidator`, simply decorate your class with `@ClassValidator`. 
 ### Example
 
 ```typescript
-import { ClassValidator, StringValidator, NumberValidator } from 'rest-data-validator';
+import {
+  ClassValidator,
+  StringValidator,
+  NumberValidator,
+} from "rest-data-validator";
 
 @ClassValidator
 class User {
-    @StringValidator({ minLength: 2, maxLength: 30 })
-    name: string;
+  @StringValidator({ minLength: 2, maxLength: 30 })
+  name: string;
 
-    @NumberValidator({ min: 18 })
-    age: number;
+  @NumberValidator({ min: 18 })
+  age: number;
 }
 
 const user = new User();
@@ -132,9 +147,9 @@ user.age = 25;
 // Perform validation
 const validationResult = validate(user);
 if (validationResult.isValid) {
-    console.log("User is valid.");
+  console.log("User is valid.");
 } else {
-    console.error("Validation errors:", validationResult.errors);
+  console.error("Validation errors:", validationResult.errors);
 }
 ```
 
@@ -163,15 +178,15 @@ Para usar el decorador `StringValidator`, primero debes asegurarte de que tu pro
 ### Ejemplo Básico
 
 ```typescript
-import { ClassValidator, StringValidator } from 'rest-data-validator';
+import { ClassValidator, StringValidator } from "rest-data-validator";
 
 @ClassValidator
 class Post {
-    @StringValidator({ minLength: 10, maxLength: 100 })
-    title: string;
+  @StringValidator({ minLength: 10, maxLength: 100 })
+  title: string;
 
-    @StringValidator({ regexPattern: /^[a-zA-Z0-9 ]+$/ })
-    content: string;
+  @StringValidator({ regexPattern: /^[a-zA-Z0-9 ]+$/ })
+  content: string;
 }
 ```
 
@@ -197,15 +212,15 @@ Para usar el decorador `NumberValidator`, simplemente decora las propiedades num
 ### Ejemplo Básico
 
 ```typescript
-import { ClassValidator, NumberValidator } from 'rest-data-validator';
+import { ClassValidator, NumberValidator } from "rest-data-validator";
 
 @ClassValidator
 class Product {
-    @NumberValidator({ min: 0 })
-    price: number;
+  @NumberValidator({ min: 0 })
+  price: number;
 
-    @NumberValidator({ integerOnly: true, min: 1 })
-    stock: number;
+  @NumberValidator({ integerOnly: true, min: 1 })
+  stock: number;
 }
 ```
 
@@ -216,8 +231,8 @@ En este ejemplo, `price` debe ser un número no negativo, mientras que `stock` d
 ```typescript
 @ClassValidator
 class Measurement {
-    @NumberValidator({ divisibleBy: 0.5 })
-    length: number;
+  @NumberValidator({ divisibleBy: 0.5 })
+  length: number;
 }
 ```
 
@@ -240,12 +255,15 @@ To use the `DateValidator` decorator, simply decorate your class's date properti
 ### Basic Example
 
 ```typescript
-import { ClassValidator, DateValidator } from 'rest-data-validator';
+import { ClassValidator, DateValidator } from "rest-data-validator";
 
 @ClassValidator
 class Event {
-    @DateValidator({ after: new Date('2020-01-01'), before: new Date('2023-01-01') })
-    eventDate: Date;
+  @DateValidator({
+    after: new Date("2020-01-01"),
+    before: new Date("2023-01-01"),
+  })
+  eventDate: Date;
 }
 ```
 
@@ -256,8 +274,8 @@ In this example, `eventDate` must fall between January 1st, 2020, and January 1s
 ```typescript
 @ClassValidator
 class Appointment {
-    @DateValidator({ format: 'YYYY-MM-DD' })
-    date: string;
+  @DateValidator({ format: "YYYY-MM-DD" })
+  date: string;
 }
 ```
 
@@ -282,21 +300,21 @@ Suppose you have an enum representing user roles:
 
 ```typescript
 enum UserRole {
-    Admin = 'admin',
-    User = 'user',
-    Guest = 'guest'
+  Admin = "admin",
+  User = "user",
+  Guest = "guest",
 }
 ```
 
 You can use `EnumValidator` to ensure that a user role property only accepts values defined in `UserRole`:
 
 ```typescript
-import { ClassValidator, EnumValidator } from 'rest-data-validator';
+import { ClassValidator, EnumValidator } from "rest-data-validator";
 
 @ClassValidator
 class User {
-    @EnumValidator({ enum: UserRole })
-    role: UserRole;
+  @EnumValidator({ enum: UserRole })
+  role: UserRole;
 }
 ```
 
@@ -334,18 +352,18 @@ To use the `FileValidator`, apply it to properties in your class that are intend
 ### Example
 
 ```typescript
-import { ClassValidator, FileValidator } from 'rest-data-validator';
+import { ClassValidator, FileValidator } from "rest-data-validator";
 
 @ClassValidator
 class UserProfile {
-    @FileValidator({
-        mimeTypes: ['image/jpeg', 'image/png'],
-        maxSize: 5 * 1024 * 1024, // 5 MB
-        allowedExtensions: ['.jpg', '.jpeg', '.png'],
-        validateFileName: (name) => !name.includes(' '),
-        validateFileContent: (buffer) => buffer.length > 0
-    })
-    avatar: Buffer;
+  @FileValidator({
+    mimeTypes: ["image/jpeg", "image/png"],
+    maxSize: 5 * 1024 * 1024, // 5 MB
+    allowedExtensions: [".jpg", ".jpeg", ".png"],
+    validateFileName: (name) => !name.includes(" "),
+    validateFileContent: (buffer) => buffer.length > 0,
+  })
+  avatar: Buffer;
 }
 ```
 
@@ -357,9 +375,9 @@ You can provide a custom function to validate the content of the file based on y
 
 ```typescript
 validateFileContent: (buffer) => {
-    // Implement custom validation logic, for example:
-    return buffer.includes(someExpectedByteSequence);
-}
+  // Implement custom validation logic, for example:
+  return buffer.includes(someExpectedByteSequence);
+};
 ```
 
 This allows for fine-grained control over what constitutes a valid file beyond the basic constraints of type and size.
@@ -384,12 +402,12 @@ To use the `RangeValidator`, apply it to numerical or date properties in your cl
 ### Example for Numbers
 
 ```typescript
-import { ClassValidator, RangeValidator } from 'rest-data-validator';
+import { ClassValidator, RangeValidator } from "rest-data-validator";
 
 @ClassValidator
 class Product {
-    @RangeValidator({ min: 0, max: 100, step: 10, inclusive: true })
-    discountPercentage: number;
+  @RangeValidator({ min: 0, max: 100, step: 10, inclusive: true })
+  discountPercentage: number;
 }
 ```
 
@@ -400,8 +418,12 @@ In this example, `discountPercentage` must be a number between 0 and 100, inclus
 ```typescript
 @ClassValidator
 class Event {
-    @RangeValidator({ min: new Date('2020-01-01'), max: new Date('2023-01-01'), inclusive: true })
-    eventDate: Date;
+  @RangeValidator({
+    min: new Date("2020-01-01"),
+    max: new Date("2023-01-01"),
+    inclusive: true,
+  })
+  eventDate: Date;
 }
 ```
 
@@ -440,12 +462,15 @@ To use the `RegexValidator`, apply it to any string property in your class that 
 ### Example
 
 ```typescript
-import { ClassValidator, RegexValidator } from 'rest-data-validator';
+import { ClassValidator, RegexValidator } from "rest-data-validator";
 
 @ClassValidator
 class User {
-    @RegexValidator({ pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: 'Invalid email format' })
-    email: string;
+  @RegexValidator({
+    pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+    message: "Invalid email format",
+  })
+  email: string;
 }
 ```
 
@@ -485,20 +510,24 @@ To use the `CustomValidator`, apply it to any property in your class and provide
 ### Example
 
 ```typescript
-import { ClassValidator, CustomValidator, ValidationResult } from 'rest-data-validator';
+import {
+  ClassValidator,
+  CustomValidator,
+  ValidationResult,
+} from "rest-data-validator";
 
 @ClassValidator
 class Product {
-    @CustomValidator({
-        validatorFunction: (value: any): ValidationResult => {
-            const isValid = value > 0 && value < 100;
-            return {
-                isValid,
-                errors: isValid ? [] : ['The value must be between 1 and 99.']
-            };
-        }
-    })
-    price: number;
+  @CustomValidator({
+    validatorFunction: (value: any): ValidationResult => {
+      const isValid = value > 0 && value < 100;
+      return {
+        isValid,
+        errors: isValid ? [] : ["The value must be between 1 and 99."],
+      };
+    },
+  })
+  price: number;
 }
 ```
 
@@ -539,12 +568,12 @@ To use the `DomainValidator`, apply it to properties in your class that represen
 ### Example for Email Validation
 
 ```typescript
-import { ClassValidator, DomainValidator } from 'rest-data-validator';
+import { ClassValidator, DomainValidator } from "rest-data-validator";
 
 @ClassValidator
 class ContactForm {
-    @DomainValidator({ type: 'email', message: 'Invalid email address' })
-    emailAddress: string;
+  @DomainValidator({ type: "email", message: "Invalid email address" })
+  emailAddress: string;
 }
 ```
 
@@ -555,8 +584,8 @@ In this example, the `emailAddress` property must be a valid email address. The 
 ```typescript
 @ClassValidator
 class WebPage {
-    @DomainValidator({ type: 'url', allowSubdomains: true })
-    websiteUrl: string;
+  @DomainValidator({ type: "url", allowSubdomains: true })
+  websiteUrl: string;
 }
 ```
 
@@ -591,19 +620,21 @@ To use the `ArrayValidator`, apply it to array properties in your class, specify
 ### Example
 
 ```typescript
-import { ClassValidator, ArrayValidator } from 'rest-data-validator';
+import { ClassValidator, ArrayValidator } from "rest-data-validator";
 
 @ClassValidator
 class ShoppingCart {
-    @ArrayValidator({
-        minLength: 1,
-        unique: true,
-        validator: (item) => {
-            // Custom validation logic for each item
-            return item.price > 0 ? { isValid: true } : { isValid: false, errors: ['Price must be greater than 0'] };
-        }
-    })
-    items: Array<{id: number, price: number}>;
+  @ArrayValidator({
+    minLength: 1,
+    unique: true,
+    validator: (item) => {
+      // Custom validation logic for each item
+      return item.price > 0
+        ? { isValid: true }
+        : { isValid: false, errors: ["Price must be greater than 0"] };
+    },
+  })
+  items: Array<{ id: number; price: number }>;
 }
 ```
 

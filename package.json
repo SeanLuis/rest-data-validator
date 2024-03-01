@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest --coverage --coverageReporters='text' --coverageReporters='cobertura'"
   },
   "repository": {
     "type": "git",
