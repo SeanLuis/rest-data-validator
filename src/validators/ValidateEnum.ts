@@ -1,7 +1,7 @@
-import { EnumValidationOptions } from '../interfaces/IEnumValidationOptions';
+import { IEnumValidationOptions } from '../interfaces/IEnumValidationOptions';
 import { ValidationResult } from '../types/ValidationResult';
 
-export const validateEnum = <T>(value: T, options: EnumValidationOptions<T>): ValidationResult => {
+export const validateEnum = <T>(value: T, options: IEnumValidationOptions<T>): ValidationResult => {
     const errors: string[] = [];
 
     if (!options.enum.includes(value)) {

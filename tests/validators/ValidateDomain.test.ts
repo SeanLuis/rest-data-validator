@@ -1,7 +1,5 @@
-// validateDomain.test.ts
-
 import { IDomainValidationOptions } from "../../src/interfaces/IDomainValidationOptions";
-import { validateDomainValue } from "../../src/validators/ValidateDomain";
+import { validateDomain } from "../../src/validators/ValidateDomain";
 import { readFileSync } from 'fs';
 
 // Mock fs para evitar leer archivos reales durante las pruebas
@@ -23,14 +21,14 @@ jest.mock('fs', () => ({
   })
 }));
 
-describe('validateDomainValue', () => {
+describe('validateDomain', () => {
   it('should validate a UUID correctly', () => {
     const options: IDomainValidationOptions = { type: 'uuid' };
     const validUUID = '123e4567-e89b-12d3-a456-426614174000';
     const invalidUUID = '123e4567-e89b-12d3-a456-42661417400Z'; // Invalid character
 
-    expect(validateDomainValue(validUUID, options).isValid).toBeTruthy();
-    expect(validateDomainValue(invalidUUID, options).isValid).toBeFalsy();
+    expect(validateDomain(validUUID, options).isValid).toBeTruthy();
+    expect(validateDomain(invalidUUID, options).isValid).toBeFalsy();
   });
 
   it('should validate a URL correctly', () => {
@@ -38,8 +36,8 @@ describe('validateDomainValue', () => {
     const validURL = 'https://www.example.com';
     const invalidURL = 'htttps://www.example.com'; // Typo in protocol
 
-    expect(validateDomainValue(validURL, options).isValid).toBeTruthy();
-    expect(validateDomainValue(invalidURL, options).isValid).toBeFalsy();
+    expect(validateDomain(validURL, options).isValid).toBeTruthy();
+    expect(validateDomain(invalidURL, options).isValid).toBeFalsy();
   });
 
   it('should validate an ISO country code correctly', () => {
@@ -47,8 +45,8 @@ describe('validateDomainValue', () => {
     const validCountryCode = 'US';
     const invalidCountryCode = 'XX'; // Not a valid country code
 
-    expect(validateDomainValue(validCountryCode, options).isValid).toBeTruthy();
-    expect(validateDomainValue(invalidCountryCode, options).isValid).toBeFalsy();
+    expect(validateDomain(validCountryCode, options).isValid).toBeTruthy();
+    expect(validateDomain(invalidCountryCode, options).isValid).toBeFalsy();
   });
 
   it('should validate an ISO language code correctly', () => {
@@ -56,8 +54,8 @@ describe('validateDomainValue', () => {
     const validLanguageCode = 'en';
     const invalidLanguageCode = 'xx'; // Not a valid language code
 
-    expect(validateDomainValue(validLanguageCode, options).isValid).toBeTruthy();
-    expect(validateDomainValue(invalidLanguageCode, options).isValid).toBeFalsy();
+    expect(validateDomain(validLanguageCode, options).isValid).toBeTruthy();
+    expect(validateDomain(invalidLanguageCode, options).isValid).toBeFalsy();
   });
 
   it('should validate using ISO codes from a provided JSON file path', () => {
@@ -70,8 +68,8 @@ describe('validateDomainValue', () => {
     const validCountryCode = 'US';
     const invalidCountryCode = 'XX'; // Not a valid country code
 
-    expect(validateDomainValue(validCountryCode, options).isValid).toBeTruthy();
-    expect(validateDomainValue(invalidCountryCode, options).isValid).toBeFalsy();
+    expect(validateDomain(validCountryCode, options).isValid).toBeTruthy();
+    expect(validateDomain(invalidCountryCode, options).isValid).toBeFalsy();
   });
 
   it('should throw an error if the JSON file cannot be read', () => {
@@ -83,7 +81,7 @@ describe('validateDomainValue', () => {
 
     const countryCode = 'US';
 
-    expect(() => validateDomainValue(countryCode, options)).toThrow('File cannot be read');
+    expect(() => validateDomain(countryCode, options)).toThrow('File cannot be read');
   });
 
   it('should throw an error if the JSON is invalid', () => {
@@ -95,11 +93,10 @@ describe('validateDomainValue', () => {
 
     const countryCode = 'US';
 
-    expect(() => validateDomainValue(countryCode, options)).toThrow();
+    expect(() => validateDomain(countryCode, options)).toThrow();
   });
 });
 
-// Restaura el mock después de todas las pruebas
 afterAll(() => {
   jest.restoreAllMocks();
 });

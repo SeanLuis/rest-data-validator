@@ -10,7 +10,7 @@ export { validateString } from './validators/ValidateString';
 
 export { Required } from './decorators/Required';
 export { ClassValidator } from './decorators/ClassValidator';
-export { ArrayValidator } from './decorators/ArrayValidator';
+// export { ArrayValidator } from './decorators/ArrayValidator';
 export { DateValidator } from './decorators/DateValidator';
 export { DomainValidator } from './decorators/DomainValidator';
 export { EnumValidator } from './decorators/EnumValidator';

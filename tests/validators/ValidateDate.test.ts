@@ -1,5 +1,3 @@
-// validateDate.test.ts
-
 import { validateDate } from "../../src/validators/ValidateDate";
 
 describe('validateDate', () => {
