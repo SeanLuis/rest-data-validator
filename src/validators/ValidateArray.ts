@@ -6,6 +6,15 @@ export const validateArray = <T>(
 ): ValidationResult => {
     const errors: string[] = [];
 
+    // First check: make sure 'values' is actually an array
+    if (!Array.isArray(values)) {
+        errors.push('Value provided is not an array.');
+        return {
+            isValid: false,
+            errors: errors
+        };
+    }
+
     // Check minLength
     if (options.minLength !== undefined && values.length < options.minLength) {
         errors.push(`Array is too short. Minimum length is ${options.minLength}.`);
