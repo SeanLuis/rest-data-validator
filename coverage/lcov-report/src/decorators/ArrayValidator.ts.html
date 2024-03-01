@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/decorators/DomainValidator.ts</title>
+    <title>Code coverage report for src/decorators/ArrayValidator.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/decorators</a> DomainValidator.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/decorators</a> ArrayValidator.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -71,23 +71,26 @@
 <a name='L6'></a><a href='#L6'>6</a>
 <a name='L7'></a><a href='#L7'>7</a>
 <a name='L8'></a><a href='#L8'>8</a>
-<a name='L9'></a><a href='#L9'>9</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">18x</span>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import "reflect-metadata";
-import { IDomainValidationOptions } from '../interfaces/IDomainValidationOptions';
+import { IArrayValidationOptions } from '../interfaces/IArrayValidationOptions';
 import { validateMetadataKey } from "../utils/validations/MetadataKeys";
 &nbsp;
-export function Domain(options: IDomainValidationOptions) {
+export function Array&lt;T&gt;(options: IArrayValidationOptions&lt;T&gt;) {
     return function(target: Object, propertyKey: string | symbol) {
-        Reflect.defineMetadata(validateMetadataKey, { type: 'domain', options: options }, target, propertyKey);
+        Reflect.defineMetadata(validateMetadataKey, { type: 'array', options: options }, target, propertyKey);
     };
-}</pre></td></tr></table></pre>
+}
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
