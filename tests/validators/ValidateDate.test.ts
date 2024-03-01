@@ -1,4 +1,4 @@
-import { validateDate } from "../../src/validators/ValidateDate";
+import { validateDate } from "../../src";
 
 describe('validateDate', () => {
   const beforeDate = new Date('2024-12-31');

@@ -1,4 +1,4 @@
-import { validateNumber } from "../../src/validators/ValidateNumber";
+import { validateNumber } from "../../src";
 import { INumberValidationOptions } from "../../src/interfaces/INumberValidationOptions";
 
 describe('validateNumber', () => {

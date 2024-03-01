@@ -1,12 +1,21 @@
 import { ValidationResult } from "../types/ValidationResult";
-import { RangeValidationOptions } from "../interfaces/IRangeValidationOptions";
+import { IRangeValidationOptions } from "../interfaces/IRangeValidationOptions";
 import { isValidDate } from "../utils/date/DateValidation";
 
 export function validateRange<T extends number | Date>(
     value: T,
-    options: RangeValidationOptions<T>
+    options: IRangeValidationOptions<T>
 ): ValidationResult {
     const errors: string[] = [];
+
+    if (value instanceof Date) {
+        if (options.min instanceof Date && value < options.min) {
+            errors.push(`Validation failed: Value must be greater than or equal to ${options.min.toISOString()}.`);
+        }
+        if (options.max instanceof Date && value > options.max) {
+            errors.push(`Validation failed: Value must be less than or equal to ${options.max.toISOString()}.`            );
+        }
+    }
 
     // Ejemplo de implementación para un valor numérico
     if (typeof value === 'number' && typeof options.min === 'number') {

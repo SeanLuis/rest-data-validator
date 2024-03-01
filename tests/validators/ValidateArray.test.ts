@@ -1,4 +1,4 @@
-import { validateArray } from "../../src/validators/ValidateArray";
+import { validateArray } from "../../src";
 
 describe('validateArray', () => {
   it('should validate array length correctly', () => {

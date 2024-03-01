@@ -1,5 +1,5 @@
 import { IDomainValidationOptions } from "../../src/interfaces/IDomainValidationOptions";
-import { validateDomain } from "../../src/validators/ValidateDomain";
+import { validateDomain } from "../../src";
 import { readFileSync } from 'fs';
 
 // Mock fs para evitar leer archivos reales durante las pruebas

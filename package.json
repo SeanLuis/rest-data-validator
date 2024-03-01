@@ -33,6 +33,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@types/node": "^20.11.21"
+    "@types/node": "^20.11.21",
+    "reflect-metadata": "^0.2.1"
   }
 }

@@ -1,4 +1,4 @@
-import { validateEnum } from "../../src/validators/ValidateEnum";
+import { validateEnum } from "../../src";
 import { IEnumValidationOptions } from "../../src/interfaces/IEnumValidationOptions";
 
 describe('validateEnum', () => {

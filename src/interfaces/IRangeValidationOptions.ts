@@ -1,4 +1,4 @@
-export interface RangeValidationOptions<T> {
+export interface IRangeValidationOptions<T> {
     min?: T; // Valor mínimo permitido (puede ser número o fecha)
     max?: T; // Valor máximo permitido (puede ser número o fecha)
     inclusive?: boolean; // Si el rango es inclusivo o exclusivo

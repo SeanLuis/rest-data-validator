@@ -1,4 +1,4 @@
-import { validateString } from "../../src/validators/ValidateString";
+import { validateString } from "../../src";
 import { IStringValidationOptions } from "../../src/interfaces/IStringValidationOptions";
 
 describe('validateString', () => {

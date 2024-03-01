@@ -1,4 +1,4 @@
-export interface RegexValidationOptions {
+export interface IRegexValidationOptions {
     pattern: RegExp;               // Patrón de expresión regular para la validación
     flags?: string;                // Banderas opcionales para la expresión regular
     message?: string;              // Mensaje de error personalizado

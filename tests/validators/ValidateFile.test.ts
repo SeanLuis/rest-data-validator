@@ -1,4 +1,4 @@
-import { validateFile } from "../../src/validators/ValidateFile";
+import { validateFile } from "../../src";
 import { IFileValidationOptions } from "../../src/interfaces/IFileValidationOptions";
 import { IGenericFile } from "../../src/utils/file/IGenericFile";
 

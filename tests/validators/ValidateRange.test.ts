@@ -1,4 +1,4 @@
-import { validateRange } from "../../src/validators/ValidateRange";
+import { validateRange } from "../../src";
 
 describe('validateRange', () => {
     describe('Number Validation', () => {

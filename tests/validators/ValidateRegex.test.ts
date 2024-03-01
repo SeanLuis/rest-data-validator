@@ -1,4 +1,4 @@
-import { validateRegex } from "../../src/validators/ValidateRegex";
+import { validateRegex } from "../../src";
 
 describe('validateRegex', () => {
     it('should pass when the value matches the pattern', () => {

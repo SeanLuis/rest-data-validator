@@ -37,6 +37,17 @@ export const validateDomain = (
         }
     };
 
+    if (options.type === 'url') {
+        const isValidUrl = URL_REGEX.test(value);
+        const isSecure = value.startsWith('https://');
+
+        if (!isValidUrl) {
+            errors.push('Value is not a valid URL.');
+        } else if (options.mustBeSecure && !isSecure) {
+            errors.push('URL must be secure (https).');
+        }
+    }
+
     switch (options.type) {
         case 'uuid':
             if (!UUID_REGEX.test(value)) {
