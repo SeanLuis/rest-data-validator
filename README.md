@@ -165,19 +165,19 @@ By using `ClassValidator`, developers can define a clear, declarative validation
 
 # StringValidator Decorator
 
-El decorador `StringValidator` se utiliza para aplicar validaciones a propiedades de cadena dentro de clases en TypeScript, asegurando que los datos cumplan con ciertos criterios especificados antes de ser procesados o almacenados.
+The `StringValidator` decorator is used to apply validations to string properties within classes in TypeScript, ensuring that data meets certain specified criteria before being processed or stored.
 
-## Propiedades
+## Properties
 
-- **minLength**: `number` - Especifica la longitud mínima que debe tener la cadena.
-- **maxLength**: `number` - Define la longitud máxima permitida para la cadena.
-- **regexPattern**: `RegExp` - Un patrón de expresión regular que la cadena debe cumplir.
+- **minLength**: `number` - Specifies the minimum length the string must be.
+- **maxLength**: `number` - Defines the maximum length allowed for the string.
+- **regexPattern**: `RegExp` - A regular expression pattern that the string must conform to.
 
-## Uso
+## Usage
 
-Para usar el decorador `StringValidator`, primero debes asegurarte de que tu proyecto esté configurado para utilizar decoradores en TypeScript.
+To use the `StringValidator` decorator, you must first make sure your project is configured to use decorators in TypeScript.
 
-### Ejemplo Básico
+### Basic Example
 
 ```typescript
 import { ClassValidator, StringValidator } from "rest-data-validator";
@@ -192,26 +192,26 @@ class Post {
 }
 ```
 
-En este ejemplo, `title` debe tener entre 10 y 100 caracteres, mientras que `content` debe cumplir con el patrón especificado y no puede estar vacío.
+In this example, `title` must be between 10 and 100 characters, while `content` must match the specified pattern and cannot be empty.
 
 # NumberValidator Decorator
 
-El decorador `NumberValidator` se utiliza para aplicar validaciones a propiedades numéricas dentro de clases en TypeScript, asegurando que los datos cumplan con ciertos criterios especificados antes de ser procesados o almacenados.
+The `NumberValidator` decorator is used to apply validations to numerical properties within classes in TypeScript, ensuring that data meets certain specified criteria before being processed or stored.
 
-## Propiedades
+## Properties
 
-- **min**: `number` - Especifica el valor mínimo que debe tener el número.
-- **max**: `number` - Define el valor máximo permitido para el número.
-- **integerOnly**: `boolean` - Indica si solo se permiten números enteros (`true`) o si se permiten números flotantes (`false`).
-- **positiveOnly**: `boolean` - Indica si solo se permiten números positivos.
-- **negativeOnly**: `boolean` - Indica si solo se permiten números negativos.
-- **divisibleBy**: `number` - Especifica un valor por el cual el número debe ser divisible.
+- **min**: `number` - Specifies the minimum value that the number must have.
+- **max**: `number` - Defines the maximum value allowed for the number.
+- **integerOnly**: `boolean` - Indicates whether only integers are allowed (`true`) or float numbers are allowed (`false`).
+- **positiveOnly**: `boolean` - Indicates whether only positive numbers are allowed.
+- **negativeOnly**: `boolean` - Indicates whether only negative numbers are allowed.
+- **divisibleBy**: `number` - Specifies a value by which the number must be divisible.
 
-## Uso
+## Usage
 
-Para usar el decorador `NumberValidator`, simplemente decora las propiedades numéricas de tus clases con las restricciones deseadas.
+To use the `NumberValidator` decorator, simply decorate the numeric properties of your classes with the desired constraints.
 
-### Ejemplo Básico
+### Basic Example
 
 ```typescript
 import { ClassValidator, NumberValidator } from "rest-data-validator";
@@ -226,9 +226,9 @@ class Product {
 }
 ```
 
-En este ejemplo, `price` debe ser un número no negativo, mientras que `stock` debe ser un número entero positivo.
+In this example, `price` must be a non-negative number, while `stock` must be a positive integer.
 
-### Validación de Números Divisibles
+### Validation of Divisible Numbers
 
 ```typescript
 @ClassValidator
@@ -238,7 +238,7 @@ class Measurement {
 }
 ```
 
-Aquí, `length` debe ser un número divisible por 0.5, permitiendo valores como 1.5, 2.0, 2.5, etc.
+Here, `length` must be a number divisible by 0.5, allowing values like 1.5, 2.0, 2.5, etc.
 
 # DateValidator Decorator
 
