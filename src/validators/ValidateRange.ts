@@ -2,6 +2,27 @@ import { ValidationResult } from "../types/ValidationResult";
 import { IRangeValidationOptions } from "../interfaces/IRangeValidationOptions";
 import { isValidDate } from "../utils/date/DateValidation";
 
+/**
+ * The validateRange function validates a range of values based on provided options.
+ * It can handle both numbers and dates.
+ * 
+ * For Date values:
+ * - It checks if the value is within the provided minimum and maximum dates.
+ * 
+ * For number values:
+ * - It checks if the value is within the provided minimum and maximum numbers. The check can be inclusive or exclusive based on the `inclusive` option.
+ * - If the `step` option is provided, it checks if the value is a multiple of the step.
+ * 
+ * For string values:
+ * - If the `dateFormat` option is provided, it checks if the value is a valid date.
+ * 
+ * It also supports a custom validator function provided in the options.
+ * 
+ * @function
+ * @param {T} value - The value to validate. T can be a number or a Date.
+ * @param {IRangeValidationOptions<T>} options - The validation options.
+ * @returns {ValidationResult} A ValidationResult object that contains a boolean indicating if the value is valid and an array of error messages.
+ */
 export function validateRange<T extends number | Date>(
     value: T,
     options: IRangeValidationOptions<T>
@@ -17,21 +38,18 @@ export function validateRange<T extends number | Date>(
         }
     }
 
-    // Ejemplo de implementación para un valor numérico
     if (typeof value === 'number' && typeof options.min === 'number') {
         if (options.inclusive ? value < options.min : value <= options.min) {
             errors.push(options.errorMessage?.min || `Value must be greater than ${(options.inclusive ? "or equal to " : "")}${options.min}.`);
         }
     }
 
-    // Validación para `max`
     if (typeof value === 'number' && typeof options.max === 'number') {
         if (options.inclusive ? value > options.max : value >= options.max) {
             errors.push(options.errorMessage?.max || `Value must be less than ${(options.inclusive ? "or equal to " : "")}${options.max}.`);
         }
     }
 
-    // Validación para `step` (solo aplicable a números)
     if (options.step !== undefined && typeof value === 'number') {
         const stepValidation = (value / options.step) % 1 === 0;
         if (!stepValidation) {
@@ -45,7 +63,6 @@ export function validateRange<T extends number | Date>(
         }
     }
 
-    // Custom Validator
     if (options.customValidator && !options.customValidator(value)) {
         errors.push(options.errorMessage?.customValidator || "Custom validation failed.");
     }

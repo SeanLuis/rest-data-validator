@@ -1,6 +1,16 @@
+/**
+ * IGenericFile interface represents a generic file structure.
+ * This interface is used to handle file data throughout the application.
+ *
+ * @interface
+ * @property {string} originalName - The original name of the uploaded file.
+ * @property {number} size - The size of the file in bytes.
+ * @property {string} mimeType - The MIME type of the file.
+ * @property {Buffer} buffer - Optional: the content of the file as a Buffer, if necessary for content validation.
+ */
 export interface IGenericFile {
-    originalName: string; // Nombre original del archivo subido
-    size: number; // Tamaño del archivo en bytes
-    mimeType: string; // Tipo MIME del archivo
-    buffer: Buffer; // Opcional: contenido del archivo como Buffer, si es necesario para validación de contenido
+    originalName: string; // The original name of the uploaded file
+    size: number; // The size of the file in bytes
+    mimeType: string; // The MIME type of the file
+    buffer: Buffer; // Optional: the content of the file as a Buffer, if necessary for content validation
 }

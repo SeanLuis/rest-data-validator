@@ -1,6 +1,15 @@
 import { IDateValidationOptions } from '../interfaces/IDateValidationOptions';
 import { ValidationResult } from '../types/ValidationResult';
 
+/**
+ * The validateDate function validates a date string based on provided options.
+ * It checks if the input is a valid date, and if it is before or after certain dates as specified in the options.
+ *
+ * @function
+ * @param {string} value - The date string to validate.
+ * @param {IDateValidationOptions} [options={}] - The validation options.
+ * @returns {ValidationResult} A ValidationResult object that contains a boolean indicating if the date is valid and an array of error messages.
+ */
 export const validateDate = (
     value: string,
     options: IDateValidationOptions = {}
@@ -8,16 +17,13 @@ export const validateDate = (
     const errors: string[] = [];
     const date = new Date(value);
 
-    // Check if the date is valid
     if (isNaN(date.getTime())) {
         errors.push(`Invalid date.`);
     } else {
-        // Check 'before' condition
         if (options.before && date >= options.before) {
             errors.push(`Date should be before ${options.before.toISOString()}.`);
         }
 
-        // Check 'after' condition
         if (options.after && date <= options.after) {
             errors.push(`Date should be after ${options.after.toISOString()}.`);
         }

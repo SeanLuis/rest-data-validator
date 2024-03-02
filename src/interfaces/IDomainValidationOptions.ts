@@ -1,9 +1,22 @@
+/**
+ * The IDomainValidationOptions interface represents the options for domain validation.
+ * This interface is used to handle domain validation throughout the application.
+ *
+ * @interface
+ * @property {'uuid' | 'url' | 'isoCountryCode' | 'isoLanguageCode'} type - The type of validation to perform. Possible values are 'uuid', 'url', 'isoCountryCode', and 'isoLanguageCode'.
+ * @property {string[]} isoCountryCodes - Optional: An array of ISO country codes provided by the user. If not provided, all ISO country codes are considered valid.
+ * @property {string[]} isoLanguageCodes - Optional: An array of ISO language codes provided by the user. If not provided, all ISO language codes are considered valid.
+ * @property {string} isoCountryCodePath - Optional: The path to a JSON file containing ISO country codes. If not provided, the default ISO country codes are used.
+ * @property {string} isoLanguageCodePath - Optional: The path to a JSON file containing ISO language codes. If not provided, the default ISO language codes are used.
+ * @property {string} jsonProperty - Optional: The property of the JSON to be verified. If not provided, the root of the JSON is used.
+ * @property {boolean} mustBeSecure - Optional: Specifies whether the validation must be performed over a secure connection. If not provided, secure connection is not required.
+ */
 export interface IDomainValidationOptions {
     type: 'uuid' | 'url' | 'isoCountryCode' | 'isoLanguageCode';
-    isoCountryCodes?: string[]; // Lista de códigos de país ISO proporcionada por el usuario
-    isoLanguageCodes?: string[]; // Lista de códigos de idioma ISO proporcionada por el usuario
-    isoCountryCodePath?: string; // Ruta a un archivo JSON que contiene códigos de país ISO
-    isoLanguageCodePath?: string; // Ruta a un archivo JSON que contiene códigos de idioma ISO
-    jsonProperty?: string; // La propiedad del JSON a verificar;
+    isoCountryCodes?: string[];
+    isoLanguageCodes?: string[];
+    isoCountryCodePath?: string;
+    isoLanguageCodePath?: string;
+    jsonProperty?: string;
     mustBeSecure?: boolean;
 }

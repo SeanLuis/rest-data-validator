@@ -11,13 +11,24 @@ import { validateRegex } from "../../validators/ValidateRegex";
 import { validateString } from "../../validators/ValidateString";
 import { validateMetadataKey } from "./MetadataKeys";
 
+/**
+ * The ValidationUtils class provides a static method to validate an object based on metadata attached to its properties.
+ * This class uses the reflect-metadata library to retrieve metadata and various validators to validate the properties.
+ *
+ * @class
+ * @method validate - This static method validates an object based on metadata attached to its properties. It takes one parameter: the object to validate. It returns a ValidationResult object that contains a boolean indicating if the object is valid and an array of error messages.
+ */
 export class ValidationUtils {
+    /**
+     * Validates an object based on metadata attached to its properties.
+     * @param {any} obj - The object to validate.
+     * @returns {ValidationResult} A ValidationResult object that contains a boolean indicating if the object is valid and an array of error messages.
+     */
     static validate(obj: any): ValidationResult {
         const errors: string[] = [];
         for (const propertyName of Object.keys(obj)) {
             const metadata = Reflect.getMetadata(validateMetadataKey, obj, propertyName);
             if (metadata) {
-                // Asegúrate de que cada validador devuelve un resultado con un array 'errors'.
                 let result: ValidationResult;
 
                 switch (metadata.type) {
@@ -53,7 +64,6 @@ export class ValidationUtils {
                         break;
                 }
 
-                // Si hay errores, agrega todos ellos al array de errores.
                 if (!result.isValid && result.errors) {
                     errors.push(...result.errors);
                 }
