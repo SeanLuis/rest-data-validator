@@ -9,6 +9,7 @@ import { validateNumber } from "../../validators/ValidateNumber";
 import { validateRange } from "../../validators/ValidateRange";
 import { validateRegex } from "../../validators/ValidateRegex";
 import { validateString } from "../../validators/ValidateString";
+import { validateCustom } from "../../validators/ValidateCustom";
 import { validateMetadataKey } from "./MetadataKeys";
 
 /**
@@ -58,6 +59,9 @@ export class ValidationUtils {
                         break;
                     case 'string':
                         result = validateString(obj[propertyName], metadata.options);
+                        break;
+                    case 'custom':
+                        result = validateCustom(obj[propertyName], metadata.options); // Handle the 'custom' validation type
                         break;
                     default:
                         result = { isValid: false, errors: [`Validation type '${metadata.type}' is not supported.`] };

@@ -135,10 +135,10 @@ import {
 
 @ClassValidator
 class User {
-  @StringValidator({ minLength: 2, maxLength: 30 })
+  @String({ minLength: 2, maxLength: 30 })
   name: string;
 
-  @NumberValidator({ min: 18 })
+  @Number({ min: 18 })
   age: number;
 }
 
@@ -184,10 +184,10 @@ import { ClassValidator, StringValidator } from "rest-data-validator";
 
 @ClassValidator
 class Post {
-  @StringValidator({ minLength: 10, maxLength: 100 })
+  @String({ minLength: 10, maxLength: 100 })
   title: string;
 
-  @StringValidator({ regexPattern: /^[a-zA-Z0-9 ]+$/ })
+  @String({ regexPattern: /^[a-zA-Z0-9 ]+$/ })
   content: string;
 }
 ```
@@ -218,10 +218,10 @@ import { ClassValidator, NumberValidator } from "rest-data-validator";
 
 @ClassValidator
 class Product {
-  @NumberValidator({ min: 0 })
+  @Number({ min: 0 })
   price: number;
 
-  @NumberValidator({ integerOnly: true, min: 1 })
+  @Number({ integerOnly: true, min: 1 })
   stock: number;
 }
 ```
@@ -233,7 +233,7 @@ In this example, `price` must be a non-negative number, while `stock` must be a 
 ```typescript
 @ClassValidator
 class Measurement {
-  @NumberValidator({ divisibleBy: 0.5 })
+  @Number({ divisibleBy: 0.5 })
   length: number;
 }
 ```
@@ -261,7 +261,7 @@ import { ClassValidator, DateValidator } from "rest-data-validator";
 
 @ClassValidator
 class Event {
-  @DateValidator({
+  @Date({
     after: new Date("2020-01-01"),
     before: new Date("2023-01-01"),
   })
@@ -276,7 +276,7 @@ In this example, `eventDate` must fall between January 1st, 2020, and January 1s
 ```typescript
 @ClassValidator
 class Appointment {
-  @DateValidator({ format: "YYYY-MM-DD" })
+  @Date({ format: "YYYY-MM-DD" })
   date: string;
 }
 ```
@@ -315,7 +315,7 @@ import { ClassValidator, EnumValidator } from "rest-data-validator";
 
 @ClassValidator
 class User {
-  @EnumValidator({ enum: UserRole })
+  @Enum({ enum: UserRole })
   role: UserRole;
 }
 ```
@@ -327,7 +327,7 @@ In this example, the `role` property must be one of the values specified in the 
 You can also specify a custom error message to be used if the validation fails:
 
 ```typescript
-@EnumValidator({ enum: UserRole, message: 'Invalid user role' })
+@Enum({ enum: UserRole, message: 'Invalid user role' })
 role: UserRole;
 ```
 
@@ -358,7 +358,7 @@ import { ClassValidator, FileValidator } from "rest-data-validator";
 
 @ClassValidator
 class UserProfile {
-  @FileValidator({
+  @File({
     mimeTypes: ["image/jpeg", "image/png"],
     maxSize: 5 * 1024 * 1024, // 5 MB
     allowedExtensions: [".jpg", ".jpeg", ".png"],
@@ -408,7 +408,7 @@ import { ClassValidator, RangeValidator } from "rest-data-validator";
 
 @ClassValidator
 class Product {
-  @RangeValidator({ min: 0, max: 100, step: 10, inclusive: true })
+  @Range({ min: 0, max: 100, step: 10, inclusive: true })
   discountPercentage: number;
 }
 ```
@@ -420,7 +420,7 @@ In this example, `discountPercentage` must be a number between 0 and 100, inclus
 ```typescript
 @ClassValidator
 class Event {
-  @RangeValidator({
+  @Range({
     min: new Date("2020-01-01"),
     max: new Date("2023-01-01"),
     inclusive: true,
@@ -434,7 +434,7 @@ Here, `eventDate` must fall between January 1, 2020, and January 1, 2023, inclus
 ### Custom Validation
 
 ```typescript
-@RangeValidator({
+@Range({
     min: 10,
     max: 20,
     customValidator: (value) => value % 2 === 0 // Must be even
@@ -468,7 +468,7 @@ import { ClassValidator, RegexValidator } from "rest-data-validator";
 
 @ClassValidator
 class User {
-  @RegexValidator({
+  @Regex({
     pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     message: "Invalid email format",
   })
@@ -481,7 +481,7 @@ In this example, the `email` property must match the specified pattern, ensuring
 ### Inverting Match
 
 ```typescript
-@RegexValidator({ pattern: /example/, invertMatch: true, message: 'Value must not contain "example"' })
+@Regex({ pattern: /example/, invertMatch: true, message: 'Value must not contain "example"' })
 value: string;
 ```
 
@@ -490,7 +490,7 @@ This configuration ensures that the validation passes only if the string does no
 ### Testing Against Trimmed Value
 
 ```typescript
-@RegexValidator({ pattern: /^\d+$/, testAgainstTrimmedValue: true })
+@Regex({ pattern: /^\d+$/, testAgainstTrimmedValue: true })
 value: string;
 ```
 
@@ -520,7 +520,7 @@ import {
 
 @ClassValidator
 class Product {
-  @CustomValidator({
+  @Custom({
     validatorFunction: (value: any): ValidationResult => {
       const isValid = value > 0 && value < 100;
       return {
@@ -540,7 +540,7 @@ In this example, the `price` property must be a number between 1 and 99. The cus
 For simpler cases, the validator function can return a boolean value:
 
 ```typescript
-@CustomValidator({
+@Custom({
     validatorFunction: (value: string) => value.startsWith('A'),
     message: 'The value must start with the letter A.'
 })
@@ -574,7 +574,7 @@ import { ClassValidator, DomainValidator } from "rest-data-validator";
 
 @ClassValidator
 class ContactForm {
-  @DomainValidator({ type: "email", message: "Invalid email address" })
+  @Domain({ type: "email", message: "Invalid email address" })
   emailAddress: string;
 }
 ```
@@ -586,7 +586,7 @@ In this example, the `emailAddress` property must be a valid email address. The 
 ```typescript
 @ClassValidator
 class WebPage {
-  @DomainValidator({ type: "url", allowSubdomains: true })
+  @Domain({ type: "url", allowSubdomains: true })
   websiteUrl: string;
 }
 ```
@@ -596,7 +596,7 @@ Here, the `websiteUrl` property must be a valid URL. Subdomains are allowed in t
 ### Customizing Top-Level Domains
 
 ```typescript
-@DomainValidator({ type: 'email', topLevelDomains: ['com', 'net', 'org'] })
+@Domain({ type: 'email', topLevelDomains: ['com', 'net', 'org'] })
 email: string;
 ```
 
@@ -626,7 +626,7 @@ import { ClassValidator, ArrayValidator } from "rest-data-validator";
 
 @ClassValidator
 class ShoppingCart {
-  @ArrayValidator({
+  @Array({
     minLength: 1,
     unique: true,
     validator: (item) => {

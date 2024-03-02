@@ -39,9 +39,11 @@ export { validateNumber } from './validators/ValidateNumber';
 export { validateRange } from './validators/ValidateRange';
 export { validateRegex } from './validators/ValidateRegex';
 export { validateString } from './validators/ValidateString';
+export { validateCustom } from './validators/ValidateCustom';
 
 export { Required } from './decorators/Required';
 export { ClassValidator } from './decorators/ClassValidator';
+export { Custom } from './decorators/CustomValidator';
 export { Array } from './decorators/ArrayValidator';
 export { Date } from './decorators/DateValidator';
 export { Domain } from './decorators/DomainValidator';
