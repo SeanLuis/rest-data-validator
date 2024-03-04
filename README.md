@@ -13,6 +13,32 @@ REST Data Validator is a versatile library designed to offer comprehensive valid
 - **Full TypeScript Support**: Leverages TypeScript for type safety and enhanced developer experience.
 - **Custom Error Messages**: Allows defining custom error messages for each validation rule to provide clear and specific feedback.
 
+# REST Data Validator
+
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Basic Example](#basic-example)
+  - [Using Decorators for Validation](#using-decorators-for-validation)
+  - [Custom Validation Rules](#custom-validation-rules)
+- [ClassValidator Decorator](#classvalidator-decorator)
+- [String Decorator](#string-decorator)
+- [Number Decorator](#number-decorator)
+- [Date Decorator](#date-decorator)
+- [Enum Decorator](#enum-decorator)
+- [File Decorator](#file-decorator)
+- [Range Decorator](#range-decorator)
+- [Regex Decorator](#regex-decorator)
+- [Custom Decorator](#custom-decorator)
+- [Domain Decorator](#domain-decorator)
+- [Array Decorator](#array-decorator)
+- [Sanitizer Functions](#sanitizer-functions)
+- [Async Validators](#async-validators)
+- [Contributing](#contributing)
+- [Author](#author)
+- [License](#license)
+
+<!-- Rest of the content -->
+
 ## Installation
 
 ```bash
@@ -39,7 +65,7 @@ class User {
   @String({ minLength: 3, maxLength: 30 })
   name: string;
 
-  @Number({ min: 0 })
+  @Number({ min: 18 })
   age: number;
 }
 
@@ -47,8 +73,17 @@ const user = new User();
 user.name = "John Doe";
 user.age = 25;
 
-const validationResult = validate(user);
-console.log(validationResult);
+// It would return true since the conditions are met, otherwise it would throw an exception.
+
+// And using the validator manually
+const beforeDate = new Date('2024-12-31');
+const afterDate = new Date('2020-01-01');
+
+const options = { before: beforeDate, after: afterDate };
+const validDateString = '2022-06-15';
+const validationResult = validateDate(validDateString, options).isValid;
+
+console.log(validationResult) // false;
 ```
 
 ### Using Decorators for Validation
@@ -86,13 +121,6 @@ const profile = new UserProfile();
 profile.username = "validator";
 profile.level = 5;
 profile.role = Role.User;
-
-const result = validate(profile);
-if (!result.isValid) {
-  console.error(result.errors);
-} else {
-  console.log("Validation passed.");
-}
 ```
 
 ### Custom Validation Rules
@@ -145,17 +173,9 @@ class User {
 const user = new User();
 user.name = "Jane Doe";
 user.age = 25;
-
-// Perform validation
-const validationResult = validate(user);
-if (validationResult.isValid) {
-  console.log("User is valid.");
-} else {
-  console.error("Validation errors:", validationResult.errors);
-}
 ```
 
-In this example, the `User` class is decorated with `@ClassValidator`, which enables validation for the `name` and `age` properties using the `StringValidator` and `NumberValidator`, respectively. The `validate` function is then used to check if the user instance meets the specified validation criteria.
+In this example, the `User` class is decorated with `@ClassValidator`, which enables validation for the `name` and `age` properties using the `StringValidator` and `NumberValidator`, respectively. The `validate` function contained within ValidationUtils used by ClassValidator to check if the user instance meets the specified validation criteria.
 
 ### Integrating with Application Logic
 
@@ -163,9 +183,9 @@ The `ClassValidator` decorator and associated property validators can be integra
 
 By using `ClassValidator`, developers can define a clear, declarative validation schema directly within their class models, improving maintainability, readability, and reducing the likelihood of invalid data being processed by the application.
 
-# StringValidator Decorator
+# String Decorator
 
-The `StringValidator` decorator is used to apply validations to string properties within classes in TypeScript, ensuring that data meets certain specified criteria before being processed or stored.
+The `String` decorator is used to apply validations to string properties within classes in TypeScript, ensuring that data meets certain specified criteria before being processed or stored.
 
 ## Properties
 
@@ -175,12 +195,12 @@ The `StringValidator` decorator is used to apply validations to string propertie
 
 ## Usage
 
-To use the `StringValidator` decorator, you must first make sure your project is configured to use decorators in TypeScript.
+To use the `String` decorator, you must first make sure your project is configured to use decorators in TypeScript.
 
 ### Basic Example
 
 ```typescript
-import { ClassValidator, StringValidator } from "rest-data-validator";
+import { ClassValidator, String } from "rest-data-validator";
 
 @ClassValidator
 class Post {
@@ -194,9 +214,9 @@ class Post {
 
 In this example, `title` must be between 10 and 100 characters, while `content` must match the specified pattern and cannot be empty.
 
-# NumberValidator Decorator
+# Number Decorator
 
-The `NumberValidator` decorator is used to apply validations to numerical properties within classes in TypeScript, ensuring that data meets certain specified criteria before being processed or stored.
+The `Number` decorator is used to apply validations to numerical properties within classes in TypeScript, ensuring that data meets certain specified criteria before being processed or stored.
 
 ## Properties
 
@@ -214,7 +234,7 @@ To use the `NumberValidator` decorator, simply decorate the numeric properties o
 ### Basic Example
 
 ```typescript
-import { ClassValidator, NumberValidator } from "rest-data-validator";
+import { ClassValidator, Number } from "rest-data-validator";
 
 @ClassValidator
 class Product {
@@ -240,9 +260,9 @@ class Measurement {
 
 Here, `length` must be a number divisible by 0.5, allowing values like 1.5, 2.0, 2.5, etc.
 
-# DateValidator Decorator
+# Date Decorator
 
-The `DateValidator` decorator is used to apply validations to date properties within classes in TypeScript, ensuring that the data meets specified criteria before being processed or stored.
+The `Date` decorator is used to apply validations to date properties within classes in TypeScript, ensuring that the data meets specified criteria before being processed or stored.
 
 ## Properties
 
@@ -252,12 +272,12 @@ The `DateValidator` decorator is used to apply validations to date properties wi
 
 ## Usage
 
-To use the `DateValidator` decorator, simply decorate your class's date properties with the desired constraints.
+To use the `Date` decorator, simply decorate your class's date properties with the desired constraints.
 
 ### Basic Example
 
 ```typescript
-import { ClassValidator, DateValidator } from "rest-data-validator";
+import { ClassValidator, Date } from "rest-data-validator";
 
 @ClassValidator
 class Event {
@@ -283,9 +303,9 @@ class Appointment {
 
 Here, `date` must be a string that matches the specified format, `YYYY-MM-DD`.
 
-# EnumValidator Decorator
+# Enum Decorator
 
-The `EnumValidator` decorator is designed to validate that the value of a property matches one of the values defined in a TypeScript enumeration. It ensures that your data conforms to specified enum constraints, enhancing type safety and data integrity in your applications.
+The `Enum` decorator is designed to validate that the value of a property matches one of the values defined in a TypeScript enumeration. It ensures that your data conforms to specified enum constraints, enhancing type safety and data integrity in your applications.
 
 ## Properties
 
@@ -294,7 +314,7 @@ The `EnumValidator` decorator is designed to validate that the value of a proper
 
 ## Usage
 
-To use the `EnumValidator`, apply it to properties in your class that are meant to hold values defined by specific TypeScript enums.
+To use the `Enum`, apply it to properties in your class that are meant to hold values defined by specific TypeScript enums.
 
 ### Example
 
@@ -308,10 +328,10 @@ enum UserRole {
 }
 ```
 
-You can use `EnumValidator` to ensure that a user role property only accepts values defined in `UserRole`:
+You can use `Enum` to ensure that a user role property only accepts values defined in `UserRole`:
 
 ```typescript
-import { ClassValidator, EnumValidator } from "rest-data-validator";
+import { ClassValidator, Enum } from "rest-data-validator";
 
 @ClassValidator
 class User {
@@ -333,9 +353,9 @@ role: UserRole;
 
 This will replace the default error message with "Invalid user role" if an invalid value is assigned to the `role` property.
 
-# FileValidator Decorator
+# File Decorator
 
-The `FileValidator` decorator is designed to validate file properties in your classes, ensuring that the files meet specified constraints such as type, size, and name criteria. This is particularly useful for applications that handle file uploads and need to enforce validation rules for security and data integrity.
+The `File` decorator is designed to validate file properties in your classes, ensuring that the files meet specified constraints such as type, size, and name criteria. This is particularly useful for applications that handle file uploads and need to enforce validation rules for security and data integrity.
 
 ## Properties
 
@@ -349,12 +369,12 @@ The `FileValidator` decorator is designed to validate file properties in your cl
 
 ## Usage
 
-To use the `FileValidator`, apply it to properties in your class that are intended to hold file data. The validation can be customized extensively using the properties outlined above.
+To use the `File`, apply it to properties in your class that are intended to hold file data. The validation can be customized extensively using the properties outlined above.
 
 ### Example
 
 ```typescript
-import { ClassValidator, FileValidator } from "rest-data-validator";
+import { ClassValidator, File } from "rest-data-validator";
 
 @ClassValidator
 class UserProfile {
@@ -384,9 +404,9 @@ validateFileContent: (buffer) => {
 
 This allows for fine-grained control over what constitutes a valid file beyond the basic constraints of type and size.
 
-# RangeValidator Decorator
+# Range Decorator
 
-The `RangeValidator` decorator is designed to validate numerical or date properties within classes, ensuring they fall within a specified range. This decorator is versatile, supporting both numbers and dates, making it ideal for a wide variety of validation scenarios.
+The `Range` decorator is designed to validate numerical or date properties within classes, ensuring they fall within a specified range. This decorator is versatile, supporting both numbers and dates, making it ideal for a wide variety of validation scenarios.
 
 ## Properties
 
@@ -399,12 +419,12 @@ The `RangeValidator` decorator is designed to validate numerical or date propert
 
 ## Usage
 
-To use the `RangeValidator`, apply it to numerical or date properties in your classes, specifying the desired range and other criteria.
+To use the `Range`, apply it to numerical or date properties in your classes, specifying the desired range and other criteria.
 
 ### Example for Numbers
 
 ```typescript
-import { ClassValidator, RangeValidator } from "rest-data-validator";
+import { ClassValidator, Range } from "rest-data-validator";
 
 @ClassValidator
 class Product {
@@ -444,9 +464,9 @@ value: number;
 
 This allows for additional custom validation logic, such as ensuring a number is even within a specified range.
 
-# RegexValidator Decorator
+# Regex Decorator
 
-The `RegexValidator` decorator allows for the validation of string properties against a specified regular expression pattern. This ensures that the property value conforms to a specific format, making it incredibly useful for validating emails, phone numbers, URLs, and more.
+The `Regex` decorator allows for the validation of string properties against a specified regular expression pattern. This ensures that the property value conforms to a specific format, making it incredibly useful for validating emails, phone numbers, URLs, and more.
 
 ## Properties
 
@@ -464,7 +484,7 @@ To use the `RegexValidator`, apply it to any string property in your class that 
 ### Example
 
 ```typescript
-import { ClassValidator, RegexValidator } from "rest-data-validator";
+import { ClassValidator, Regex } from "rest-data-validator";
 
 @ClassValidator
 class User {
@@ -496,64 +516,42 @@ value: string;
 
 This ensures that the string, when trimmed, consists only of digits, making it suitable for numeric IDs or codes that might have accidental whitespace.
 
-# CustomValidator Decorator
+# Custom Decorator
 
-The `CustomValidator` decorator provides a powerful way to define custom validation logic for properties within your classes. This decorator allows for the utmost flexibility by enabling the use of any validation function that you define, catering to complex or unique validation requirements that are not covered by the standard validators.
+The `Custom` decorator provides a powerful way to define custom validation logic for properties within your classes. This decorator allows for the utmost flexibility by enabling the use of any validation function that you define, catering to complex or unique validation requirements that are not covered by the standard validators.
 
 ## Properties
 
-- **validatorFunction**: `(value: any) => boolean | ValidationResult` - A custom function that takes the property value as input and returns either a boolean indicating validity or a `ValidationResult` object.
-- **message**: `string` - Optional. A custom error message to return if the validation fails.
+- **name**: `string` - The name of the custom validator.
+- **validate**: `(value: any) => boolean` - A custom function that takes the property value as input and returns a boolean indicating validity.
 
 ## Usage
 
-To use the `CustomValidator`, apply it to any property in your class and provide a validation function that implements your specific validation logic.
+To use the `Custom` decorator, apply it to any property in your class and provide a validation function that implements your specific validation logic.
 
 ### Example
 
 ```typescript
 import {
   ClassValidator,
-  CustomValidator,
-  ValidationResult,
+  Custom,
 } from "rest-data-validator";
 
 @ClassValidator
 class Product {
   @Custom({
-    validatorFunction: (value: any): ValidationResult => {
-      const isValid = value > 0 && value < 100;
-      return {
-        isValid,
-        errors: isValid ? [] : ["The value must be between 1 and 99."],
-      };
+    name: 'PriceValidator',
+    validate: (value: any): boolean => {
+      return value > 0 && value < 100;
     },
   })
   price: number;
 }
 ```
 
-In this example, the `price` property must be a number between 1 and 99. The custom validation function checks this condition and returns a `ValidationResult`.
+# Domain Decorator
 
-### Using Boolean Return Value
-
-For simpler cases, the validator function can return a boolean value:
-
-```typescript
-@Custom({
-    validatorFunction: (value: string) => value.startsWith('A'),
-    message: 'The value must start with the letter A.'
-})
-value: string;
-```
-
-This configuration ensures that the validation passes only if the string starts with the letter 'A'.
-
-The `CustomValidator` is particularly useful for implementing validations that require checking against external data sources, complex logical conditions, or patterns that are not easily expressed through regular expressions.
-
-# DomainValidator Decorator
-
-The `DomainValidator` decorator is specifically designed for validating domain-related properties in your classes, such as email addresses, URLs, and domain names, ensuring they adhere to standard formats and constraints.
+The `Domain` decorator is specifically designed for validating domain-related properties in your classes, such as email addresses, URLs, and domain names, ensuring they adhere to standard formats and constraints.
 
 ## Properties
 
@@ -565,12 +563,12 @@ The `DomainValidator` decorator is specifically designed for validating domain-r
 
 ## Usage
 
-To use the `DomainValidator`, apply it to properties in your class that represent domain-related information, specifying the appropriate validation type and any additional constraints.
+To use the `Domain`, apply it to properties in your class that represent domain-related information, specifying the appropriate validation type and any additional constraints.
 
 ### Example for Email Validation
 
 ```typescript
-import { ClassValidator, DomainValidator } from "rest-data-validator";
+import { ClassValidator, Domain } from "rest-data-validator";
 
 @ClassValidator
 class ContactForm {
@@ -604,9 +602,9 @@ This configuration restricts valid email addresses to those that have a top-leve
 
 The `DomainValidator` is an essential tool for ensuring that user input conforms to expected domain formats, enhancing the reliability and security of domain-related data processing in your application.
 
-# ArrayValidator Decorator
+# Array Decorator
 
-The `ArrayValidator` decorator allows for the validation of array properties within classes, ensuring they meet specific criteria such as length and uniqueness, and even applying custom validation to each element.
+The `Array` decorator allows for the validation of array properties within classes, ensuring they meet specific criteria such as length and uniqueness, and even applying custom validation to each element.
 
 ## Properties
 
@@ -617,12 +615,12 @@ The `ArrayValidator` decorator allows for the validation of array properties wit
 
 ## Usage
 
-To use the `ArrayValidator`, apply it to array properties in your class, specifying the desired validation constraints.
+To use the `Array`, apply it to array properties in your class, specifying the desired validation constraints.
 
 ### Example
 
 ```typescript
-import { ClassValidator, ArrayValidator } from "rest-data-validator";
+import { ClassValidator, Array } from "rest-data-validator";
 
 @ClassValidator
 class ShoppingCart {
@@ -642,11 +640,11 @@ class ShoppingCart {
 
 In this example, the `items` array must have at least one item, each item must be unique, and every item must satisfy the custom validation condition (price greater than 0).
 
-### Applying ArrayValidator
+### Applying Array
 
-To apply the `ArrayValidator`, you need to decorate your class property with `@ArrayValidator` and provide the necessary validation options. This enables a declarative approach to specifying validation logic directly within your class models.
+To apply the `Array`, you need to decorate your class property with `@Array` and provide the necessary validation options. This enables a declarative approach to specifying validation logic directly within your class models.
 
-The `ArrayValidator` is a powerful tool for ensuring data integrity for array properties, supporting both simple constraints and complex, element-wise validation.
+The `Array` is a powerful tool for ensuring data integrity for array properties, supporting both simple constraints and complex, element-wise validation.
 
 # Sanitizer Functions
 
