@@ -36,26 +36,24 @@ export const validateDomain = (
         }
     };
 
-    if (options.type === 'url') {
-        const isValidUrl = URL_REGEX.test(value);
-        const isSecure = value.startsWith('https://');
-
-        if (!isValidUrl) {
-            errors.push('Value is not a valid URL.');
-        } else if (options.mustBeSecure && !isSecure) {
-            errors.push('URL must be secure (https).');
-        }
-    }
+    const addError = (defaultMessage: string) => {
+        errors.push(options.message || defaultMessage);
+    };
 
     switch (options.type) {
         case 'uuid':
             if (!UUID_REGEX.test(value)) {
-                errors.push('Value is not a valid UUID.');
+                addError('Value is not a valid UUID.');
             }
             break;
         case 'url':
-            if (!URL_REGEX.test(value)) {
-                errors.push('Value is not a valid URL.');
+            const isValidUrl = URL_REGEX.test(value);
+            const isSecure = value.startsWith('https://');
+
+            if (!isValidUrl) {
+                addError('Value is not a valid URL.');
+            } else if (options.mustBeSecure && !isSecure) {
+                addError('URL must be secure (https).');
             }
             break;
         case 'isoCountryCode':
@@ -63,20 +61,19 @@ export const validateDomain = (
                 (options.isoCountryCodePath ? verifyCodeFromJson(options.isoCountryCodePath, options.jsonProperty || 'isoCountryCodes', value) : false);
 
             if (!isValidCountryCode) {
-                errors.push('Value is not a valid ISO country code.');
+                addError('Value is not a valid ISO country code.');
             }
             break;
-
         case 'isoLanguageCode':
             const isValidLanguageCode = options.isoLanguageCodes?.includes(value) ||
                 (options.isoLanguageCodePath ? verifyCodeFromJson(options.isoLanguageCodePath, options.jsonProperty || 'isoLanguageCodes', value) : false);
 
             if (!isValidLanguageCode) {
-                errors.push('Value is not a valid ISO language code.');
+                addError('Value is not a valid ISO language code.');
             }
             break;
         default:
-            errors.push('Invalid validation type specified.');
+            addError('Invalid validation type specified.');
     }
 
     return {

@@ -1,3 +1,5 @@
+import { IValidationOptionsBase } from "./IValidationOptionsBase";
+
 /**
  * The INumberValidationOptions interface represents the options for validating a number.
  * This interface is used to handle number validation throughout the application.
@@ -12,8 +14,9 @@
  * @property {number} divisibleBy - Optional: The value that the number must be divisible by. If not provided, the number can be divisible by any value.
  * @property {number[]} notEqualTo - Optional: An array of values that the number must not equal to. If not provided, the number can equal to any value.
  * @property {number[]} equalTo - Optional: An array of values that the number can specifically equal to. If not provided, the number can equal to any value.
+ * @property {string} message - Optional: An error message to display if the validation fails. If not provided, a default error message is used.
  */
-export interface INumberValidationOptions {
+export interface INumberValidationOptions extends IValidationOptionsBase {
     min?: number;
     max?: number;
     integerOnly?: boolean;

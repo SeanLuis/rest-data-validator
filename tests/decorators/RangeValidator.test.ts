@@ -41,7 +41,7 @@ describe('Event with Range Decorator', () => {
 
   it('should reject a score not divisible by 10', () => {
     // Usa el mensaje de error exacto que produce validateRange
-    const expectedErrorMessage = "Validation failed: Value must be a multiple of 10.";
+    const expectedErrorMessage = "Validation failed: The score must be between 1 and 100 and divisible by 10.";
     expect(() => new Event(new Date('2023-06-15'), 15)).toThrow(expectedErrorMessage);
   });
 });

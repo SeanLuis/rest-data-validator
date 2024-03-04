@@ -15,16 +15,24 @@ import { ValidationResult } from '../types/ValidationResult';
 export const validateString = (value: string, options: IStringValidationOptions = {}): ValidationResult => {
     const errors: string[] = [];
 
+    const addError = (specificMessage: string) => {
+        let errorMessage = specificMessage;
+        if (options.message) {
+            errorMessage += ` ${options.message}`;
+        }
+        errors.push(errorMessage);
+    };
+
     if (options.minLength !== undefined && value.length < options.minLength) {
-        errors.push(`String is too short. Minimum length is ${options.minLength}.`);
+        addError(`String is too short. Minimum length is ${options.minLength}.`);
     }
 
     if (options.maxLength !== undefined && value.length > options.maxLength) {
-        errors.push(`String is too long. Maximum length is ${options.maxLength}.`);
+        addError(`String is too long. Maximum length is ${options.maxLength}.`);
     }
 
     if (options.regexPattern && !options.regexPattern.test(value)) {
-        errors.push(`String does not match the required pattern.`);
+        addError(`String does not match the required pattern.`);
     }
 
     return {

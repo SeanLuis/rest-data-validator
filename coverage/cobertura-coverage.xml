@@ -1,13 +1,13 @@
 <?xml version="1.0" ?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage lines-valid="380" lines-covered="371" line-rate="0.9763" branches-valid="236" branches-covered="203" branch-rate="0.8601000000000001" timestamp="1709521947323" complexity="0" version="0.1">
+<coverage lines-valid="394" lines-covered="383" line-rate="0.972" branches-valid="263" branches-covered="224" branch-rate="0.8517" timestamp="1709580695007" complexity="0" version="0.1">
   <sources>
-    <source>C:\Users\Sean\Documents\GitHub\rest-data-validator</source>
+    <source>/home/sean/Documentos/OWN/rest-data-validator</source>
   </sources>
   <packages>
     <package name="src" line-rate="1" branch-rate="1">
       <classes>
-        <class name="index.ts" filename="src\index.ts" line-rate="1" branch-rate="1">
+        <class name="index.ts" filename="src/index.ts" line-rate="1" branch-rate="1">
           <methods>
             <method name="(anonymous_6)" hits="16" signature="()V">
               <lines>
@@ -252,7 +252,7 @@
     </package>
     <package name="src.decorators" line-rate="0.9873000000000001" branch-rate="1">
       <classes>
-        <class name="ArrayValidator.ts" filename="src\decorators\ArrayValidator.ts" line-rate="1" branch-rate="1">
+        <class name="ArrayValidator.ts" filename="src/decorators/ArrayValidator.ts" line-rate="1" branch-rate="1">
           <methods>
             <method name="Array" hits="1" signature="()V">
               <lines>
@@ -273,7 +273,7 @@
             <line number="12" hits="1" branch="false"/>
           </lines>
         </class>
-        <class name="ClassValidator.ts" filename="src\decorators\ClassValidator.ts" line-rate="1" branch-rate="1">
+        <class name="ClassValidator.ts" filename="src/decorators/ClassValidator.ts" line-rate="1" branch-rate="1">
           <methods>
             <method name="ClassValidator" hits="13" signature="()V">
               <lines>
@@ -296,7 +296,7 @@
             <line number="16" hits="27" branch="false"/>
           </lines>
         </class>
-        <class name="CustomValidator.ts" filename="src\decorators\CustomValidator.ts" line-rate="1" branch-rate="1">
+        <class name="CustomValidator.ts" filename="src/decorators/CustomValidator.ts" line-rate="1" branch-rate="1">
           <methods>
             <method name="Custom" hits="5" signature="()V">
               <lines>
@@ -317,7 +317,7 @@
             <line number="12" hits="5" branch="false"/>
           </lines>
         </class>
-        <class name="DateValidator.ts" filename="src\decorators\DateValidator.ts" line-rate="1" branch-rate="1">
+        <class name="DateValidator.ts" filename="src/decorators/DateValidator.ts" line-rate="1" branch-rate="1">
           <methods>
             <method name="Date" hits="1" signature="()V">
               <lines>
@@ -338,7 +338,7 @@
             <line number="12" hits="1" branch="false"/>
           </lines>
         </class>
-        <class name="DomainValidator.ts" filename="src\decorators\DomainValidator.ts" line-rate="1" branch-rate="1">
+        <class name="DomainValidator.ts" filename="src/decorators/DomainValidator.ts" line-rate="1" branch-rate="1">
           <methods>
             <method name="Domain" hits="1" signature="()V">
               <lines>
@@ -359,7 +359,7 @@
             <line number="12" hits="1" branch="false"/>
           </lines>
         </class>
-        <class name="EnumValidator.ts" filename="src\decorators\EnumValidator.ts" line-rate="1" branch-rate="1">
+        <class name="EnumValidator.ts" filename="src/decorators/EnumValidator.ts" line-rate="1" branch-rate="1">
           <methods>
             <method name="Enum" hits="2" signature="()V">
               <lines>
@@ -380,7 +380,7 @@
             <line number="12" hits="2" branch="false"/>
           </lines>
         </class>
-        <class name="FileValidator.ts" filename="src\decorators\FileValidator.ts" line-rate="1" branch-rate="1">
+        <class name="FileValidator.ts" filename="src/decorators/FileValidator.ts" line-rate="1" branch-rate="1">
           <methods>
             <method name="File" hits="1" signature="()V">
               <lines>
@@ -401,7 +401,7 @@
             <line number="12" hits="1" branch="false"/>
           </lines>
         </class>
-        <class name="NumberValidator.ts" filename="src\decorators\NumberValidator.ts" line-rate="1" branch-rate="1">
+        <class name="NumberValidator.ts" filename="src/decorators/NumberValidator.ts" line-rate="1" branch-rate="1">
           <methods>
             <method name="Number" hits="2" signature="()V">
               <lines>
@@ -422,7 +422,7 @@
             <line number="12" hits="2" branch="false"/>
           </lines>
         </class>
-        <class name="RangeValidator.ts" filename="src\decorators\RangeValidator.ts" line-rate="1" branch-rate="1">
+        <class name="RangeValidator.ts" filename="src/decorators/RangeValidator.ts" line-rate="1" branch-rate="1">
           <methods>
             <method name="Range" hits="2" signature="()V">
               <lines>
@@ -443,7 +443,7 @@
             <line number="12" hits="2" branch="false"/>
           </lines>
         </class>
-        <class name="RegexValidator.ts" filename="src\decorators\RegexValidator.ts" line-rate="1" branch-rate="1">
+        <class name="RegexValidator.ts" filename="src/decorators/RegexValidator.ts" line-rate="1" branch-rate="1">
           <methods>
             <method name="Regex" hits="2" signature="()V">
               <lines>
@@ -464,7 +464,7 @@
             <line number="12" hits="2" branch="false"/>
           </lines>
         </class>
-        <class name="Required.ts" filename="src\decorators\Required.ts" line-rate="0.9" branch-rate="1">
+        <class name="Required.ts" filename="src/decorators/Required.ts" line-rate="0.9" branch-rate="1">
           <methods>
             <method name="Required" hits="1" signature="()V">
               <lines>
@@ -500,7 +500,7 @@
             <line number="25" hits="1" branch="false"/>
           </lines>
         </class>
-        <class name="StringValidator.ts" filename="src\decorators\StringValidator.ts" line-rate="1" branch-rate="1">
+        <class name="StringValidator.ts" filename="src/decorators/StringValidator.ts" line-rate="1" branch-rate="1">
           <methods>
             <method name="String" hits="2" signature="()V">
               <lines>
@@ -521,7 +521,7 @@
             <line number="12" hits="2" branch="false"/>
           </lines>
         </class>
-        <class name="index.ts" filename="src\decorators\index.ts" line-rate="1" branch-rate="1">
+        <class name="index.ts" filename="src/decorators/index.ts" line-rate="1" branch-rate="1">
           <methods>
             <method name="(anonymous_0)" hits="1" signature="()V">
               <lines>
@@ -603,7 +603,7 @@
     </package>
     <package name="src.sanitizers" line-rate="1" branch-rate="1">
       <classes>
-        <class name="index.ts" filename="src\sanitizers\index.ts" line-rate="1" branch-rate="1">
+        <class name="index.ts" filename="src/sanitizers/index.ts" line-rate="1" branch-rate="1">
           <methods>
             <method name="(anonymous_0)" hits="1" signature="()V">
               <lines>
@@ -708,7 +708,7 @@
     </package>
     <package name="src.utils.date" line-rate="1" branch-rate="1">
       <classes>
-        <class name="DateValidation.ts" filename="src\utils\date\DateValidation.ts" line-rate="1" branch-rate="1">
+        <class name="DateValidation.ts" filename="src/utils/date/DateValidation.ts" line-rate="1" branch-rate="1">
           <methods>
             <method name="isValidDate" hits="4" signature="()V">
               <lines>
@@ -732,14 +732,14 @@
     </package>
     <package name="src.utils.validations" line-rate="0.9375" branch-rate="0.9333">
       <classes>
-        <class name="MetadataKeys.ts" filename="src\utils\validations\MetadataKeys.ts" line-rate="1" branch-rate="1">
+        <class name="MetadataKeys.ts" filename="src/utils/validations/MetadataKeys.ts" line-rate="1" branch-rate="1">
           <methods>
           </methods>
           <lines>
             <line number="1" hits="24" branch="false"/>
           </lines>
         </class>
-        <class name="ValidationMetadata.ts" filename="src\utils\validations\ValidationMetadata.ts" line-rate="0.8" branch-rate="1">
+        <class name="ValidationMetadata.ts" filename="src/utils/validations/ValidationMetadata.ts" line-rate="0.8" branch-rate="1">
           <methods>
             <method name="(anonymous_0)" hits="1" signature="()V">
               <lines>
@@ -760,7 +760,7 @@
             <line number="30" hits="0" branch="false"/>
           </lines>
         </class>
-        <class name="ValidationUtils.ts" filename="src\utils\validations\ValidationUtils.ts" line-rate="0.9523" branch-rate="0.9333">
+        <class name="ValidationUtils.ts" filename="src/utils/validations/ValidationUtils.ts" line-rate="0.9523" branch-rate="0.9333">
           <methods>
             <method name="(anonymous_0)" hits="47" signature="()V">
               <lines>
@@ -815,9 +815,9 @@
         </class>
       </classes>
     </package>
-    <package name="src.validators" line-rate="0.972" branch-rate="0.8476">
+    <package name="src.validators" line-rate="0.9637" branch-rate="0.8395999999999999">
       <classes>
-        <class name="ValidateArray.ts" filename="src\validators\ValidateArray.ts" line-rate="1" branch-rate="0.8823000000000001">
+        <class name="ValidateArray.ts" filename="src/validators/ValidateArray.ts" line-rate="1" branch-rate="0.92">
           <methods>
             <method name="(anonymous_0)" hits="22" signature="()V">
               <lines>
@@ -826,7 +826,7 @@
             </method>
             <method name="(anonymous_1)" hits="29" signature="()V">
               <lines>
-                <line number="44" hits="29"/>
+                <line number="48" hits="29"/>
               </lines>
             </method>
           </methods>
@@ -835,25 +835,29 @@
             <line number="18" hits="22" branch="false"/>
             <line number="20" hits="22" branch="true" condition-coverage="100% (1/1)"/>
             <line number="21" hits="1" branch="false"/>
-            <line number="22" hits="1" branch="false"/>
-            <line number="28" hits="21" branch="true" condition-coverage="100% (3/3)"/>
-            <line number="29" hits="3" branch="false"/>
-            <line number="32" hits="21" branch="true" condition-coverage="100% (3/3)"/>
-            <line number="33" hits="3" branch="false"/>
-            <line number="36" hits="21" branch="true" condition-coverage="100% (1/1)"/>
-            <line number="37" hits="9" branch="false"/>
-            <line number="38" hits="9" branch="true" condition-coverage="100% (1/1)"/>
-            <line number="39" hits="3" branch="false"/>
-            <line number="43" hits="21" branch="true" condition-coverage="100% (1/1)"/>
-            <line number="44" hits="10" branch="false"/>
-            <line number="45" hits="29" branch="true" condition-coverage="50% (1/2)"/>
-            <line number="46" hits="29" branch="true" condition-coverage="100% (3/3)"/>
-            <line number="47" hits="5" branch="true" condition-coverage="100% (1/1)"/>
-            <line number="48" hits="5" branch="false"/>
-            <line number="54" hits="21" branch="false"/>
+            <line number="22" hits="1" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="23" hits="1" branch="false"/>
+            <line number="29" hits="21" branch="true" condition-coverage="100% (3/3)"/>
+            <line number="30" hits="3" branch="false"/>
+            <line number="31" hits="3" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="34" hits="21" branch="true" condition-coverage="100% (3/3)"/>
+            <line number="35" hits="3" branch="false"/>
+            <line number="36" hits="3" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="39" hits="21" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="40" hits="9" branch="false"/>
+            <line number="41" hits="9" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="42" hits="3" branch="false"/>
+            <line number="43" hits="3" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="47" hits="21" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="48" hits="10" branch="false"/>
+            <line number="49" hits="29" branch="true" condition-coverage="50% (1/2)"/>
+            <line number="50" hits="29" branch="true" condition-coverage="100% (3/3)"/>
+            <line number="51" hits="5" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="52" hits="5" branch="false"/>
+            <line number="58" hits="21" branch="false"/>
           </lines>
         </class>
-        <class name="ValidateChain.ts" filename="src\validators\ValidateChain.ts" line-rate="1" branch-rate="1">
+        <class name="ValidateChain.ts" filename="src/validators/ValidateChain.ts" line-rate="1" branch-rate="1">
           <methods>
             <method name="(anonymous_0)" hits="5" signature="()V">
               <lines>
@@ -870,7 +874,7 @@
             <line number="18" hits="3" branch="false"/>
           </lines>
         </class>
-        <class name="ValidateCustom.ts" filename="src\validators\ValidateCustom.ts" line-rate="1" branch-rate="1">
+        <class name="ValidateCustom.ts" filename="src/validators/ValidateCustom.ts" line-rate="1" branch-rate="1">
           <methods>
             <method name="(anonymous_0)" hits="6" signature="()V">
               <lines>
@@ -881,11 +885,12 @@
           <lines>
             <line number="12" hits="24" branch="false"/>
             <line number="17" hits="6" branch="false"/>
-            <line number="18" hits="6" branch="true" condition-coverage="100% (2/2)"/>
-            <line number="21" hits="6" branch="false"/>
+            <line number="19" hits="6" branch="false"/>
+            <line number="20" hits="6" branch="true" condition-coverage="100% (4/4)"/>
+            <line number="23" hits="6" branch="false"/>
           </lines>
         </class>
-        <class name="ValidateDate.ts" filename="src\validators\ValidateDate.ts" line-rate="1" branch-rate="0.909">
+        <class name="ValidateDate.ts" filename="src/validators/ValidateDate.ts" line-rate="1" branch-rate="0.9444">
           <methods>
             <method name="(anonymous_0)" hits="9" signature="()V">
               <lines>
@@ -897,18 +902,19 @@
             <line number="13" hits="24" branch="false"/>
             <line number="17" hits="9" branch="false"/>
             <line number="18" hits="9" branch="false"/>
-            <line number="20" hits="9" branch="true" condition-coverage="100% (2/2)"/>
-            <line number="21" hits="1" branch="false"/>
-            <line number="22" hits="8" branch="true" condition-coverage="100% (2/2)"/>
-            <line number="23" hits="2" branch="false"/>
-            <line number="25" hits="6" branch="true" condition-coverage="100% (3/3)"/>
-            <line number="26" hits="1" branch="false"/>
+            <line number="20" hits="9" branch="false"/>
+            <line number="21" hits="9" branch="true" condition-coverage="100% (5/5)"/>
+            <line number="22" hits="3" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="24" hits="6" branch="true" condition-coverage="100% (3/3)"/>
+            <line number="25" hits="1" branch="false"/>
+            <line number="26" hits="1" branch="true" condition-coverage="100% (2/2)"/>
             <line number="29" hits="6" branch="true" condition-coverage="100% (3/3)"/>
             <line number="30" hits="1" branch="false"/>
-            <line number="34" hits="9" branch="false"/>
+            <line number="31" hits="1" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="35" hits="9" branch="false"/>
           </lines>
         </class>
-        <class name="ValidateDomain.ts" filename="src\validators\ValidateDomain.ts" line-rate="0.9473" branch-rate="0.8055">
+        <class name="ValidateDomain.ts" filename="src/validators/ValidateDomain.ts" line-rate="0.9459000000000001" branch-rate="0.8055">
           <methods>
             <method name="(anonymous_0)" hits="14" signature="()V">
               <lines>
@@ -918,6 +924,11 @@
             <method name="(anonymous_1)" hits="4" signature="()V">
               <lines>
                 <line number="25" hits="4"/>
+              </lines>
+            </method>
+            <method name="(anonymous_2)" hits="6" signature="()V">
+              <lines>
+                <line number="39" hits="6"/>
               </lines>
             </method>
           </methods>
@@ -936,33 +947,32 @@
             <line number="31" hits="0" branch="false"/>
             <line number="33" hits="2" branch="false"/>
             <line number="35" hits="2" branch="false"/>
-            <line number="39" hits="14" branch="true" condition-coverage="100% (1/1)"/>
-            <line number="40" hits="4" branch="false"/>
-            <line number="41" hits="4" branch="false"/>
-            <line number="43" hits="4" branch="true" condition-coverage="100% (2/2)"/>
-            <line number="44" hits="1" branch="false"/>
-            <line number="45" hits="3" branch="true" condition-coverage="100% (3/3)"/>
+            <line number="39" hits="14" branch="false"/>
+            <line number="40" hits="6" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="43" hits="14" branch="true" condition-coverage="80% (4/5)"/>
+            <line number="45" hits="2" branch="true" condition-coverage="100% (1/1)"/>
             <line number="46" hits="1" branch="false"/>
-            <line number="50" hits="14" branch="true" condition-coverage="80% (4/5)"/>
-            <line number="52" hits="2" branch="true" condition-coverage="100% (1/1)"/>
-            <line number="53" hits="1" branch="false"/>
-            <line number="55" hits="2" branch="false"/>
-            <line number="57" hits="4" branch="true" condition-coverage="100% (1/1)"/>
-            <line number="58" hits="1" branch="false"/>
-            <line number="60" hits="4" branch="false"/>
-            <line number="62" hits="6" branch="true" condition-coverage="100% (6/6)"/>
-            <line number="65" hits="4" branch="true" condition-coverage="100% (1/1)"/>
-            <line number="66" hits="2" branch="false"/>
-            <line number="68" hits="4" branch="false"/>
-            <line number="71" hits="2" branch="true" condition-coverage="83.33333333333334% (5/6)"/>
-            <line number="74" hits="2" branch="true" condition-coverage="100% (1/1)"/>
-            <line number="75" hits="1" branch="false"/>
-            <line number="77" hits="2" branch="false"/>
-            <line number="79" hits="0" branch="false"/>
-            <line number="82" hits="12" branch="false"/>
+            <line number="48" hits="2" branch="false"/>
+            <line number="50" hits="4" branch="false"/>
+            <line number="51" hits="4" branch="false"/>
+            <line number="53" hits="4" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="54" hits="1" branch="false"/>
+            <line number="55" hits="3" branch="true" condition-coverage="100% (3/3)"/>
+            <line number="56" hits="1" branch="false"/>
+            <line number="58" hits="4" branch="false"/>
+            <line number="60" hits="6" branch="true" condition-coverage="100% (6/6)"/>
+            <line number="63" hits="4" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="64" hits="2" branch="false"/>
+            <line number="66" hits="4" branch="false"/>
+            <line number="68" hits="2" branch="true" condition-coverage="83.33333333333334% (5/6)"/>
+            <line number="71" hits="2" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="72" hits="1" branch="false"/>
+            <line number="74" hits="2" branch="false"/>
+            <line number="76" hits="0" branch="false"/>
+            <line number="79" hits="12" branch="false"/>
           </lines>
         </class>
-        <class name="ValidateEnum.ts" filename="src\validators\ValidateEnum.ts" line-rate="1" branch-rate="1">
+        <class name="ValidateEnum.ts" filename="src/validators/ValidateEnum.ts" line-rate="1" branch-rate="1">
           <methods>
             <method name="(anonymous_0)" hits="17" signature="()V">
               <lines>
@@ -978,56 +988,68 @@
             <line number="22" hits="17" branch="false"/>
           </lines>
         </class>
-        <class name="ValidateFile.ts" filename="src\validators\ValidateFile.ts" line-rate="1" branch-rate="0.9642000000000001">
+        <class name="ValidateFile.ts" filename="src/validators/ValidateFile.ts" line-rate="1" branch-rate="0.9666">
           <methods>
             <method name="(anonymous_0)" hits="11" signature="()V">
               <lines>
                 <line number="19" hits="11"/>
               </lines>
             </method>
+            <method name="(anonymous_1)" hits="9" signature="()V">
+              <lines>
+                <line number="25" hits="9"/>
+              </lines>
+            </method>
           </methods>
           <lines>
             <line number="19" hits="24" branch="false"/>
             <line number="23" hits="11" branch="false"/>
-            <line number="25" hits="11" branch="true" condition-coverage="100% (3/3)"/>
-            <line number="26" hits="2" branch="false"/>
+            <line number="25" hits="11" branch="false"/>
+            <line number="26" hits="9" branch="true" condition-coverage="100% (2/2)"/>
             <line number="29" hits="11" branch="true" condition-coverage="100% (3/3)"/>
             <line number="30" hits="2" branch="false"/>
             <line number="33" hits="11" branch="true" condition-coverage="100% (3/3)"/>
-            <line number="34" hits="1" branch="false"/>
-            <line number="37" hits="11" branch="true" condition-coverage="75% (3/4)"/>
-            <line number="38" hits="11" branch="true" condition-coverage="100% (4/4)"/>
-            <line number="39" hits="1" branch="false"/>
+            <line number="34" hits="2" branch="false"/>
+            <line number="37" hits="11" branch="true" condition-coverage="100% (3/3)"/>
+            <line number="38" hits="1" branch="false"/>
+            <line number="41" hits="11" branch="true" condition-coverage="75% (3/4)"/>
             <line number="42" hits="11" branch="true" condition-coverage="100% (4/4)"/>
             <line number="43" hits="1" branch="false"/>
-            <line number="46" hits="11" branch="true" condition-coverage="100% (3/3)"/>
+            <line number="46" hits="11" branch="true" condition-coverage="100% (4/4)"/>
             <line number="47" hits="1" branch="false"/>
             <line number="50" hits="11" branch="true" condition-coverage="100% (3/3)"/>
             <line number="51" hits="1" branch="false"/>
-            <line number="54" hits="11" branch="false"/>
+            <line number="54" hits="11" branch="true" condition-coverage="100% (3/3)"/>
+            <line number="55" hits="1" branch="false"/>
+            <line number="58" hits="11" branch="false"/>
           </lines>
         </class>
-        <class name="ValidateNumber.ts" filename="src\validators\ValidateNumber.ts" line-rate="1" branch-rate="0.9642000000000001">
+        <class name="ValidateNumber.ts" filename="src/validators/ValidateNumber.ts" line-rate="1" branch-rate="0.9666">
           <methods>
             <method name="(anonymous_0)" hits="19" signature="()V">
               <lines>
                 <line number="20" hits="19"/>
               </lines>
             </method>
+            <method name="(anonymous_1)" hits="12" signature="()V">
+              <lines>
+                <line number="26" hits="12"/>
+              </lines>
+            </method>
           </methods>
           <lines>
             <line number="20" hits="24" branch="false"/>
             <line number="24" hits="19" branch="false"/>
-            <line number="26" hits="19" branch="true" condition-coverage="100% (3/3)"/>
-            <line number="27" hits="2" branch="false"/>
+            <line number="26" hits="19" branch="false"/>
+            <line number="27" hits="12" branch="true" condition-coverage="100% (2/2)"/>
             <line number="30" hits="19" branch="true" condition-coverage="100% (3/3)"/>
-            <line number="31" hits="1" branch="false"/>
+            <line number="31" hits="2" branch="false"/>
             <line number="34" hits="19" branch="true" condition-coverage="100% (3/3)"/>
-            <line number="35" hits="2" branch="false"/>
+            <line number="35" hits="1" branch="false"/>
             <line number="38" hits="19" branch="true" condition-coverage="100% (3/3)"/>
             <line number="39" hits="2" branch="false"/>
             <line number="42" hits="19" branch="true" condition-coverage="100% (3/3)"/>
-            <line number="43" hits="1" branch="false"/>
+            <line number="43" hits="2" branch="false"/>
             <line number="46" hits="19" branch="true" condition-coverage="100% (3/3)"/>
             <line number="47" hits="1" branch="false"/>
             <line number="50" hits="19" branch="true" condition-coverage="100% (3/3)"/>
@@ -1036,14 +1058,21 @@
             <line number="55" hits="1" branch="false"/>
             <line number="58" hits="19" branch="true" condition-coverage="100% (3/3)"/>
             <line number="59" hits="1" branch="false"/>
-            <line number="62" hits="19" branch="false"/>
+            <line number="62" hits="19" branch="true" condition-coverage="100% (3/3)"/>
+            <line number="63" hits="1" branch="false"/>
+            <line number="66" hits="19" branch="false"/>
           </lines>
         </class>
-        <class name="ValidateRange.ts" filename="src\validators\ValidateRange.ts" line-rate="0.875" branch-rate="0.7187">
+        <class name="ValidateRange.ts" filename="src/validators/ValidateRange.ts" line-rate="0.8332999999999999" branch-rate="0.6666">
           <methods>
             <method name="validateRange" hits="15" signature="()V">
               <lines>
                 <line number="26" hits="15"/>
+              </lines>
+            </method>
+            <method name="(anonymous_1)" hits="8" signature="()V">
+              <lines>
+                <line number="32" hits="8"/>
               </lines>
             </method>
           </methods>
@@ -1051,30 +1080,30 @@
             <line number="3" hits="24" branch="false"/>
             <line number="26" hits="24" branch="false"/>
             <line number="30" hits="15" branch="false"/>
-            <line number="32" hits="15" branch="true" condition-coverage="100% (1/1)"/>
-            <line number="33" hits="5" branch="true" condition-coverage="66.66666666666666% (2/3)"/>
+            <line number="32" hits="15" branch="false"/>
+            <line number="33" hits="8" branch="true" condition-coverage="75% (3/4)"/>
             <line number="34" hits="0" branch="false"/>
-            <line number="36" hits="5" branch="true" condition-coverage="100% (3/3)"/>
-            <line number="37" hits="2" branch="false"/>
-            <line number="41" hits="15" branch="true" condition-coverage="100% (3/3)"/>
-            <line number="42" hits="5" branch="true" condition-coverage="66.66666666666666% (2/3)"/>
-            <line number="43" hits="1" branch="true" condition-coverage="75% (6/8)"/>
-            <line number="47" hits="15" branch="true" condition-coverage="100% (3/3)"/>
-            <line number="48" hits="5" branch="true" condition-coverage="66.66666666666666% (2/3)"/>
-            <line number="49" hits="1" branch="true" condition-coverage="75% (6/8)"/>
-            <line number="53" hits="15" branch="true" condition-coverage="100% (3/3)"/>
-            <line number="54" hits="5" branch="false"/>
-            <line number="55" hits="5" branch="true" condition-coverage="100% (1/1)"/>
-            <line number="56" hits="2" branch="true" condition-coverage="83.33333333333334% (5/6)"/>
-            <line number="60" hits="15" branch="true" condition-coverage="33.33333333333333% (1/3)"/>
-            <line number="61" hits="0" branch="true" condition-coverage="0% (0/1)"/>
-            <line number="62" hits="0" branch="true" condition-coverage="0% (0/6)"/>
-            <line number="66" hits="15" branch="true" condition-coverage="100% (3/3)"/>
-            <line number="67" hits="2" branch="true" condition-coverage="83.33333333333334% (5/6)"/>
-            <line number="70" hits="15" branch="false"/>
+            <line number="36" hits="8" branch="true" condition-coverage="100% (3/3)"/>
+            <line number="40" hits="15" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="41" hits="5" branch="true" condition-coverage="66.66666666666666% (2/3)"/>
+            <line number="42" hits="0" branch="true" condition-coverage="0% (0/4)"/>
+            <line number="44" hits="5" branch="true" condition-coverage="100% (3/3)"/>
+            <line number="45" hits="2" branch="true" condition-coverage="100% (4/4)"/>
+            <line number="47" hits="10" branch="true" condition-coverage="50% (1/2)"/>
+            <line number="48" hits="10" branch="true" condition-coverage="80% (4/5)"/>
+            <line number="49" hits="1" branch="true" condition-coverage="66.66666666666666% (4/6)"/>
+            <line number="51" hits="10" branch="true" condition-coverage="80% (4/5)"/>
+            <line number="52" hits="1" branch="true" condition-coverage="66.66666666666666% (4/6)"/>
+            <line number="54" hits="10" branch="true" condition-coverage="100% (3/3)"/>
+            <line number="55" hits="2" branch="true" condition-coverage="75% (3/4)"/>
+            <line number="57" hits="0" branch="true" condition-coverage="0% (0/4)"/>
+            <line number="58" hits="0" branch="true" condition-coverage="0% (0/4)"/>
+            <line number="61" hits="15" branch="true" condition-coverage="100% (3/3)"/>
+            <line number="62" hits="2" branch="true" condition-coverage="75% (3/4)"/>
+            <line number="65" hits="15" branch="false"/>
           </lines>
         </class>
-        <class name="ValidateRegex.ts" filename="src\validators\ValidateRegex.ts" line-rate="1" branch-rate="0.9">
+        <class name="ValidateRegex.ts" filename="src/validators/ValidateRegex.ts" line-rate="1" branch-rate="0.9">
           <methods>
             <method name="(anonymous_0)" hits="13" signature="()V">
               <lines>
@@ -1089,34 +1118,44 @@
             <line number="26" hits="13" branch="true" condition-coverage="100% (2/2)"/>
             <line number="28" hits="13" branch="true" condition-coverage="100% (3/3)"/>
             <line number="29" hits="2" branch="false"/>
-            <line number="35" hits="11" branch="false"/>
-            <line number="36" hits="11" branch="true" condition-coverage="100% (2/2)"/>
-            <line number="38" hits="11" branch="true" condition-coverage="100% (1/1)"/>
-            <line number="39" hits="6" branch="true" condition-coverage="50% (1/2)"/>
-            <line number="42" hits="11" branch="false"/>
+            <line number="32" hits="11" branch="false"/>
+            <line number="33" hits="11" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="35" hits="11" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="36" hits="6" branch="true" condition-coverage="50% (1/2)"/>
+            <line number="39" hits="11" branch="false"/>
           </lines>
         </class>
-        <class name="ValidateString.ts" filename="src\validators\ValidateString.ts" line-rate="1" branch-rate="0.9">
+        <class name="ValidateString.ts" filename="src/validators/ValidateString.ts" line-rate="0.9285" branch-rate="0.8181">
           <methods>
             <method name="(anonymous_0)" hits="21" signature="()V">
               <lines>
                 <line number="15" hits="21"/>
               </lines>
             </method>
+            <method name="(anonymous_1)" hits="7" signature="()V">
+              <lines>
+                <line number="18" hits="7"/>
+              </lines>
+            </method>
           </methods>
           <lines>
             <line number="15" hits="24" branch="true" condition-coverage="0% (0/1)"/>
             <line number="16" hits="21" branch="false"/>
-            <line number="18" hits="21" branch="true" condition-coverage="100% (3/3)"/>
-            <line number="19" hits="3" branch="false"/>
-            <line number="22" hits="21" branch="true" condition-coverage="100% (3/3)"/>
-            <line number="23" hits="2" branch="false"/>
+            <line number="18" hits="21" branch="false"/>
+            <line number="19" hits="7" branch="false"/>
+            <line number="20" hits="7" branch="true" condition-coverage="0% (0/1)"/>
+            <line number="21" hits="0" branch="false"/>
+            <line number="23" hits="7" branch="false"/>
             <line number="26" hits="21" branch="true" condition-coverage="100% (3/3)"/>
-            <line number="27" hits="2" branch="false"/>
-            <line number="30" hits="21" branch="false"/>
+            <line number="27" hits="3" branch="false"/>
+            <line number="30" hits="21" branch="true" condition-coverage="100% (3/3)"/>
+            <line number="31" hits="2" branch="false"/>
+            <line number="34" hits="21" branch="true" condition-coverage="100% (3/3)"/>
+            <line number="35" hits="2" branch="false"/>
+            <line number="38" hits="21" branch="false"/>
           </lines>
         </class>
-        <class name="index.ts" filename="src\validators\index.ts" line-rate="1" branch-rate="1">
+        <class name="index.ts" filename="src/validators/index.ts" line-rate="1" branch-rate="1">
           <methods>
             <method name="(anonymous_0)" hits="16" signature="()V">
               <lines>

@@ -23,48 +23,43 @@ import { isValidDate } from "../utils/date/DateValidation";
  * @param {IRangeValidationOptions<T>} options - The validation options.
  * @returns {ValidationResult} A ValidationResult object that contains a boolean indicating if the value is valid and an array of error messages.
  */
-export function validateRange<T extends number | Date>(
+export function validateRange<T extends number | Date | string>(
     value: T,
     options: IRangeValidationOptions<T>
 ): ValidationResult {
     const errors: string[] = [];
 
+    const addError = (specificErrorMessage: string | undefined, defaultMessage: string) => {
+        if (specificErrorMessage && options.message) {
+            errors.push(`${specificErrorMessage} ${options.message}`);
+        } else {
+            errors.push(specificErrorMessage || options.message || defaultMessage);
+        }
+    };
+
     if (value instanceof Date) {
         if (options.min instanceof Date && value < options.min) {
-            errors.push(`Validation failed: Value must be greater than or equal to ${options.min.toISOString()}.`);
+            addError(options.errorMessage?.min, `Validation failed: Value must be greater than or equal to ${options.min.toISOString()}.`);
         }
         if (options.max instanceof Date && value > options.max) {
-            errors.push(`Validation failed: Value must be less than or equal to ${options.max.toISOString()}.`            );
+            addError(options.errorMessage?.max, `Validation failed: Value must be less than or equal to ${options.max.toISOString()}.`);
         }
-    }
-
-    if (typeof value === 'number' && typeof options.min === 'number') {
-        if (options.inclusive ? value < options.min : value <= options.min) {
-            errors.push(options.errorMessage?.min || `Value must be greater than ${(options.inclusive ? "or equal to " : "")}${options.min}.`);
+    } else if (typeof value === 'number') {
+        if (typeof options.min === 'number' && (options.inclusive ? value < options.min : value <= options.min)) {
+            addError(options.errorMessage?.min, `Value must be greater than ${(options.inclusive ? "or equal to " : "")}${options.min}.`);
         }
-    }
-
-    if (typeof value === 'number' && typeof options.max === 'number') {
-        if (options.inclusive ? value > options.max : value >= options.max) {
-            errors.push(options.errorMessage?.max || `Value must be less than ${(options.inclusive ? "or equal to " : "")}${options.max}.`);
+        if (typeof options.max === 'number' && (options.inclusive ? value > options.max : value >= options.max)) {
+            addError(options.errorMessage?.max, `Value must be less than ${(options.inclusive ? "or equal to " : "")}${options.max}.`);
         }
-    }
-
-    if (options.step !== undefined && typeof value === 'number') {
-        const stepValidation = (value / options.step) % 1 === 0;
-        if (!stepValidation) {
-            errors.push(options.errorMessage?.step || `Value must be a multiple of ${options.step}.`);
+        if (options.step !== undefined && (value / options.step) % 1 !== 0) {
+            addError(options.errorMessage?.step, `Value must be a multiple of ${options.step}.`);
         }
-    }
-
-    if (typeof value === 'string' && options.dateFormat) {
-        if (!isValidDate(value)) {
-            errors.push(options.errorMessage?.dateFormat || `Date does not match the required format: ${options.dateFormat}.`);
-        }
+    } else if (typeof value === 'string' && options.dateFormat && !isValidDate(value)) {
+        addError(options.errorMessage?.dateFormat, `Date does not match the required format: ${options.dateFormat}.`);
     }
 
     if (options.customValidator && !options.customValidator(value)) {
-        errors.push(options.errorMessage?.customValidator || "Custom validation failed.");
+        addError(options.errorMessage?.customValidator, "Custom validation failed.");
     }
 
     return {

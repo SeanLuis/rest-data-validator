@@ -1,6 +1,5 @@
 import { validateChain, validateDate, validateNumber } from '../../src';
-import { IValidatorWithOptions } from '../../src/interfaces/IValidationChainOptions';
-import { ValidatorFunction } from '../../src/types/ValidationResult';
+import { IValidatorWithOptions } from '../../src/interfaces/IChainValidationOptions';
 
 describe('validateChain', () => {
   const alwaysValid: IValidatorWithOptions = {

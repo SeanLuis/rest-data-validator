@@ -22,33 +22,37 @@ export const validateFile = (
 ): ValidationResult => {
     const errors: string[] = [];
 
+    const addError = (defaultMessage: string, customMessage?: string) => {
+        errors.push(customMessage || defaultMessage);
+    };
+
     if (options.mimeTypes && !options.mimeTypes.includes(file.mimeType)) {
-        errors.push(`Disallowed MIME type: ${file.mimeType}.`);
+        addError(`Disallowed MIME type: ${file.mimeType}.`, options.message);
     }
 
     if (options.maxSize && file.size > options.maxSize) {
-        errors.push(`File size exceeds the maximum allowed limit of ${options.maxSize} bytes.`);
+        addError(`File size exceeds the maximum allowed limit of ${options.maxSize} bytes.`, options.message);
     }
 
     if (options.minSize && file.size < options.minSize) {
-        errors.push(`File size is below the minimum required limit of ${options.minSize} bytes.`);
+        addError(`File size is below the minimum required limit of ${options.minSize} bytes.`, options.message);
     }
 
     const fileExtension = file.originalName.split('.').pop()?.toLowerCase();
     if (options.allowedExtensions && fileExtension && !options.allowedExtensions.includes(fileExtension)) {
-        errors.push(`Disallowed file extension: .${fileExtension}.`);
+        addError(`Disallowed file extension: .${fileExtension}.`, options.message);
     }
 
     if (options.disallowedExtensions && fileExtension && options.disallowedExtensions.includes(fileExtension)) {
-        errors.push(`File extension is explicitly disallowed: .${fileExtension}.`);
+        addError(`File extension is explicitly disallowed: .${fileExtension}.`, options.message);
     }
 
     if (options.validateFileName && !options.validateFileName(file.originalName)) {
-        errors.push(`File name validation failed for: ${file.originalName}.`);
+        addError(`File name validation failed for: ${file.originalName}.`, options.message);
     }
 
     if (options.validateFileContent && !options.validateFileContent(file.buffer)) {
-        errors.push(`File content validation failed.`);
+        addError(`File content validation failed.`, options.message);
     }
 
     return {

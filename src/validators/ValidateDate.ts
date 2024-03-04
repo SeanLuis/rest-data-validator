@@ -17,17 +17,18 @@ export const validateDate = (
     const errors: string[] = [];
     const date = new Date(value);
 
-    if (typeof value !== 'string') {
-        errors.push('Invalid date.');
-    } else if (isNaN(date.getTime())) {
-        errors.push('Invalid date.');
+    const baseErrorMessage = 'Invalid date.';
+    if (!value || typeof value !== 'string' || isNaN(date.getTime())) {
+        errors.push(options.message || baseErrorMessage);
     } else {
         if (options.before && date >= options.before) {
-            errors.push(`Date should be before ${options.before.toISOString()}.`);
+            const beforeMessage = `Date should be before ${options.before.toISOString()}.`;
+            errors.push(options.message || beforeMessage);
         }
 
         if (options.after && date <= options.after) {
-            errors.push(`Date should be after ${options.after.toISOString()}.`);
+            const afterMessage = `Date should be after ${options.after.toISOString()}.`;
+            errors.push(options.message || afterMessage);
         }
     }
 

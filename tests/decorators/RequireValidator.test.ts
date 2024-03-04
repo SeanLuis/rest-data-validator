@@ -17,6 +17,6 @@ describe('TestUser with Required Decorator', () => {
 
     it('should throw an error for an undefined name', () => {
         const user = new TestUser();
-        expect(() => user.name).toThrow('Validation failed:');
+        expect(() => { let _ = user.name; }).toThrow('Validation failed: name is required.');
     });
 });

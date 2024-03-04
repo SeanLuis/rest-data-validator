@@ -1,3 +1,5 @@
+import { IValidationOptionsBase } from "./IValidationOptionsBase";
+
 /**
  * The IDomainValidationOptions interface represents the options for domain validation.
  * This interface is used to handle domain validation throughout the application.
@@ -10,8 +12,9 @@
  * @property {string} isoLanguageCodePath - Optional: The path to a JSON file containing ISO language codes. If not provided, the default ISO language codes are used.
  * @property {string} jsonProperty - Optional: The property of the JSON to be verified. If not provided, the root of the JSON is used.
  * @property {boolean} mustBeSecure - Optional: Specifies whether the validation must be performed over a secure connection. If not provided, secure connection is not required.
+ * @property {string} message - Optional: An error message to display if the validation fails. If not provided, a default error message is used.
  */
-export interface IDomainValidationOptions {
+export interface IDomainValidationOptions extends IValidationOptionsBase {
     type: 'uuid' | 'url' | 'isoCountryCode' | 'isoLanguageCode';
     isoCountryCodes?: string[];
     isoLanguageCodes?: string[];

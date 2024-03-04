@@ -1,4 +1,4 @@
-export { Required } from './Required';
+export { Required } from './RequiredValidator';
 export { ClassValidator } from './ClassValidator';
 export { Custom } from './CustomValidator';
 export { Array } from './ArrayValidator';

@@ -1,3 +1,5 @@
+import { IValidationOptionsBase } from "./IValidationOptionsBase";
+
 /**
  * The IFileValidationOptions interface represents the options for file validation.
  * This interface is used to handle file validation throughout the application.
@@ -10,8 +12,9 @@
  * @property {string[]} disallowedExtensions - Optional: The disallowed file extensions. If not provided, no extensions are disallowed.
  * @property {(fileName: string) => boolean} validateFileName - Optional: A custom function to validate the file name. If not provided, all file names are considered valid.
  * @property {(fileBuffer: Buffer) => boolean} validateFileContent - Optional: A custom function to validate the file content. Useful for verifying the integrity or specific content of the file. If not provided, all file contents are considered valid.
+ * @property {string} message - Optional: An error message to display if the validation fails. If not provided, a default error message is used.
  */
-export interface IFileValidationOptions {
+export interface IFileValidationOptions extends IValidationOptionsBase {
     mimeTypes?: string[];
     maxSize?: number;
     minSize?: number;

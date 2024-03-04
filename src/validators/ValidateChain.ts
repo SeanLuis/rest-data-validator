@@ -1,4 +1,4 @@
-import { IValidationChainOptions } from "../interfaces/IValidationChainOptions";
+import { IChainValidationOptions } from "../interfaces/IChainValidationOptions";
 import { ValidationChain } from "../types/ValidationChain";
 
 /**
@@ -8,7 +8,7 @@ import { ValidationChain } from "../types/ValidationChain";
  * @param options - The options for the validation chain.
  * @returns An object representing the validation result.
  */
-export const validateChain: ValidationChain = (value: any, options: IValidationChainOptions) => {
+export const validateChain: ValidationChain = (value: any, options: IChainValidationOptions) => {
   for (let validatorWithOptions of options.validators) {
     const result = validatorWithOptions.validator(value, validatorWithOptions.options);
     if (!result.isValid) {

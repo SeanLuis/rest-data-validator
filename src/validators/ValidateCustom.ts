@@ -15,7 +15,9 @@ export const validateCustom = (
 ): ValidationResult => {
     // Use the validate function from the options to validate the value
     const isValid = options.validate(value);
-    const errors = isValid ? [] : [`Custom validation '${options.name}' failed.`];
+
+    const defaultMessage = `Custom validation '${options.name}' failed.`;
+    const errors = isValid ? [] : [options.message || defaultMessage];
 
     // Return the validation result
     return { isValid, errors };
