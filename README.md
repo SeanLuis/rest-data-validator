@@ -1,5 +1,5 @@
 # REST Data Validator
-![Code Coverage](https://img.shields.io/badge/Code%20Coverage-98%25-success?style=flat)
+![Code Coverage](https://img.shields.io/badge/Code%20Coverage-97%25-success?style=flat)
 [![Package Build](https://github.com/SeanLuis/rest-data-validator/actions/workflows/build.yml/badge.svg)](https://github.com/SeanLuis/rest-data-validator/actions/workflows/build.yml)
 
 REST Data Validator is a versatile library designed to offer comprehensive validation for data in RESTful APIs. It supports a wide range of data types, validation rules, and is designed with extensibility in mind, making it ideal for ensuring data integrity and compliance with API specifications.
