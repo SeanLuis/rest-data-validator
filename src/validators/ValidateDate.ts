@@ -17,8 +17,10 @@ export const validateDate = (
     const errors: string[] = [];
     const date = new Date(value);
 
-    if (isNaN(date.getTime())) {
-        errors.push(`Invalid date.`);
+    if (typeof value !== 'string') {
+        errors.push('Invalid date.');
+    } else if (isNaN(date.getTime())) {
+        errors.push('Invalid date.');
     } else {
         if (options.before && date >= options.before) {
             errors.push(`Date should be before ${options.before.toISOString()}.`);

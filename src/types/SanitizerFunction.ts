@@ -1,10 +1,8 @@
 /**
- * The SanitizerFunction type represents a function that performs sanitization on a value.
- * 
- * The function takes a value of any type T and returns a sanitized value of the same type.
- * 
- * @template T The type of the value to sanitize.
- * @param {T} value - The value to sanitize.
- * @returns {T} The sanitized value.
+ * Represents a function that sanitizes a value of type T and returns a value of type U.
+ * @template T The type of the value to be sanitized.
+ * @template U The type of the sanitized value.
+ * @param value The value to be sanitized.
+ * @returns The sanitized value.
  */
-export type SanitizerFunction<T> = (value: T) => T;
+export type SanitizerFunction<T, U> = (value: T) => U;

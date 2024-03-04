@@ -1,14 +1,10 @@
-/**
- * The ValidationChain type represents a function that performs a chain of validations on a value.
- * 
- * The function takes a value of any type and an array of ValidatorFunctions.
- * It applies each ValidatorFunction to the value in the order they are provided.
- * It returns a ValidationResult object.
- * 
- * @param {any} value - The value to validate.
- * @param {...ValidatorFunction<any>[]} validators - The validators to apply.
- * @returns {ValidationResult} A ValidationResult object.
- */
-import { ValidationResult, ValidatorFunction } from "./ValidationResult";
+import { IValidationChainOptions } from "../interfaces/IValidationChainOptions";
+import { ValidationResult } from "./ValidationResult";
 
-export type ValidationChain = (value: any, ...validators: ValidatorFunction<any>[]) => ValidationResult;
+/**
+ * Represents a validation chain function.
+ * @param value - The value to be validated.
+ * @param options - The options for the validation chain.
+ * @returns The result of the validation.
+ */
+export type ValidationChain = (value: any, options: IValidationChainOptions) => ValidationResult;

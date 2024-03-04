@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "test:debug": "jest --runInBand",
     "test": "jest --coverage --coverageReporters='text' --coverageReporters='cobertura'"
   },
   "repository": {
