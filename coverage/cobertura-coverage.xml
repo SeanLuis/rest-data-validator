@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage lines-valid="394" lines-covered="383" line-rate="0.972" branches-valid="263" branches-covered="224" branch-rate="0.8517" timestamp="1709580695007" complexity="0" version="0.1">
+<coverage lines-valid="394" lines-covered="383" line-rate="0.972" branches-valid="263" branches-covered="224" branch-rate="0.8517" timestamp="1709604602440" complexity="0" version="0.1">
   <sources>
-    <source>/home/sean/Documentos/OWN/rest-data-validator</source>
+    <source>/home/runner/work/rest-data-validator/rest-data-validator</source>
   </sources>
   <packages>
     <package name="src" line-rate="1" branch-rate="1">
@@ -464,7 +464,7 @@
             <line number="12" hits="2" branch="false"/>
           </lines>
         </class>
-        <class name="Required.ts" filename="src/decorators/Required.ts" line-rate="0.9" branch-rate="1">
+        <class name="RequiredValidator.ts" filename="src/decorators/RequiredValidator.ts" line-rate="0.9" branch-rate="1">
           <methods>
             <method name="Required" hits="1" signature="()V">
               <lines>
