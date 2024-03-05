@@ -1,43 +1,51 @@
-name: Publish to npm
+name: CI/CD Pipeline
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - master
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-
+        contents: write
     steps:
     - uses: actions/checkout@v2
-      with:
-        token: ${{ secrets.GH_PAT }}
-
     - name: Use Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: 20
-        registry-url: 'https://registry.npmjs.org'
-
+        node-version: '16'
     - name: Install dependencies
-      run: npm ci
-
-    - name: Build
-      run: npm run build
-
-    - name: Test
+      run: npm install
+    - name: Run tests
       run: npm test
 
-    - name: 'Automated Version Bump'
-      uses: 'phips28/gh-action-bump-version@master'
+  build-and-publish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Use Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+        registry-url: 'https://registry.npmjs.org'
+    - name: Install dependencies
+      run: npm install
+    - name: Build
+      run: npm run build
+    - name: Automated Version Bump
+      id: bump_version
+      uses: phips28/gh-action-bump-version@master
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag-prefix: 'v'
-        skip-tag: 'false'
-
-    - name: Publish
+    - name: Publish to npm
       run: npm publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      if: steps.bump_version.outputs.newTag != ''
