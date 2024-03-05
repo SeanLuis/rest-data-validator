@@ -8,14 +8,12 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    permissions:
-        contents: write
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '16'
+        node-version: '18'
     - name: Install dependencies
       run: npm install
     - name: Run tests
@@ -24,6 +22,8 @@ jobs:
   build-and-publish:
     needs: test
     runs-on: ubuntu-latest
+    permissions:
+        contents: write
     steps:
     - uses: actions/checkout@v2
       with:
@@ -31,7 +31,7 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '16'
+        node-version: '18'
         registry-url: 'https://registry.npmjs.org'
     - name: Install dependencies
       run: npm install
