@@ -15,7 +15,7 @@ import { IValidationOptionsBase } from "./IValidationOptionsBase";
  * @property {string} message - Optional: An error message to display if the validation fails. If not provided, a default error message is used.
  */
 export interface IDomainValidationOptions extends IValidationOptionsBase {
-    type: 'uuid' | 'url' | 'isoCountryCode' | 'isoLanguageCode';
+    type: 'uuid' | 'url' | 'email' | 'isoCountryCode' | 'isoLanguageCode';
     isoCountryCodes?: string[];
     isoLanguageCodes?: string[];
     isoCountryCodePath?: string;

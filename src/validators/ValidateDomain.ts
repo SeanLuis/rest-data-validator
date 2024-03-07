@@ -4,6 +4,7 @@ import { readFileSync } from 'fs';
 
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const URL_REGEX = /^(https?:\/\/)?((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|localhost|(\d{1,3}\.){3}\d{1,3})(:\d+)?(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/i;
+const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 /**
  * The validateDomain function validates a domain value based on provided options.
@@ -70,6 +71,11 @@ export const validateDomain = (
 
             if (!isValidLanguageCode) {
                 addError('Value is not a valid ISO language code.');
+            }
+            break;
+        case 'email':
+            if (!EMAIL_REGEX.test(value)) {
+                addError('Value is not a valid email address.');
             }
             break;
         default:
