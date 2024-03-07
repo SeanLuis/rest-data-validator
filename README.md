@@ -1,6 +1,8 @@
 # REST Data Validator
+
 ![Code Coverage](https://img.shields.io/badge/Code%20Coverage-97%25-success?style=flat)
 [![Package Build](https://github.com/SeanLuis/rest-data-validator/actions/workflows/build.yml/badge.svg)](https://github.com/SeanLuis/rest-data-validator/actions/workflows/build.yml)
+[![npm version](https://badge.fury.io/js/rest-data-validator.svg)](https://badge.fury.io/js/rest-data-validator)
 
 REST Data Validator is a versatile library designed to offer comprehensive validation for data in RESTful APIs. It supports a wide range of data types, validation rules, and is designed with extensibility in mind, making it ideal for ensuring data integrity and compliance with API specifications.
 
@@ -76,14 +78,14 @@ user.age = 25;
 // It would return true since the conditions are met, otherwise it would throw an exception.
 
 // And using the validator manually
-const beforeDate = new Date('2024-12-31');
-const afterDate = new Date('2020-01-01');
+const beforeDate = new Date("2024-12-31");
+const afterDate = new Date("2020-01-01");
 
 const options = { before: beforeDate, after: afterDate };
-const validDateString = '2022-06-15';
+const validDateString = "2022-06-15";
 const validationResult = validateDate(validDateString, options).isValid;
 
-console.log(validationResult) // false;
+console.log(validationResult); // false;
 ```
 
 ### Using Decorators for Validation
@@ -532,15 +534,12 @@ To use the `Custom` decorator, apply it to any property in your class and provid
 ### Example
 
 ```typescript
-import {
-  ClassValidator,
-  Custom,
-} from "rest-data-validator";
+import { ClassValidator, Custom } from "rest-data-validator";
 
 @ClassValidator
 class Product {
   @Custom({
-    name: 'PriceValidator',
+    name: "PriceValidator",
     validate: (value: any): boolean => {
       return value > 0 && value < 100;
     },
@@ -673,12 +672,12 @@ Sanitizer functions are utility functions that allow you to clean or standardize
 You can use these functions directly on any input data to sanitize it according to your needs. For example:
 
 ```typescript
-import { trim, toLowerCase, toNumber } from 'path-to-sanitizers';
+import { trim, toLowerCase, toNumber } from "path-to-sanitizers";
 
-const userInput = '   Some User Input   ';
+const userInput = "   Some User Input   ";
 const cleanInput = trim(userInput); // 'Some User Input'
 const lowerCaseInput = toLowerCase(cleanInput); // 'some user input'
-const numericValue = toNumber('123.45'); // 123.45
+const numericValue = toNumber("123.45"); // 123.45
 ```
 
 # Async Validators
@@ -694,15 +693,15 @@ An `AsyncValidator` is a function that takes a value of type `T` and an optional
 To use an `AsyncValidator`, you would typically call it with a value and optionally pass in any options that the validator requires.
 
 ```typescript
-import { AsyncValidator } from 'path-to-validators';
+import { AsyncValidator } from "path-to-validators";
 
 const validateEmail: AsyncValidator<string> = async (email, options) => {
   // Perform email validation logic here
   // Return a promise that resolves to a ValidationResult
 };
 
-const email = 'user@example.com';
-validateEmail(email).then(validationResult => {
+const email = "user@example.com";
+validateEmail(email).then((validationResult) => {
   if (validationResult.isValid) {
     // Email is valid
   } else {
