@@ -17,7 +17,8 @@ export {
     validateRegex,
     validateString,
     validateCustom,
-    validateChain
+    validateChain,
+    validateNested
 } from './validators';
 
 /**
