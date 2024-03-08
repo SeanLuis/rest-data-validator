@@ -39,10 +39,9 @@ REST Data Validator is a versatile library designed to offer comprehensive valid
 - [Nested Validators](#nested-validators)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
+- [Support Us](#support-us)
 - [Author](#author)
 - [License](#license)
-
-<!-- Rest of the content -->
 
 ## Installation
 
@@ -801,7 +800,7 @@ The complex validator uses two factories to create validators:
 
 The `validateNested` function is used to perform the actual validation. It takes a value and a INestedValidationOptions object, and returns a ValidationResult. It uses the provided validator to validate the value, and adds any errors to the errors array in the ValidationResult.
 
-# Roadmap
+## Roadmap
 
 The `rest-data-validator` project aims to continually evolve with the needs of developers and the dynamics of RESTful API design. Below is a tentative roadmap of features and improvements we're exploring:
 
@@ -835,9 +834,33 @@ Note: The roadmap is subject to change and reflects current planning and priorit
 
 Contributions are welcome! Please read our contributing guide for details on our code of conduct, and the process for submitting pull requests to us.
 
+## Support Us
+
+If you find the REST Data Validator helpful or interesting, please consider giving it a star on GitHub! 🌟 Your support encourages us to continue developing and maintaining this project.
+
+### Why Star Us?
+
+- **Recognition:** A star is a token of appreciation that motivates open-source contributors.
+- **Feedback:** It tells us that our work is valued, guiding us on what features or improvements to prioritize.
+- **Visibility:** More stars increase our project's visibility, helping others discover this tool.
+
+### How to Star Our Repository
+
+1. Visit the [REST Data Validator GitHub page](https://github.com/SeanLuis/rest-data-validator).
+2. In the top-right corner of the page, click the "Star" button.
+3. That's it! You've just made our day a little brighter.
+
+Your star is much more than just a number to us – it's a sign that we're on the right track. Thank you for your support, and we hope REST Data Validator helps you in managing and validating your RESTful APIs more effectively.
+
+---
+
+Feel free to explore the repository, check out the latest updates, and contribute if you can. Together, we can make REST Data Validator even better!
+
 ## Author
 
 - **Sean Luis Guada Rodriguez** - [Visit Website](https://sean-rodriguez.vercel.app)
+
+---
 
 ## License
 
