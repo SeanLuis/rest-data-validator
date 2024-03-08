@@ -1,20 +1,21 @@
 import { ValidationResult } from "../../types/ValidationResult";
 
-import { validateMetadataKey } from "./MetadataKeys";
 import {
     validateArray,
+    validateContextual,
+    validateCustom,
     validateDate,
     validateDomain,
+    validateEmail,
     validateEnum,
     validateFile,
+    validateNested,
     validateNumber,
     validateRange,
     validateRegex,
     validateString,
-    validateCustom,
-    validateNested,
-    validateContextual
 } from "../../validators";
+import { validateMetadataKey } from "./MetadataKeys";
 
 /**
  * The ValidationUtils class provides a static method to validate an object based on metadata attached to its properties.
@@ -64,6 +65,9 @@ export class ValidationUtils {
                         break;
                     case 'string':
                         result = validateString(obj[propertyName], validation.options);
+                        break;
+                    case 'email':
+                        result = validateEmail(obj[propertyName], validation.options);
                         break;
                     case 'custom':
                         result = validateCustom(obj[propertyName], validation.options); // Handle the 'custom' validation type

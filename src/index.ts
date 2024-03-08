@@ -18,8 +18,9 @@ export {
     validateString,
     validateCustom,
     validateChain,
-    validateNested,
-    validateContextual
+    validateContextual,
+    validateNested, 
+    validateEmail,
 } from './validators';
 
 /**
@@ -40,7 +41,8 @@ export {
     Regex,
     String,
     Nested,
-    Contextual
+    Contextual,
+    Email,
 } from './decorators';
 
 
