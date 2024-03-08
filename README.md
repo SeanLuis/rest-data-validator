@@ -781,7 +781,7 @@ The complex validator uses several interfaces and types to define its behavior:
 
 - **IValidator```<T>```**: This interface represents a validator for objects of type T. It has a validate method that takes a value and returns a ValidationResult.
 
-- **INestedValidationOptions```<T>```**: This interface represents the options for nested validation. It includes a validator of type IValidator<T>, a validationOptions object, and an each boolean.
+- **INestedValidationOptions```<T>```**: This interface represents the options for nested validation. It includes a validator of type IValidator```<T>```, a validationOptions object, and an each boolean.
 
 - **ValidationResult**: This type represents the result of a validation. It includes a isValid boolean and an errors array.
 
