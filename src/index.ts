@@ -18,7 +18,8 @@ export {
     validateString,
     validateCustom,
     validateChain,
-    validateNested
+    validateNested, 
+    validateEmail,
 } from './validators';
 
 /**
@@ -37,7 +38,8 @@ export {
     Number,
     Range,
     Regex,
-    String
+    String,
+    Email,
 } from './decorators';
 
 

@@ -1,15 +1,16 @@
 import { ValidationResult } from "../../types/ValidationResult";
 
 import { validateArray } from "../../validators/ValidateArray";
+import { validateCustom } from "../../validators/ValidateCustom";
 import { validateDate } from "../../validators/ValidateDate";
 import { validateDomain } from "../../validators/ValidateDomain";
+import { validateEmail } from "../../validators/ValidateEmail";
 import { validateEnum } from "../../validators/ValidateEnum";
 import { validateFile } from "../../validators/ValidateFile";
 import { validateNumber } from "../../validators/ValidateNumber";
 import { validateRange } from "../../validators/ValidateRange";
 import { validateRegex } from "../../validators/ValidateRegex";
 import { validateString } from "../../validators/ValidateString";
-import { validateCustom } from "../../validators/ValidateCustom";
 import { validateMetadataKey } from "./MetadataKeys";
 
 /**
@@ -59,6 +60,9 @@ export class ValidationUtils {
                         break;
                     case 'string':
                         result = validateString(obj[propertyName], metadata.options);
+                        break;
+                    case 'email':
+                        result = validateEmail(obj[propertyName], metadata.options);
                         break;
                     case 'custom':
                         result = validateCustom(obj[propertyName], metadata.options); // Handle the 'custom' validation type
