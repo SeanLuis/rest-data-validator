@@ -36,6 +36,7 @@ REST Data Validator is a versatile library designed to offer comprehensive valid
 - [Array Decorator](#array-decorator)
 - [Sanitizer Functions](#sanitizer-functions)
 - [Async Validators](#async-validators)
+- [Nested Validators](#nested-validators)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [Author](#author)
@@ -712,6 +713,93 @@ validateEmail(email).then((validationResult) => {
   }
 });
 ```
+
+## Nested Validators
+
+### Complex Validator Documentation
+
+The complex validator is a powerful tool for validating nested and complex data structures. It uses a combination of individual validators to validate different parts of the data structure.
+
+### Creating Validators
+
+First, we create individual validators for each type of object we want to validate. For example, if we want to validate objects of the User, Product, and Order classes, we create a validator for each one:
+
+```javascript
+const isUserValidator: IValidator<any> = simpleValidatorFactory<any>({
+  condition: value => value instanceof User && value.name.startsWith('valid') && value.age > 18,
+  errorMessage: "Value is not a valid User."
+});
+
+const isProductValidator: IValidator<any> = simpleValidatorFactory<any>({
+  condition: value => value instanceof Product && value.name.startsWith('valid') && value.price > 10,
+  errorMessage: "Value is not a valid Product."
+});
+
+const isOrderValidator: IValidator<any> = simpleValidatorFactory<any>({
+  condition: value => value instanceof Order && value.user instanceof User && value.products.every(product => product instanceof Product),
+  errorMessage: "Value is not a valid Order."
+});
+```
+
+### Creating the Complex Validator
+
+Next, we combine these validators into a complex validator:
+
+```typescript
+const complexClassValidator: IValidator<any> = combinedValidatorFactory([
+  { validator: isUserValidator, typeGuard: (value: any): value is User => value instanceof User },
+  { validator: isProductValidator, typeGuard: (value: any): value is Product => value instanceof Product },
+  { validator: isOrderValidator, typeGuard: (value: any): value is Order => value instanceof Order },
+]);
+```
+
+### Using the Complex Validator
+
+Finally, we use the complex validator to validate our data structures:
+
+```typescript
+const options: INestedValidationOptions<any> = {
+  validator: complexClassValidator,
+  validationOptions: {},
+  each: true,
+};
+
+const value = {
+  user: new User('validUser', 20),
+  order: new Order(new User('validUser', 20), [new Product('validProduct', 15), new Product('validProduct', 15)]),
+  products: [new Product('validProduct', 15), new Product('validProduct', 15)],
+};
+
+const validationResult = validateNested(value, options);
+```
+
+In this example, `validationResult.isValid` will be true if all objects pass their corresponding validations, and false otherwise. Specific error messages can be found in `validationResult.errors`.
+
+### Interfaces and Types
+
+The complex validator uses several interfaces and types to define its behavior:
+
+- **IValidator```<T>```**: This interface represents a validator for objects of type T. It has a validate method that takes a value and returns a ValidationResult.
+
+- **INestedValidationOptions```<T>```**: This interface represents the options for nested validation. It includes a validator of type IValidator<T>, a validationOptions object, and an each boolean.
+
+- **ValidationResult**: This type represents the result of a validation. It includes a isValid boolean and an errors array.
+
+- **ValidatorFactoryOptions```<T>```**: This type represents the options for creating a validator. It includes a condition function that takes a value and returns a boolean, and an errorMessage string.
+
+- **ValidatorUnion**: This type represents a union of validators. It includes a validator of type IValidator```<any>``` and a typeGuard function that takes a value and returns a boolean.
+
+### Factories
+
+The complex validator uses two factories to create validators:
+
+- **simpleValidatorFactory**: This factory creates a simple validator based on the provided options.
+
+- **combinedValidatorFactory**: This factory creates a complex validator by combining several simple validators.
+
+### validateNested Function
+
+The `validateNested` function is used to perform the actual validation. It takes a value and a INestedValidationOptions object, and returns a ValidationResult. It uses the provided validator to validate the value, and adds any errors to the errors array in the ValidationResult.
 
 # Roadmap
 

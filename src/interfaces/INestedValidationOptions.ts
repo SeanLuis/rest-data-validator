@@ -10,7 +10,7 @@ import { IValidationOptionsBase } from "./IValidationOptionsBase";
  * @returns The validation result.
  */
 export interface IValidator<T> {
-    validate(value: T, validationOptions?: Record<string, any>): ValidationResult;
+    validate(value: T | any[], validationOptions?: Record<string, any>): ValidationResult;
 }
   
 /**
@@ -23,11 +23,9 @@ export interface IValidator<T> {
  * @property {any} validator - A reference to the validator class or function to be used for the nested validation.
  * @property {Record<string, any>} validationOptions - Additional options for the validator.
  * @property {boolean} each - Indicates whether to apply the validation to each element in an array of objects.
- * @property {new () => any} itemType - The type of the nested item.
  */
 export interface INestedValidationOptions<T> extends IValidationOptionsBase {
     validator: IValidator<T>;
     validationOptions?: Record<string, any>;
     each?: boolean;
-    itemType?: new () => any;
 }

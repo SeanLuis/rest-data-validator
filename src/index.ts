@@ -63,6 +63,11 @@ export {
     urlEncode
 } from './sanitizers';
 
+export {
+    simpleValidatorFactory,
+    combinedValidatorFactory
+} from './types/NestedValidatorFactory'
+
 import * as validators from './validators';
 import * as decorators from './decorators';
 import * as sanitizers from './sanitizers';

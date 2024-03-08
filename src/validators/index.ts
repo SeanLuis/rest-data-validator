@@ -9,4 +9,4 @@ export { validateRegex } from './ValidateRegex';
 export { validateString } from './ValidateString';
 export { validateCustom } from './ValidateCustom';
 export { validateChain } from './ValidateChain';
-export { validateNested } from './ValdiateNested';
+export { validateNested } from './ValidateNested';
