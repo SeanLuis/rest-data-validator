@@ -9,7 +9,7 @@ REST Data Validator is a versatile library designed to offer comprehensive valid
 
 ## Features
 
-- **Comprehensive Validation**: Supports validation of strings, numbers, dates, enums, files, and custom formats.
+- **Comprehensive Validation**: Supports validation of strings, numbers, emails, dates, enums, files, and custom formats.
 - **Decorator-based Validation**: Utilizes TypeScript decorators for easy and declarative validation directly in your class models.
 - **Flexible and Extensible**: Easily extendable to include custom validation rules and logic.
 - **Framework Agnostic**: Can be used with any server-side framework or library, such as Express, Koa, or Fastify.
@@ -26,6 +26,7 @@ REST Data Validator is a versatile library designed to offer comprehensive valid
 - [ClassValidator Decorator](#classvalidator-decorator)
 - [String Decorator](#string-decorator)
 - [Number Decorator](#number-decorator)
+- [Email Decorator](#email-decorator)
 - [Date Decorator](#date-decorator)
 - [Enum Decorator](#enum-decorator)
 - [File Decorator](#file-decorator)
@@ -251,6 +252,37 @@ class Product {
 ```
 
 In this example, `price` must be a non-negative number, while `stock` must be a positive integer.
+
+### Email Decorator
+
+The Email decorator is utilized to enforce validation on string properties that are expected to represent email addresses within classes in TypeScript. This ensures that the email addresses conform to a specified format or standard pattern before they are processed or stored.
+
+### Properties
+
+- **regexPattern**: `RegExp` - An optional regular expression pattern that the email string must match. If not provided, a default email validation pattern is used.
+  
+### Usage
+
+To leverage the Email decorator, ensure your TypeScript project is set up to utilize decorators. The Email decorator can be used without any parameters for standard email validation or with a regexPattern to specify a custom validation pattern.
+
+```typescript
+import { ClassValidator, Email } from "rest-data-validator";
+
+@ClassValidator
+class UserProfile {
+  @Email()
+  email: string;
+}
+
+@ClassValidator
+class CustomEmailProfile {
+  @Email({ regexPattern: RegExp('^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$') })
+  email: string;
+}
+```
+
+In the first example, the email field in the UserProfile class is validated against a default pattern to ensure it represents a valid email address.
+In the second one, the email field must match the custom pattern provided, offering flexibility for different use cases or stricter validation requirements.
 
 ### Validation of Divisible Numbers
 
