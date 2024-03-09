@@ -13,9 +13,10 @@ import { ValidationResult } from '../types/ValidationResult';
  */
 export const validateEmail = (email: string, options: IEmailValidationOptions = {}): ValidationResult => {
     // Define the default email regex pattern.
-    const defaultEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[a-zA-Z0-9_'^&/+-]{1,64}(?:\.[a-zA-Z0-9_'^&/+-]{1,64})*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,24}$/;
+
     const errors: string[] = [];
-    let regexPattern = defaultEmailRegex;
+    let regexPattern = emailRegex;
 
     // Validate and use the custom regex pattern if provided and valid; otherwise, use the default.
     try {
@@ -26,8 +27,8 @@ export const validateEmail = (email: string, options: IEmailValidationOptions = 
     } catch (e) {
         console.warn('Provided regex pattern is invalid. Using the default pattern.');
     }
-
-    if (!regexPattern.test(email)) {
+    let regRes = regexPattern.test(email)
+    if (!regRes) {
         let errorMessage = 'Email does not match the required pattern.';
         if (options.message) {
             errorMessage += ` ${options.message}`;
