@@ -1,16 +1,20 @@
 import { ValidationResult } from "../../types/ValidationResult";
 
-import { validateArray } from "../../validators/ValidateArray";
-import { validateDate } from "../../validators/ValidateDate";
-import { validateDomain } from "../../validators/ValidateDomain";
-import { validateEnum } from "../../validators/ValidateEnum";
-import { validateFile } from "../../validators/ValidateFile";
-import { validateNumber } from "../../validators/ValidateNumber";
-import { validateRange } from "../../validators/ValidateRange";
-import { validateRegex } from "../../validators/ValidateRegex";
-import { validateString } from "../../validators/ValidateString";
-import { validateCustom } from "../../validators/ValidateCustom";
 import { validateMetadataKey } from "./MetadataKeys";
+import {
+    validateArray,
+    validateDate,
+    validateDomain,
+    validateEnum,
+    validateFile,
+    validateNumber,
+    validateRange,
+    validateRegex,
+    validateString,
+    validateCustom,
+    validateNested,
+    validateContextual
+} from "../../validators";
 
 /**
  * The ValidationUtils class provides a static method to validate an object based on metadata attached to its properties.
@@ -28,43 +32,50 @@ export class ValidationUtils {
     static validate(obj: any): ValidationResult {
         const errors: string[] = [];
         for (const propertyName of Object.keys(obj)) {
-            const metadata = Reflect.getMetadata(validateMetadataKey, obj, propertyName);
-            if (metadata) {
-                let result: ValidationResult;
+            const validations = Reflect.getMetadata(validateMetadataKey, obj, propertyName) || [];
 
-                switch (metadata.type) {
+            for (const validation of validations) {
+                let result: ValidationResult = { isValid: true, errors: [] };
+
+                switch (validation.type) {
                     case 'array':
-                        result = validateArray(obj[propertyName], metadata.options);
+                        result = validateArray(obj[propertyName], validation.options);
                         break;
                     case 'date':
-                        result = validateDate(obj[propertyName], metadata.options);
+                        result = validateDate(obj[propertyName], validation.options);
                         break;
                     case 'domain':
-                        result = validateDomain(obj[propertyName], metadata.options);
+                        result = validateDomain(obj[propertyName], validation.options);
                         break;
                     case 'enum':
-                        result = validateEnum(obj[propertyName], metadata.options);
+                        result = validateEnum(obj[propertyName], validation.options);
                         break;
                     case 'file':
-                        result = validateFile(obj[propertyName], metadata.options);
+                        result = validateFile(obj[propertyName], validation.options);
                         break;
                     case 'number':
-                        result = validateNumber(obj[propertyName], metadata.options);
+                        result = validateNumber(obj[propertyName], validation.options);
                         break;
                     case 'range':
-                        result = validateRange(obj[propertyName], metadata.options);
+                        result = validateRange(obj[propertyName], validation.options);
                         break;
                     case 'regex':
-                        result = validateRegex(obj[propertyName], metadata.options);
+                        result = validateRegex(obj[propertyName], validation.options);
                         break;
                     case 'string':
-                        result = validateString(obj[propertyName], metadata.options);
+                        result = validateString(obj[propertyName], validation.options);
                         break;
                     case 'custom':
-                        result = validateCustom(obj[propertyName], metadata.options); // Handle the 'custom' validation type
+                        result = validateCustom(obj[propertyName], validation.options); // Handle the 'custom' validation type
+                        break;
+                    case 'nested':
+                        result = validateNested(obj[propertyName], validation.options);
+                        break;
+                    case 'contextual':
+                        result = validateContextual(obj[propertyName], validation.options);
                         break;
                     default:
-                        result = { isValid: false, errors: [`Validation type '${metadata.type}' is not supported.`] };
+                        result = { isValid: false, errors: [`Validation type '${validation.type}' is not supported.`] };
                         break;
                 }
 
@@ -73,6 +84,7 @@ export class ValidationUtils {
                 }
             }
         }
+
         return {
             isValid: errors.length === 0,
             errors: errors

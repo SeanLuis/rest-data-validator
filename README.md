@@ -34,9 +34,12 @@ REST Data Validator is a versatile library designed to offer comprehensive valid
 - [Custom Decorator](#custom-decorator)
 - [Domain Decorator](#domain-decorator)
 - [Array Decorator](#array-decorator)
+- [Nested Decorator](#nested-decorator)
+- [Contextual Decorator](#contextual-decorator)
 - [Sanitizer Functions](#sanitizer-functions)
 - [Async Validators](#async-validators)
 - [Nested Validators](#nested-validators)
+- [Contextual Validators](#contextual-validators)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [Support Us](#support-us)
@@ -715,15 +718,13 @@ validateEmail(email).then((validationResult) => {
 
 ## Nested Validators
 
-### Complex Validator Documentation
-
-The complex validator is a powerful tool for validating nested and complex data structures. It uses a combination of individual validators to validate different parts of the data structure.
+The nested validator is a powerful tool for validating nested and complex data structures. It uses a combination of individual validators to validate different parts of the data structure.
 
 ### Creating Validators
 
 First, we create individual validators for each type of object we want to validate. For example, if we want to validate objects of the User, Product, and Order classes, we create a validator for each one:
 
-```javascript
+```typescript
 const isUserValidator: IValidator<any> = simpleValidatorFactory<any>({
   condition: value => value instanceof User && value.name.startsWith('valid') && value.age > 18,
   errorMessage: "Value is not a valid User."
@@ -774,37 +775,161 @@ const validationResult = validateNested(value, options);
 
 In this example, `validationResult.isValid` will be true if all objects pass their corresponding validations, and false otherwise. Specific error messages can be found in `validationResult.errors`.
 
-### Interfaces and Types
+### Nested Decorator
 
-The complex validator uses several interfaces and types to define its behavior:
+The `@Nested` decorator is used to apply nested validation rules to properties of a class. This decorator allows you to specify complex validation logic that can validate deeply nested objects or arrays of objects within your class instances.
 
-- **IValidator```<T>```**: This interface represents a validator for objects of type T. It has a validate method that takes a value and returns a ValidationResult.
+#### Example Usage
 
-- **INestedValidationOptions```<T>```**: This interface represents the options for nested validation. It includes a validator of type IValidator```<T>```, a validationOptions object, and an each boolean.
+To use the `@Nested` decorator, you define your complex validator and then apply it to a class property using the decorator. Here's how you might use it in a class:
 
-- **ValidationResult**: This type represents the result of a validation. It includes a isValid boolean and an errors array.
+```typescript
+@ClassValidator
+class ComplexClass {
+    @Nested({
+        validator: complexClassValidator,
+        validationOptions: {},
+        each: true,
+    })
+    public order: Order;
 
-- **ValidatorFactoryOptions```<T>```**: This type represents the options for creating a validator. It includes a condition function that takes a value and returns a boolean, and an errorMessage string.
+    constructor(order: Order) {
+        this.order = order;
+    }
+}
+```
 
-- **ValidatorUnion**: This type represents a union of validators. It includes a validator of type IValidator```<any>``` and a typeGuard function that takes a value and returns a boolean.
+This example demonstrates how to apply the `@Nested` decorator to the `order` property of the `ComplexClass`. The decorator is configured with a complex validator that specifies how to validate the `Order` object and its nested properties.
 
-### Factories
+### Conclusion
 
-The complex validator uses two factories to create validators:
+The use of `@Nested` along with other validation decorators provides a powerful and flexible way to enforce validation rules across complex data structures. By combining simple and complex validators, you can create comprehensive validation strategies that ensure the integrity of your data.
 
-- **simpleValidatorFactory**: This factory creates a simple validator based on the provided options.
+# Contextual Validator Documentation
 
-- **combinedValidatorFactory**: This factory creates a complex validator by combining several simple validators.
+## Overview
+The Contextual Validator is a flexible and powerful tool in the TypeScript validation library that enables dynamic validation based on the context of the data. This validator is particularly useful for scenarios where the validation logic depends on certain conditions or the environment in which the data exists.
 
-### validateNested Function
+## How It Works
+The Contextual Validator uses a context object that is passed along with the value to be validated. The context provides additional information that influences the validation process, such as user roles, dates, location, and more.
 
-The `validateNested` function is used to perform the actual validation. It takes a value and a INestedValidationOptions object, and returns a ValidationResult. It uses the provided validator to validate the value, and adds any errors to the errors array in the ValidationResult.
+### Key Features
+- **Dynamic Context**: Change the validation rules on-the-fly by altering the context.
+- **Multiple Contexts**: Manage and apply different contexts for different validation scenarios.
+- **Combinable**: Use alongside other validators like `String` or `Number` to create complex validation logic.
+
+### Test Cases
+
+- Validate that water usage is within limits for crops that require less water.
+- Deny a harvest date that falls before the actual planting date.
+- Restrict the use of pesticides not on the allowed list.
+- Ensure the batch quantity is within the specified range.
+- Check for valid batch ID length.
+
+## Contextual Validators
+
+### Direct Use of the validateContextual Function
+
+For scenarios where you need to validate data outside the context of a class, you can directly use the `validateContextual` function. This approach provides flexibility for validating data structures or values dynamically based on a provided context.
+
+### Basic Usage
+
+```typescript
+import { validateContextual } from "your-library";
+import { IContextualValidationOptions } from "your-library/interfaces";
+
+const validationOptions: IContextualValidationOptions = {
+  name: "UserRoleCheck",
+  getContext: () => ({ userRole: "admin" }),
+  validate: (value, context) => value === "secret" && context.userRole === "admin",
+};
+
+const result = validateContextual("secret", validationOptions);
+if (!result.isValid) {
+  console.error("Validation failed:", result.errors);
+}
+```
+
+### Context Management
+
+Dynamically manage the validation context using `setContext`, `getContext`, and other context management utilities provided by your validation library.
+
+### Advanced Validation Scenarios
+
+Discuss potential advanced use cases such as multi-step validations, conditional validations based on user roles, environmental conditions, etc.
+
+For detailed guides, examples, and more advanced usage scenarios, please refer to the specific documentation within your validation library. This documentation should be adapted to include your library's specific import paths and utility functions.
+
+## Contextual Decorator
+
+### Using the Contextual Decorator in Class Validation
+
+The `Contextual` decorator allows for dynamic validation of class properties based on a contextual understanding of the application state or environment. This document explains how to use the `Contextual` decorator to validate class properties effectively.
+
+### Defining a Class with Contextual Validation
+
+```typescript
+import "reflect-metadata";
+import { ClassValidator, String, Contextual, setContext, getContext } from "your-library";
+
+@ClassValidator
+class CropBatch {
+  @String({ minLength: 5, maxLength: 10 })
+  batchId: string;
+
+  @Contextual({
+    name: "HarvestDateValidator",
+    getContext: () => getContext("cropBatchContext"),
+    validate: (value, context) => new Date(value) <= new Date(context.currentDate) && new Date(value) >= new Date(context.plantingDate),
+    message: "Harvest date must be between planting date and current date.",
+  })
+  harvestDate: string;
+
+  // Additional properties with Contextual decorators
+}
+```
+
+### Setting Up the Context
+
+Before instantiating your class, set up the necessary context:
+
+```typescript
+setContext("cropBatchContext", {
+  currentDate: "2023-08-01",
+  plantingDate: "2023-03-01",
+  // Other context-specific configurations
+});
+```
+
+### Instantiation and Validation
+
+Create an instance of your class as usual. The `ClassValidator` decorator will automatically validate the instance based on the defined context:
+
+```typescript
+const cropBatch = new CropBatch("Batch1", "2023-07-01");
+```
+
+If validation fails, an error will be thrown detailing the validation issues.
+
+### Potential Use Cases
+
+#### Agriculture Traceability
+Track and validate different stages of crop production, ensuring that each batch meets the required standards for planting and harvesting times, pesticide use, water usage, and quantity.
+
+#### Blockchain Transactions
+Verify blockchain transactions, such as Ethereum, by validating the context such as the correct wallet addresses, transaction times within a certain block confirmation window, and the amount transferred against wallet balance.
+
+#### Healthcare Management
+In healthcare applications, validate patient records contextually based on admission dates, treatment types, and medication dosages according to individual health plans and protocols.
+
+### Conclusion
+The Contextual Validator, with its dynamic and versatile nature, is ideal for any application that requires contextual awareness in its validation logic, ensuring data integrity and adherence to business rules and standards.
 
 ## Roadmap
 
 The `rest-data-validator` project aims to continually evolve with the needs of developers and the dynamics of RESTful API design. Below is a tentative roadmap of features and improvements we're exploring:
 
-## Upcoming Features
+### Upcoming Features
 
 - **Nested Validation Support**: Implement validation for complex, nested data structures to accommodate intricate API schemas.
 
@@ -852,15 +977,11 @@ If you find the REST Data Validator helpful or interesting, please consider givi
 
 Your star is much more than just a number to us – it's a sign that we're on the right track. Thank you for your support, and we hope REST Data Validator helps you in managing and validating your RESTful APIs more effectively.
 
----
-
 Feel free to explore the repository, check out the latest updates, and contribute if you can. Together, we can make REST Data Validator even better!
 
 ## Author
 
 - **Sean Luis Guada Rodriguez** - [Visit Website](https://sean-rodriguez.vercel.app)
-
----
 
 ## License
 

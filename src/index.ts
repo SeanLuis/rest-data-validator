@@ -18,7 +18,8 @@ export {
     validateString,
     validateCustom,
     validateChain,
-    validateNested
+    validateNested,
+    validateContextual
 } from './validators';
 
 /**
@@ -37,7 +38,9 @@ export {
     Number,
     Range,
     Regex,
-    String
+    String,
+    Nested,
+    Contextual
 } from './decorators';
 
 
@@ -62,6 +65,21 @@ export {
     urlDecode,
     urlEncode
 } from './sanitizers';
+
+/**
+ * This module exports various providers functions.
+ * @module Providers
+ */
+export {
+    getContext,
+    setContext,
+    getGlobalContext,
+    setGlobalContext,
+    clearContext,
+    clearAllContexts
+} from './providers/ContextProvider';
+
+
 
 export {
     simpleValidatorFactory,

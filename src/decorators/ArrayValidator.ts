@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { IArrayValidationOptions } from '../interfaces/IArrayValidationOptions';
-import { validateMetadataKey } from "../utils/validations/MetadataKeys";
+import { addValidationMetadata } from "../metadata/AddValidationMetadata";
 
 /**
  * Decorator function for validating an array property.
@@ -8,7 +8,7 @@ import { validateMetadataKey } from "../utils/validations/MetadataKeys";
  * @returns A decorator function that can be used to apply the validation to a property.
  */
 export function Array<T>(options: IArrayValidationOptions<T>) {
-    return function(target: Object, propertyKey: string | symbol) {
-        Reflect.defineMetadata(validateMetadataKey, { type: 'array', options: options }, target, propertyKey);
+    return function(target: any, propertyName: string | symbol) {
+        addValidationMetadata(target, propertyName, { type: 'array', options });
     };
 }

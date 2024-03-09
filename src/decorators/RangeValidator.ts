@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { IRangeValidationOptions } from '../interfaces/IRangeValidationOptions';
-import { validateMetadataKey } from "../utils/validations/MetadataKeys";
+import { addValidationMetadata } from "../metadata/AddValidationMetadata";
 
 /**
  * Decorator function for applying range validation to a property.
@@ -8,7 +8,7 @@ import { validateMetadataKey } from "../utils/validations/MetadataKeys";
  * @returns A decorator function.
  */
 export function Range<T>(options: IRangeValidationOptions<T>) {
-    return function(target: Object, propertyKey: string | symbol) {
-        Reflect.defineMetadata(validateMetadataKey, { type: 'range', options: options }, target, propertyKey);
+    return function(target: any, propertyName: string | symbol) {
+        addValidationMetadata(target, propertyName, { type: 'range', options });
     };
 }

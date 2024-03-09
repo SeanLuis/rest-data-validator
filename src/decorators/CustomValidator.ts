@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { ICustomValidationOptions } from '../interfaces/ICustomValidationOptions';
-import { validateMetadataKey } from "../utils/validations/MetadataKeys";
+import { addValidationMetadata } from "../metadata/AddValidationMetadata";
 
 /**
  * Decorator function for validating custom values.
@@ -8,7 +8,7 @@ import { validateMetadataKey } from "../utils/validations/MetadataKeys";
  * @returns A decorator function that can be used to apply the validation to a class property.
  */
 export function Custom(options: ICustomValidationOptions) {
-    return function(target: Object, propertyKey: string | symbol) {
-        Reflect.defineMetadata(validateMetadataKey, { type: 'custom', options: options }, target, propertyKey);
+    return function(target: any, propertyName: string | symbol) {
+        addValidationMetadata(target, propertyName, { type: 'custom', options });
     };
 }

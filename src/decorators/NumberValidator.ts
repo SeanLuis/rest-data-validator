@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { INumberValidationOptions } from '../interfaces/INumberValidationOptions';
-import { validateMetadataKey } from "../utils/validations/MetadataKeys";
+import { addValidationMetadata } from "../metadata/AddValidationMetadata";
 
 /**
  * Decorator function that applies number validation to a property.
@@ -8,7 +8,7 @@ import { validateMetadataKey } from "../utils/validations/MetadataKeys";
  * @returns A decorator function.
  */
 export function Number(options: INumberValidationOptions) {
-    return function(target: Object, propertyKey: string | symbol) {
-        Reflect.defineMetadata(validateMetadataKey, { type: 'number', options: options }, target, propertyKey);
+    return function(target: any, propertyName: string | symbol) {
+        addValidationMetadata(target, propertyName, { type: 'number', options });
     };
 }

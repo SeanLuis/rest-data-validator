@@ -1,5 +1,5 @@
 // Decoradores como `Required.ts`
-import { ValidationMetadata } from '../utils/validations/ValidationMetadata';
+import { ValidationMetadata } from '../metadata/ValidationMetadata';
 
 /**
  * Decorator that marks a property as required.

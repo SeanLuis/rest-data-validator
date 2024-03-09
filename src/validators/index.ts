@@ -10,3 +10,4 @@ export { validateString } from './ValidateString';
 export { validateCustom } from './ValidateCustom';
 export { validateChain } from './ValidateChain';
 export { validateNested } from './ValidateNested';
+export { validateContextual } from './ValidateContextual';

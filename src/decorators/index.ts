@@ -10,3 +10,5 @@ export { Number } from './NumberValidator';
 export { Range } from './RangeValidator';
 export { Regex } from './RegexValidator';
 export { String } from './StringValidator';
+export { Nested } from './NestedValidator';
+export { Contextual } from './ContextualValidator';

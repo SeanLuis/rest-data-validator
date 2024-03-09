@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { validateMetadataKey } from "./MetadataKeys";
+import { validateMetadataKey } from "../utils/validations/MetadataKeys";
 
 /**
  * The ValidationMetadata class provides methods to define and retrieve metadata for a property to specify validation options.
