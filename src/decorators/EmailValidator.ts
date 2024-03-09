@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { IEmailValidationOptions } from '../interfaces/IEmailValidationOptions';
-import { validateMetadataKey } from "../utils/validations/MetadataKeys";
+import { addValidationMetadata } from "../metadata/AddValidationMetadata";
 
 /**
  * Decorator function for validating email properties.
@@ -8,7 +8,7 @@ import { validateMetadataKey } from "../utils/validations/MetadataKeys";
  * @returns A decorator function that can be used to apply email validation to a property.
  */
 export function Email(options?: IEmailValidationOptions) {
-    return function(target: Object, propertyKey: string | symbol) {
-        Reflect.defineMetadata(validateMetadataKey, { type: 'email', options: options }, target, propertyKey);
+    return function(target: any, propertyName: string | symbol) {
+        addValidationMetadata(target, propertyName, { type: 'email', options });
     };
 }
