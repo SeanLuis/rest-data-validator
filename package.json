@@ -1,6 +1,6 @@
 {
   "name": "rest-data-validator",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A versatile data validation library for RESTful APIs, supporting a wide range of data types and validation rules.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
