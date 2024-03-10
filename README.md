@@ -867,8 +867,8 @@ For scenarios where you need to validate data outside the context of a class, yo
 ### Basic Usage
 
 ```typescript
-import { validateContextual } from "your-library";
-import { IContextualValidationOptions } from "your-library/interfaces";
+import { validateContextual } from "rest-data-validator";
+import { IContextualValidationOptions } from 'rest-data-validator/interfaces/IContextualValidationOptions';
 
 const validationOptions: IContextualValidationOptions = {
   name: "UserRoleCheck",
@@ -902,7 +902,7 @@ The `Contextual` decorator allows for dynamic validation of class properties bas
 
 ```typescript
 import "reflect-metadata";
-import { ClassValidator, String, Contextual, setContext, getContext } from "your-library";
+import { ClassValidator, String, Contextual, setContext, getContext } from "rest-data-validator";
 
 @ClassValidator
 class CropBatch {
