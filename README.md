@@ -286,18 +286,6 @@ class Measurement {
 ```
 Here, `length` must be a number divisible by 0.5, allowing values like 1.5, 2.0, 2.5, etc.
 
-# Validation of Divisible Numbers
-
-```typescript
-@ClassValidator
-class Measurement {
-  @Number({ divisibleBy: 0.5 })
-  length: number;
-}
-```
-
-Here, `length` must be a number divisible by 0.5, allowing values like 1.5, 2.0, 2.5, etc.
-
 # Email Decorator
 
 The Email decorator is utilized to enforce validation on string properties that are expected to represent email addresses within classes in TypeScript. This ensures that the email addresses conform to a specified format or standard pattern before they are processed or stored.
