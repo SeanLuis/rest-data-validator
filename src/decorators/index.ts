@@ -13,5 +13,6 @@ export { Required } from './RequiredValidator';
 export { String } from './StringValidator';
 export { Nested } from './NestedValidator';
 export { Contextual } from './ContextualValidator';
+export { Dependency } from './DependencyValidator';
 export { Accessors, Getter, Setter } from './accessors';
 export { Password } from './PasswordValidator';
