@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsc",
     "test:debug": "jest --runInBand",
-    "test": "jest --coverage --coverageReporters='text' --coverageReporters='cobertura'"
+    "test": "jest --coverage --coverageReporters=text lcov cobertura"
   },
   "repository": {
     "type": "git",
