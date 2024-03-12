@@ -22,6 +22,7 @@ export {
     validateNested,
     validateEmail,
     validatePassword,
+    validateDependency
 } from './validators';
 
 /**
@@ -47,7 +48,8 @@ export {
     Password,
     Accessors,
     Getter,
-    Setter
+    Setter,
+    Dependency
 } from './decorators';
 
 

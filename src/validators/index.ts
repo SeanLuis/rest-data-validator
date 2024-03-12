@@ -13,4 +13,4 @@ export { validatePassword } from './ValidatePassword';
 export { validateRange } from './ValidateRange';
 export { validateRegex } from './ValidateRegex';
 export { validateString } from './ValidateString';
-
+export { validateDependency } from './ValidateDependency';

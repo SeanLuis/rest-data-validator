@@ -15,6 +15,7 @@ import {
     validateRegex,
     validateString,
     validatePassword,
+    validateDependency
 } from "../../validators";
 import { validateMetadataKey } from "./MetadataKeys";
 
@@ -81,6 +82,9 @@ export class ValidationUtils {
                         break;
                     case 'contextual':
                         result = validateContextual(obj[propertyName], validation.options);
+                        break;
+                    case 'dependency':
+                        result = validateDependency(obj, obj[propertyName], validation.options);
                         break;
                     default:
                         result = { isValid: false, errors: [`Validation type '${validation.type}' is not supported.`] };
