@@ -21,6 +21,7 @@ export {
     validateContextual,
     validateNested, 
     validateEmail,
+    validatePassword,
 } from './validators';
 
 /**
@@ -43,6 +44,7 @@ export {
     Nested,
     Contextual,
     Email,
+    Password,
 } from './decorators';
 
 

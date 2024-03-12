@@ -14,6 +14,7 @@ import {
     validateRange,
     validateRegex,
     validateString,
+    validatePassword,
 } from "../../validators";
 import { validateMetadataKey } from "./MetadataKeys";
 
@@ -68,6 +69,9 @@ export class ValidationUtils {
                         break;
                     case 'email':
                         result = validateEmail(obj[propertyName], validation.options);
+                        break;
+                      case 'password':
+                        result = validatePassword(obj[propertyName], validation.options);
                         break;
                     case 'custom':
                         result = validateCustom(obj[propertyName], validation.options); // Handle the 'custom' validation type

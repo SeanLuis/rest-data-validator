@@ -27,6 +27,7 @@ REST Data Validator is a versatile library designed to offer comprehensive valid
 - [String Decorator](#string-decorator)
 - [Number Decorator](#number-decorator)
 - [Email Decorator](#email-decorator)
+- [Password Decorator](#password-decorator)
 - [Date Decorator](#date-decorator)
 - [Enum Decorator](#enum-decorator)
 - [File Decorator](#file-decorator)
@@ -256,17 +257,31 @@ class Product {
 
 In this example, `price` must be a non-negative number, while `stock` must be a positive integer.
 
-### Email Decorator
+### Validation of Divisible Numbers
+
+```typescript
+@ClassValidator
+class Measurement {
+  @Number({ divisibleBy: 0.5 })
+  length: number;
+}
+```
+
+Here, `length` must be a number divisible by 0.5, allowing values like 1.5, 2.0, 2.5, etc.
+
+# Email Decorator
 
 The Email decorator is utilized to enforce validation on string properties that are expected to represent email addresses within classes in TypeScript. This ensures that the email addresses conform to a specified format or standard pattern before they are processed or stored.
 
-### Properties
+## Properties
 
 - **regexPattern**: `RegExp` - An optional regular expression pattern that the email string must match. If not provided, a default email validation pattern is used.
   
-### Usage
+## Usage
 
 To leverage the Email decorator, ensure your TypeScript project is set up to utilize decorators. The Email decorator can be used without any parameters for standard email validation or with a regexPattern to specify a custom validation pattern.
+
+### Example
 
 ```typescript
 import { ClassValidator, Email } from "rest-data-validator";
@@ -287,17 +302,51 @@ class CustomEmailProfile {
 In the first example, the email field in the UserProfile class is validated against a default pattern to ensure it represents a valid email address.
 In the second one, the email field must match the custom pattern provided, offering flexibility for different use cases or stricter validation requirements.
 
-### Validation of Divisible Numbers
+# Password Decorator
+
+The Password decorator is used to enforce validation on string properties that are intended to be used as passwords within classes in TypeScript. This ensures that the passwords adhere to specified security requirements before they are processed or stored.
+
+## Properties
+
+- **minLength**: `number` - Specifies the minimum length the password must be.
+- **maxLength**: `number` - Specifies the maximum length the password can be.
+- **mustContainLowercase**: `boolean` - Specifies whether the password must contain at least one lowercase letter.
+- **mustContainUppercase**: `boolean` - Specifies whether the password must contain at least one uppercase letter.
+- **mustContainNumber**: `boolean` - Specifies whether the password must contain at least one numeric character.
+- **mustContainSpecialCharacter**: `boolean` - Specifies whether the password must contain at least one special character.
+- **regexPattern**: `RegExp` - An optional regular expression pattern the password string must match. If not provided, basic character type validations are used.
+
+## Usage
+
+To utilize the Password decorator, ensure your TypeScript project is configured to use decorators. The Password decorator can be applied without any parameters for general password validation or with properties specified to enforce custom validation rules.
+
+### Example
 
 ```typescript
+import { ClassValidator, Password } from "rest-data-validator";
+
 @ClassValidator
-class Measurement {
-  @Number({ divisibleBy: 0.5 })
-  length: number;
+class UserAccount {
+  @Password()
+  password: string;
+}
+
+@ClassValidator
+class SecureUserAccount {
+  @Password({
+    minLength: 8,
+    maxLength: 20,
+    mustContainLowercase: true,
+    mustContainUppercase: true,
+    mustContainNumber: true,
+    mustContainSpecialCharacter: true,
+    regexPattern: RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$')
+  })
+  password: string;
 }
 ```
 
-Here, `length` must be a number divisible by 0.5, allowing values like 1.5, 2.0, 2.5, etc.
+In the first example, the password field in the UserAccount class is validated against general password requirements. In the second example, the password field in the SecureUserAccount class must satisfy the specific security criteria provided, offering enhanced flexibility and security for diverse application needs.
 
 # Date Decorator
 
@@ -840,12 +889,15 @@ The use of `@Nested` along with other validation decorators provides a powerful 
 # Contextual Validator Documentation
 
 ## Overview
+
 The Contextual Validator is a flexible and powerful tool in the TypeScript validation library that enables dynamic validation based on the context of the data. This validator is particularly useful for scenarios where the validation logic depends on certain conditions or the environment in which the data exists.
 
 ## How It Works
+
 The Contextual Validator uses a context object that is passed along with the value to be validated. The context provides additional information that influences the validation process, such as user roles, dates, location, and more.
 
 ### Key Features
+
 - **Dynamic Context**: Change the validation rules on-the-fly by altering the context.
 - **Multiple Contexts**: Manage and apply different contexts for different validation scenarios.
 - **Combinable**: Use alongside other validators like `String` or `Number` to create complex validation logic.
@@ -946,15 +998,19 @@ If validation fails, an error will be thrown detailing the validation issues.
 ### Potential Use Cases
 
 #### Agriculture Traceability
+
 Track and validate different stages of crop production, ensuring that each batch meets the required standards for planting and harvesting times, pesticide use, water usage, and quantity.
 
 #### Blockchain Transactions
+
 Verify blockchain transactions, such as Ethereum, by validating the context such as the correct wallet addresses, transaction times within a certain block confirmation window, and the amount transferred against wallet balance.
 
 #### Healthcare Management
+
 In healthcare applications, validate patient records contextually based on admission dates, treatment types, and medication dosages according to individual health plans and protocols.
 
 ### Conclusion
+
 The Contextual Validator, with its dynamic and versatile nature, is ideal for any application that requires contextual awareness in its validation logic, ensuring data integrity and adherence to business rules and standards.
 
 ## Roadmap
