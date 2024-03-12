@@ -19,7 +19,7 @@ export {
     validateCustom,
     validateChain,
     validateContextual,
-    validateNested, 
+    validateNested,
     validateEmail,
     validatePassword,
 } from './validators';
@@ -45,6 +45,9 @@ export {
     Contextual,
     Email,
     Password,
+    Accessors,
+    Getter,
+    Setter
 } from './decorators';
 
 
