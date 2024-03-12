@@ -25,7 +25,7 @@ REST Data Validator is a versatile library designed to offer comprehensive valid
   - [Using Decorators for Validation](#using-decorators-for-validation)
   - [Custom Validation Rules](#custom-validation-rules)
 - [Validators and Decorators](#validators-and-decorators)
-  - [ClassValidator Decorator](#classvalidator-decorator)
+  - [Class Decorator](#classvalidator-decorator)
   - [Validation Decorators](#validation-decorators)
     - [String Decorator](#string-decorator)
     - [Number Decorator](#number-decorator)
@@ -42,10 +42,14 @@ REST Data Validator is a versatile library designed to offer comprehensive valid
     - [Nested Decorator](#nested-decorator)
     - [Contextual Decorator](#contextual-decorator)
   - [Sanitizer Functions](#sanitizer-functions)
-  - [Validation Utilities](#validation-utilities)
+  - Validation Utilities
     - [Async Validators](#async-validators)
     - [Nested Validators](#nested-validators)
     - [Contextual Validators](#contextual-validators)
+  - Decorators Utility
+    - [Accessors Decorator](#accessors-decorator)
+    - [Getter Decorator](#getter-decorator)
+    - [Setter Decorator](#setter-decorator)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [Support Us](#support-us)
@@ -157,7 +161,7 @@ const result = validateCustom("user123", customUsernameValidator);
 console.log(result);
 ```
 
-# ClassValidator Decorator
+# Class Decorator
 
 The `ClassValidator` decorator is used at the class level to enable validation of its properties using the decorators provided by the REST Data Validator library. This decorator is essential for activating and applying the defined property validators within a class.
 
@@ -1016,6 +1020,71 @@ In healthcare applications, validate patient records contextually based on admis
 ### Conclusion
 
 The Contextual Validator, with its dynamic and versatile nature, is ideal for any application that requires contextual awareness in its validation logic, ensuring data integrity and adherence to business rules and standards.
+
+# Accessors Decorator
+
+The `Accessors` decorator is a convenient way to automatically create getters and setters for class properties. This simplifies the encapsulation of properties and promotes best practices with minimal boilerplate code.
+
+## Usage
+
+```typescript
+import { Accessors } from "rest-data-validator";
+
+@Accessors({ includePrivate: true })
+class Example {
+    private _property: string;
+
+    constructor(property: string) {
+        this._property = property;
+    }
+}
+```
+
+### Options
+
+- `includePrivate`: Include private properties in accessor generation (default is `false`).
+- `enumerable`: Mark properties as enumerable (default is `false`).
+- `writable`: Mark properties as writable (default is `true`).
+
+# Getter Decorator
+
+The `Getter` decorator simplifies the creation of a getter for a specific property, making it read-only by default but visible during property enumeration if specified.
+
+## Usage
+
+```typescript
+import { Getter } from "rest-data-validator";
+
+class Example {
+    @Getter({ enumerable: true })
+    private _property: string = 'default';
+}
+```
+
+### Options
+
+- `enumerable`: Make the getter enumerable (default is `true`).
+
+# Setter Decorator
+
+The `Setter` decorator allows for the automatic creation of a setter for a specific property, giving you the ability to control the writability of a property dynamically.
+
+## Usage
+
+```typescript
+import { Setter } from "rest-data-validator";
+
+class Example {
+    @Setter({ writable: true })
+    private _property: string = 'default';
+}
+```
+
+### Options
+
+- `writable`: Make the setter writable (default is `true`).
+
+These decorators and interfaces form part of the `rest-data-validator`'s effort to streamline the property management within classes, focusing on clean, maintainable, and efficient code.
 
 ## Roadmap
 
