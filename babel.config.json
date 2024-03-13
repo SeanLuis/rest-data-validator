@@ -1,0 +1,12 @@
+{
+  "presets": [
+    ["@babel/preset-env", {
+      "targets": {
+        "esmodules": true
+      },
+      "modules": false
+    }],
+    "@babel/preset-typescript"
+  ],
+  "plugins": ["add-import-extension"]
+}
