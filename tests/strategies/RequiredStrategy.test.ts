@@ -1,13 +1,13 @@
-import { Project, ClassDeclaration, SourceFile } from "ts-morph";
 import inquirer from "inquirer";
-import { CustomStrategy } from "../../src/cli/strategies";
+import { Project, SourceFile, ClassDeclaration } from "ts-morph";
+import { RequiredStrategy } from "../../src/cli/strategies";
 
 jest.mock("inquirer", () => ({
   prompt: jest.fn(),
 }));
 
-describe("CustomStrategy", () => {
-  let customStrategy: CustomStrategy;
+describe("RequiredStrategy", () => {
+  let requiredStrategy: RequiredStrategy;
   let mockProject: Project;
   let mockSourceFile: SourceFile;
   let mockClasses: ClassDeclaration[];
@@ -24,21 +24,19 @@ describe("CustomStrategy", () => {
     // Mock addDecorator
     mockClasses[0].getProperties()[0].addDecorator = jest.fn();
 
-    customStrategy = new CustomStrategy(
+    requiredStrategy = new RequiredStrategy(
       mockProject,
       mockSourceFile,
       mockClasses
     );
   });
 
-  it("should execute custom strategy", async () => {
-    (inquirer.prompt as unknown as jest.Mock).mockResolvedValue({
-      validationName: "testValidation",
+  it("should execute required strategy", async () => {
+    (inquirer.prompt as unknown as jest.Mock).mockResolvedValueOnce({
       property: "testProperty",
-      message: "Test message",
     });
 
-    await customStrategy.execute();
+    await requiredStrategy.execute();
 
     expect(inquirer.prompt).toHaveBeenCalled();
 
@@ -47,14 +45,7 @@ describe("CustomStrategy", () => {
       mockClasses[0].getProperties()[0].addDecorator as jest.Mock
     ).mock.calls[0][0];
 
-    // Extract the properties from the string
-    const validationName = lastCall.arguments[0].match(/name: \"(.*?)\"/)[1];
-    const message = lastCall.arguments[0].match(/message: \"(.*?)\"/)[1];
-
     // Verify object properties
-    expect(lastCall.name).toBe("Custom");
-    // Verify the properties
-    expect(validationName).toBe("testValidation");
-    expect(message).toBe("Test message");
+    expect(lastCall.name).toBe("Required");
   });
 });

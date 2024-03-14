@@ -1,13 +1,13 @@
-import { Project, ClassDeclaration, SourceFile } from "ts-morph";
+import { Project, SourceFile, ClassDeclaration } from "ts-morph";
 import inquirer from "inquirer";
-import { CustomStrategy } from "../../src/cli/strategies";
+import { EmailStrategy } from "../../src/cli/strategies";
 
 jest.mock("inquirer", () => ({
   prompt: jest.fn(),
 }));
 
-describe("CustomStrategy", () => {
-  let customStrategy: CustomStrategy;
+describe("EmailStrategy", () => {
+  let emailStrategy: EmailStrategy;
   let mockProject: Project;
   let mockSourceFile: SourceFile;
   let mockClasses: ClassDeclaration[];
@@ -24,21 +24,18 @@ describe("CustomStrategy", () => {
     // Mock addDecorator
     mockClasses[0].getProperties()[0].addDecorator = jest.fn();
 
-    customStrategy = new CustomStrategy(
-      mockProject,
-      mockSourceFile,
-      mockClasses
-    );
+    emailStrategy = new EmailStrategy(mockProject, mockSourceFile, mockClasses);
   });
 
-  it("should execute custom strategy", async () => {
-    (inquirer.prompt as unknown as jest.Mock).mockResolvedValue({
-      validationName: "testValidation",
+  it("should execute email strategy", async () => {
+    (inquirer.prompt as unknown as jest.Mock).mockResolvedValueOnce({
       property: "testProperty",
-      message: "Test message",
+      regexPattern:
+        "^[\\w-]+(\\.[\\w-]+)*@[\\w-]+(\\.[\\w-]+)*(\\.[a-zA-Z]{2,})$",
+      message: "Invalid email",
     });
 
-    await customStrategy.execute();
+    await emailStrategy.execute();
 
     expect(inquirer.prompt).toHaveBeenCalled();
 
@@ -48,13 +45,17 @@ describe("CustomStrategy", () => {
     ).mock.calls[0][0];
 
     // Extract the properties from the string
-    const validationName = lastCall.arguments[0].match(/name: \"(.*?)\"/)[1];
+    const regexPattern = lastCall.arguments[0].match(
+      /regexPattern: new RegExp\(\"(.*?)\"\)/
+    )[1];
     const message = lastCall.arguments[0].match(/message: \"(.*?)\"/)[1];
 
     // Verify object properties
-    expect(lastCall.name).toBe("Custom");
+    expect(lastCall.name).toBe("Email");
     // Verify the properties
-    expect(validationName).toBe("testValidation");
-    expect(message).toBe("Test message");
+    expect(regexPattern).toBe(
+      "^[\\w-]+(\\.[\\w-]+)*@[\\w-]+(\\.[\\w-]+)*(\\.[a-zA-Z]{2,})$"
+    );
+    expect(message).toBe("Invalid email");
   });
 });

@@ -284,6 +284,7 @@ class Measurement {
   length: number;
 }
 ```
+
 Here, `length` must be a number divisible by 0.5, allowing values like 1.5, 2.0, 2.5, etc.
 
 # Email Decorator
@@ -311,7 +312,7 @@ class UserProfile {
 
 @ClassValidator
 class CustomEmailProfile {
-  @Email({ regexPattern: RegExp('^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$') })
+  @Email({ regexPattern: RegExp("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$") })
   email: string;
 }
 ```
@@ -357,7 +358,9 @@ class SecureUserAccount {
     mustContainUppercase: true,
     mustContainNumber: true,
     mustContainSpecialCharacter: true,
-    regexPattern: RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$')
+    regexPattern: RegExp(
+      "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$"
+    ),
   })
   password: string;
 }
@@ -732,8 +735,8 @@ class ShoppingCart {
     validator: (item) => {
       // Custom validation logic for each item
       return item.price > 0
-              ? { isValid: true }
-              : { isValid: false, errors: ["Price must be greater than 0"] };
+        ? { isValid: true }
+        : { isValid: false, errors: ["Price must be greater than 0"] };
     },
   })
   items: Array<{ id: number; price: number }>;
@@ -824,18 +827,25 @@ First, we create individual validators for each type of object we want to valida
 
 ```typescript
 const isUserValidator: IValidator<any> = simpleValidatorFactory<any>({
-  condition: value => value instanceof User && value.name.startsWith('valid') && value.age > 18,
-  errorMessage: "Value is not a valid User."
+  condition: (value) =>
+    value instanceof User && value.name.startsWith("valid") && value.age > 18,
+  errorMessage: "Value is not a valid User.",
 });
 
 const isProductValidator: IValidator<any> = simpleValidatorFactory<any>({
-  condition: value => value instanceof Product && value.name.startsWith('valid') && value.price > 10,
-  errorMessage: "Value is not a valid Product."
+  condition: (value) =>
+    value instanceof Product &&
+    value.name.startsWith("valid") &&
+    value.price > 10,
+  errorMessage: "Value is not a valid Product.",
 });
 
 const isOrderValidator: IValidator<any> = simpleValidatorFactory<any>({
-  condition: value => value instanceof Order && value.user instanceof User && value.products.every(product => product instanceof Product),
-  errorMessage: "Value is not a valid Order."
+  condition: (value) =>
+    value instanceof Order &&
+    value.user instanceof User &&
+    value.products.every((product) => product instanceof Product),
+  errorMessage: "Value is not a valid Order.",
 });
 ```
 
@@ -845,9 +855,18 @@ Next, we combine these validators into a complex validator:
 
 ```typescript
 const complexClassValidator: IValidator<any> = combinedValidatorFactory([
-  { validator: isUserValidator, typeGuard: (value: any): value is User => value instanceof User },
-  { validator: isProductValidator, typeGuard: (value: any): value is Product => value instanceof Product },
-  { validator: isOrderValidator, typeGuard: (value: any): value is Order => value instanceof Order },
+  {
+    validator: isUserValidator,
+    typeGuard: (value: any): value is User => value instanceof User,
+  },
+  {
+    validator: isProductValidator,
+    typeGuard: (value: any): value is Product => value instanceof Product,
+  },
+  {
+    validator: isOrderValidator,
+    typeGuard: (value: any): value is Order => value instanceof Order,
+  },
 ]);
 ```
 
@@ -863,9 +882,12 @@ const options: INestedValidationOptions<any> = {
 };
 
 const value = {
-  user: new User('validUser', 20),
-  order: new Order(new User('validUser', 20), [new Product('validProduct', 15), new Product('validProduct', 15)]),
-  products: [new Product('validProduct', 15), new Product('validProduct', 15)],
+  user: new User("validUser", 20),
+  order: new Order(new User("validUser", 20), [
+    new Product("validProduct", 15),
+    new Product("validProduct", 15),
+  ]),
+  products: [new Product("validProduct", 15), new Product("validProduct", 15)],
 };
 
 const validationResult = validateNested(value, options);
@@ -937,12 +959,13 @@ For scenarios where you need to validate data outside the context of a class, yo
 
 ```typescript
 import { validateContextual } from "rest-data-validator";
-import { IContextualValidationOptions } from 'rest-data-validator/interfaces/IContextualValidationOptions';
+import { IContextualValidationOptions } from "rest-data-validator/interfaces/IContextualValidationOptions";
 
 const validationOptions: IContextualValidationOptions = {
   name: "UserRoleCheck",
   getContext: () => ({ userRole: "admin" }),
-  validate: (value, context) => value === "secret" && context.userRole === "admin",
+  validate: (value, context) =>
+    value === "secret" && context.userRole === "admin",
 };
 
 const result = validateContextual("secret", validationOptions);
@@ -971,7 +994,13 @@ The `Contextual` decorator allows for dynamic validation of class properties bas
 
 ```typescript
 import "reflect-metadata";
-import { ClassValidator, String, Contextual, setContext, getContext } from "rest-data-validator";
+import {
+  ClassValidator,
+  String,
+  Contextual,
+  setContext,
+  getContext,
+} from "rest-data-validator";
 
 @ClassValidator
 class CropBatch {
@@ -981,7 +1010,9 @@ class CropBatch {
   @Contextual({
     name: "HarvestDateValidator",
     getContext: () => getContext("cropBatchContext"),
-    validate: (value, context) => new Date(value) <= new Date(context.currentDate) && new Date(value) >= new Date(context.plantingDate),
+    validate: (value, context) =>
+      new Date(value) <= new Date(context.currentDate) &&
+      new Date(value) >= new Date(context.plantingDate),
     message: "Harvest date must be between planting date and current date.",
   })
   harvestDate: string;
@@ -1059,7 +1090,9 @@ class Product {
 
   @DependencyValidator({
     name: "SaleDateAfterManufactureDate",
-    getDependencies: (instance) => ({ manufactureDate: instance.manufactureDate }),
+    getDependencies: (instance) => ({
+      manufactureDate: instance.manufactureDate,
+    }),
     validate: (saleDate, { manufactureDate }) => saleDate >= manufactureDate,
     message: "Sale date must be after the manufacture date.",
   })
@@ -1083,16 +1116,12 @@ Validating a `Product` instance's `saleDate` could look something like this:
 
 ```typescript
 const product = new Product(/* initialize properties */);
-const validationResult = ValidateDependency(
-        product,
-        product.saleDate,
-        {
-          name: "SaleDateAfterManufactureDate",
-          getDependencies: () => ({ manufactureDate: product.manufactureDate }),
-          validate: (saleDate, { manufactureDate }) => saleDate >= manufactureDate,
-          message: "Sale date must be after the manufacture date.",
-        }
-);
+const validationResult = ValidateDependency(product, product.saleDate, {
+  name: "SaleDateAfterManufactureDate",
+  getDependencies: () => ({ manufactureDate: product.manufactureDate }),
+  validate: (saleDate, { manufactureDate }) => saleDate >= manufactureDate,
+  message: "Sale date must be after the manufacture date.",
+});
 
 if (!validationResult.isValid) {
   console.error(validationResult.errors);
@@ -1148,9 +1177,9 @@ export class AgricultureProduct {
   // Additional properties as needed.
 
   constructor(
-          harvestDate: Date,
-          saleDate: Date,
-          // Other constructor parameters.
+    harvestDate: Date,
+    saleDate: Date
+    // Other constructor parameters.
   ) {
     this.harvestDate = harvestDate;
     this.saleDate = saleDate;
@@ -1240,7 +1269,7 @@ import { Getter } from "rest-data-validator";
 
 class Example {
   @Getter({ enumerable: true })
-  private _property: string = 'default';
+  private _property: string = "default";
 }
 ```
 
@@ -1259,7 +1288,7 @@ import { Setter } from "rest-data-validator";
 
 class Example {
   @Setter({ writable: true })
-  private _property: string = 'default';
+  private _property: string = "default";
 }
 ```
 

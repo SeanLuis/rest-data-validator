@@ -1,13 +1,13 @@
-import { Project, ClassDeclaration, SourceFile } from "ts-morph";
 import inquirer from "inquirer";
-import { CustomStrategy } from "../../src/cli/strategies";
+import { Project, SourceFile, ClassDeclaration } from "ts-morph";
+import { StringStrategy } from "../../src/cli/strategies";
 
 jest.mock("inquirer", () => ({
   prompt: jest.fn(),
 }));
 
-describe("CustomStrategy", () => {
-  let customStrategy: CustomStrategy;
+describe("StringStrategy", () => {
+  let stringStrategy: StringStrategy;
   let mockProject: Project;
   let mockSourceFile: SourceFile;
   let mockClasses: ClassDeclaration[];
@@ -24,21 +24,23 @@ describe("CustomStrategy", () => {
     // Mock addDecorator
     mockClasses[0].getProperties()[0].addDecorator = jest.fn();
 
-    customStrategy = new CustomStrategy(
+    stringStrategy = new StringStrategy(
       mockProject,
       mockSourceFile,
       mockClasses
     );
   });
 
-  it("should execute custom strategy", async () => {
-    (inquirer.prompt as unknown as jest.Mock).mockResolvedValue({
-      validationName: "testValidation",
+  it("should execute string strategy", async () => {
+    (inquirer.prompt as unknown as jest.Mock).mockResolvedValueOnce({
       property: "testProperty",
-      message: "Test message",
+      minLength: "5",
+      maxLength: "10",
+      regexPattern: "[a-zA-Z0-9]*",
+      message: "Invalid input",
     });
 
-    await customStrategy.execute();
+    await stringStrategy.execute();
 
     expect(inquirer.prompt).toHaveBeenCalled();
 
@@ -48,13 +50,19 @@ describe("CustomStrategy", () => {
     ).mock.calls[0][0];
 
     // Extract the properties from the string
-    const validationName = lastCall.arguments[0].match(/name: \"(.*?)\"/)[1];
+    const minLength = lastCall.arguments[0].match(/minLength: (.*?),/)[1];
+    const maxLength = lastCall.arguments[0].match(/maxLength: (.*?),/)[1];
+    const regexPattern = lastCall.arguments[0].match(
+      /regexPattern: \/(.*?)\//
+    )[1];
     const message = lastCall.arguments[0].match(/message: \"(.*?)\"/)[1];
 
     // Verify object properties
-    expect(lastCall.name).toBe("Custom");
+    expect(lastCall.name).toBe("String");
     // Verify the properties
-    expect(validationName).toBe("testValidation");
-    expect(message).toBe("Test message");
+    expect(minLength).toBe("5");
+    expect(maxLength).toBe("10");
+    expect(regexPattern).toBe("[a-zA-Z0-9]*");
+    expect(message).toBe("Invalid input");
   });
 });

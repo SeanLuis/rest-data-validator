@@ -1,40 +1,45 @@
-import { PropertyDeclaration } from 'ts-morph';
-import inquirer from 'inquirer';
-import { ValidationStrategy } from './validation.strategy';
+import { PropertyDeclaration } from "ts-morph";
+import inquirer from "inquirer";
+import { ValidationStrategy } from "./ValidationStrategy";
 
 export class NestedStrategy extends ValidationStrategy {
   async execute() {
     const properties = this.classes[0].getProperties();
-    const propertyNames = properties.map((property: PropertyDeclaration) => property.getName());
+    const propertyNames = properties.map((property: PropertyDeclaration) =>
+      property.getName()
+    );
 
     const answers = await inquirer.prompt([
       {
-        name: 'property',
-        message: 'Select the property to add nested validation:',
-        type: 'list',
+        name: "property",
+        message: "Select the property to add nested validation:",
+        type: "list",
         choices: propertyNames,
       },
       {
-        name: 'validator',
-        message: 'Enter the validator class or function name:',
-        type: 'input',
+        name: "validator",
+        message: "Enter the validator class or function name:",
+        type: "input",
       },
       {
-        name: 'each',
-        message: 'Apply the validation to each element in an array of objects (true/false)?',
-        type: 'confirm',
+        name: "each",
+        message:
+          "Apply the validation to each element in an array of objects (true/false)?",
+        type: "confirm",
       },
       {
-        name: 'message',
-        message: 'Validation error message:',
-        type: 'input',
-      }
+        name: "message",
+        message: "Validation error message:",
+        type: "input",
+      },
     ]);
 
-    const property = this.classes[0].getProperties().find(p => p.getName() === answers.property);
+    const property = this.classes[0]
+      .getProperties()
+      .find((p) => p.getName() === answers.property);
     if (property) {
       property.addDecorator({
-        name: 'Nested',
+        name: "Nested",
         arguments: [
           `{
             validator: ${answers.validator},
@@ -60,8 +65,8 @@ export class NestedStrategy extends ValidationStrategy {
             },
             each: ${answers.each},
             message: "${answers.message}",
-          }`
-        ]
+          }`,
+        ],
       });
     }
   }
