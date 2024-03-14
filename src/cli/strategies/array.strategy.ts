@@ -38,14 +38,13 @@ export class ArrayStrategy extends ValidationStrategy {
       }
     ]);
 
-    const validatorFunction = `
-      (item: number) => ({
-        isValid: item > 0,
-        errors: item <= 0 ? ['Item must be greater than 0'] : []
-      })
-    `;
+    const validatorFunction = `(item: number) => ({
+      isValid: item >= ${answers.minLength} ? ['Item must be equal to or greater than ${answers.minLength}'] : [],
+      errors: item <= ${answers.maxLength} ? ['Item must be equal to or less than ${answers.maxLength}'] : []
+    })`;
 
-    const property = this.classes[0].getProperty(answers.property);
+    const property = this.classes[0].getProperties().find(p => p.getName() === answers.property);
+
     if (property) {
       property.addDecorator({
         name: 'Array',
@@ -54,7 +53,7 @@ export class ArrayStrategy extends ValidationStrategy {
             minLength: ${answers.minLength},
             maxLength: ${answers.maxLength},
             unique: ${answers.unique},
-            validator: ${validatorFunction},
+            validator:${validatorFunction},
             message: "${answers.message}"
           }`,
         ],

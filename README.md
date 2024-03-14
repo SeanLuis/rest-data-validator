@@ -18,146 +18,53 @@ REST Data Validator is a versatile library designed to offer comprehensive valid
 
 # REST Data Validator
 
-- [REST Data Validator](#rest-data-validator)
-  - [Features](#features)
-- [REST Data Validator](#rest-data-validator-1)
-  - [Installation](#installation)
-  - [Usage](#usage)
-    - [Basic Example](#basic-example)
-    - [Using Decorators for Validation](#using-decorators-for-validation)
-    - [Custom Validation Rules](#custom-validation-rules)
-- [Class Decorator](#class-decorator)
-  - [Usage](#usage-1)
-    - [Example](#example)
-    - [Integrating with Application Logic](#integrating-with-application-logic)
-- [String Decorator](#string-decorator)
-  - [Properties](#properties)
-  - [Usage](#usage-2)
-    - [Basic Example](#basic-example-1)
-- [Number Decorator](#number-decorator)
-  - [Properties](#properties-1)
-  - [Usage](#usage-3)
-    - [Basic Example](#basic-example-2)
-  - [Validation of Divisible Numbers](#validation-of-divisible-numbers)
-- [Email Decorator](#email-decorator)
-  - [Properties](#properties-2)
-  - [Usage](#usage-4)
-    - [Example](#example-1)
-- [Password Decorator](#password-decorator)
-  - [Properties](#properties-3)
-  - [Usage](#usage-5)
-    - [Example](#example-2)
-- [Date Decorator](#date-decorator)
-  - [Properties](#properties-4)
-  - [Usage](#usage-6)
-    - [Basic Example](#basic-example-3)
-    - [Validating Date Strings](#validating-date-strings)
-- [Enum Decorator](#enum-decorator)
-  - [Properties](#properties-5)
-  - [Usage](#usage-7)
-    - [Example](#example-3)
-    - [Custom Error Messages](#custom-error-messages)
-- [File Decorator](#file-decorator)
-  - [Properties](#properties-6)
-  - [Usage](#usage-8)
-    - [Example](#example-4)
-    - [Custom File Content Validation](#custom-file-content-validation)
-- [Range Decorator](#range-decorator)
-  - [Properties](#properties-7)
-  - [Usage](#usage-9)
-    - [Example for Numbers](#example-for-numbers)
-    - [Example for Dates](#example-for-dates)
-    - [Custom Validation](#custom-validation)
-- [Regex Decorator](#regex-decorator)
-  - [Properties](#properties-8)
-  - [Usage](#usage-10)
-    - [Example](#example-5)
-    - [Inverting Match](#inverting-match)
-    - [Testing Against Trimmed Value](#testing-against-trimmed-value)
-- [Custom Decorator](#custom-decorator)
-  - [Properties](#properties-9)
-  - [Usage](#usage-11)
-    - [Example](#example-6)
-- [Domain Decorator](#domain-decorator)
-  - [Properties](#properties-10)
-  - [Usage](#usage-12)
-    - [Example for Email Validation](#example-for-email-validation)
-    - [Example for URL Validation](#example-for-url-validation)
-    - [Customizing Top-Level Domains](#customizing-top-level-domains)
-- [Array Decorator](#array-decorator)
-  - [Properties](#properties-11)
-  - [Usage](#usage-13)
-    - [Example](#example-7)
-    - [Applying Array](#applying-array)
-- [Sanitizer Functions](#sanitizer-functions)
-  - [Available Sanitizer Functions](#available-sanitizer-functions)
-  - [Usage](#usage-14)
-- [Async Validators](#async-validators)
-  - [AsyncValidator Type](#asyncvalidator-type)
-  - [Usage](#usage-15)
-  - [Nested Validators](#nested-validators)
-    - [Creating Validators](#creating-validators)
-    - [Creating the Complex Validator](#creating-the-complex-validator)
-    - [Using the Complex Validator](#using-the-complex-validator)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Basic Example](#basic-example)
+  - [Using Decorators for Validation](#using-decorators-for-validation)
+  - [Custom Validation Rules](#custom-validation-rules)
+- Validators and Decorators
+  - Validation Decorators
+    - [Class Decorator](#class-decorator)
+    - [String Decorator](#string-decorator)
+    - [Number Decorator](#number-decorator)
+    - [Email Decorator](#email-decorator)
+    - [Password Decorator](#password-decorator)
+    - [Date Decorator](#date-decorator)
+    - [Enum Decorator](#enum-decorator)
+    - [File Decorator](#file-decorator)
+    - [Range Decorator](#range-decorator)
+    - [Regex Decorator](#regex-decorator)
+    - [Custom Decorator](#custom-decorator)
+    - [Domain Decorator](#domain-decorator)
+    - [Array Decorator](#array-decorator)
     - [Nested Decorator](#nested-decorator)
-      - [Example Usage](#example-usage)
-    - [Conclusion](#conclusion)
-- [Contextual Validator Documentation](#contextual-validator-documentation)
-  - [Overview](#overview)
-  - [How It Works](#how-it-works)
-    - [Key Features](#key-features)
-    - [Test Cases](#test-cases)
-  - [Contextual Validators](#contextual-validators)
-    - [Direct Use of the validateContextual Function](#direct-use-of-the-validatecontextual-function)
-    - [Basic Usage](#basic-usage)
-    - [Context Management](#context-management)
-    - [Advanced Validation Scenarios](#advanced-validation-scenarios)
-  - [Contextual Decorator](#contextual-decorator)
-    - [Using the Contextual Decorator in Class Validation](#using-the-contextual-decorator-in-class-validation)
-    - [Defining a Class with Contextual Validation](#defining-a-class-with-contextual-validation)
-    - [Setting Up the Context](#setting-up-the-context)
-    - [Instantiation and Validation](#instantiation-and-validation)
-    - [Potential Use Cases](#potential-use-cases)
-      - [Agriculture Traceability](#agriculture-traceability)
-      - [Blockchain Transactions](#blockchain-transactions)
-      - [Healthcare Management](#healthcare-management)
-    - [Conclusion](#conclusion-1)
-- [Dependency Validators](#dependency-validators)
-  - [Overview](#overview-1)
-  - [1. Dependency Decorator](#1-dependency-decorator)
-    - [1.1 Introduction](#11-introduction)
-    - [1.2 Usage](#12-usage)
-    - [1.3 Example](#13-example)
-  - [2. Dependency Function](#2-dependency-function)
-    - [2.1 Introduction](#21-introduction)
-    - [2.2 Usage](#22-usage)
-    - [2.3 Example](#23-example)
-  - [3. Separating Validation Logic in a Clean Architecture Approach](#3-separating-validation-logic-in-a-clean-architecture-approach)
-    - [Overview](#overview-2)
-    - [Table of Contents](#table-of-contents)
-    - [Folder and File Structure](#folder-and-file-structure)
-    - [Setting Up the Model](#setting-up-the-model)
-    - [Configuring Validations](#configuring-validations)
-    - [Applying Configuration](#applying-configuration)
-    - [Example Usage](#example-usage-1)
-  - [Conclusion](#conclusion-2)
-- [Accessors Decorator](#accessors-decorator)
-  - [Usage](#usage-16)
-    - [Options](#options)
-- [Getter Decorator](#getter-decorator)
-  - [Usage](#usage-17)
-    - [Options](#options-1)
-- [Setter Decorator](#setter-decorator)
-  - [Usage](#usage-18)
-    - [Options](#options-2)
-  - [Roadmap](#roadmap)
-    - [Upcoming Features](#upcoming-features)
-  - [Contributing](#contributing)
-  - [Support Us](#support-us)
-    - [Why Star Us?](#why-star-us)
-    - [How to Star Our Repository](#how-to-star-our-repository)
-  - [Author](#author)
-  - [License](#license)
+    - [Contextual Decorator](#contextual-decorator)
+  - [Sanitizer Functions](#sanitizer-functions)
+  - Validation Utilities
+    - [Async Validators](#async-validators)
+    - [Nested Validators](#nested-validators)
+    - [Contextual Validators](#contextual-validators)
+    - [Dependency Validators](#dependency-validators)
+      - [1. Dependency Decorator](#1-dependency-decorator)
+        - [1.1 Introduction](#11-introduction)
+        - [1.2 Usage](#12-usage)
+        - [1.3 Example](#13-example)
+      - [2. Dependency Function](#2-dependency-function)
+        - [2.1 Introduction](#21-introduction)
+        - [2.2 Usage](#22-usage)
+        - [2.3 Example](#23-example)
+      - [3. Separating Validation Logic in a Clean Architecture Approach](#3-separating-validation-logic-in-a-clean-architecture-approach)
+  - Decorators Utility
+    - [Accessors Decorator](#accessors-decorator)
+    - [Getter Decorator](#getter-decorator)
+    - [Setter Decorator](#setter-decorator)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [Support Us](#support-us)
+- [Author](#author)
+- [License](#license)
 
 ## Installation
 
@@ -377,7 +284,6 @@ class Measurement {
   length: number;
 }
 ```
-
 Here, `length` must be a number divisible by 0.5, allowing values like 1.5, 2.0, 2.5, etc.
 
 # Email Decorator
@@ -387,7 +293,7 @@ The Email decorator is utilized to enforce validation on string properties that 
 ## Properties
 
 - **regexPattern**: `RegExp` - An optional regular expression pattern that the email string must match. If not provided, a default email validation pattern is used.
-  
+
 ## Usage
 
 To leverage the Email decorator, ensure your TypeScript project is set up to utilize decorators. The Email decorator can be used without any parameters for standard email validation or with a regexPattern to specify a custom validation pattern.
@@ -654,9 +560,9 @@ Here, `eventDate` must fall between January 1, 2020, and January 1, 2023, inclus
 
 ```typescript
 @Range({
-    min: 10,
-    max: 20,
-    customValidator: (value) => value % 2 === 0 // Must be even
+  min: 10,
+  max: 20,
+  customValidator: (value) => value % 2 === 0 // Must be even
 })
 value: number;
 ```
@@ -826,8 +732,8 @@ class ShoppingCart {
     validator: (item) => {
       // Custom validation logic for each item
       return item.price > 0
-        ? { isValid: true }
-        : { isValid: false, errors: ["Price must be greater than 0"] };
+              ? { isValid: true }
+              : { isValid: false, errors: ["Price must be greater than 0"] };
     },
   })
   items: Array<{ id: number; price: number }>;
@@ -978,16 +884,16 @@ To use the `@Nested` decorator, you define your complex validator and then apply
 ```typescript
 @ClassValidator
 class ComplexClass {
-    @Nested({
-        validator: complexClassValidator,
-        validationOptions: {},
-        each: true,
-    })
-    public order: Order;
+  @Nested({
+    validator: complexClassValidator,
+    validationOptions: {},
+    each: true,
+  })
+  public order: Order;
 
-    constructor(order: Order) {
-        this.order = order;
-    }
+  constructor(order: Order) {
+    this.order = order;
+  }
 }
 ```
 
@@ -1149,15 +1055,15 @@ import { DependencyValidator, ClassValidator } from "../../src";
 
 @ClassValidator
 class Product {
-    public manufactureDate: Date;
-    
-    @DependencyValidator({
-        name: "SaleDateAfterManufactureDate",
-        getDependencies: (instance) => ({ manufactureDate: instance.manufactureDate }),
-        validate: (saleDate, { manufactureDate }) => saleDate >= manufactureDate,
-        message: "Sale date must be after the manufacture date.",
-    })
-    public saleDate: Date;
+  public manufactureDate: Date;
+
+  @DependencyValidator({
+    name: "SaleDateAfterManufactureDate",
+    getDependencies: (instance) => ({ manufactureDate: instance.manufactureDate }),
+    validate: (saleDate, { manufactureDate }) => saleDate >= manufactureDate,
+    message: "Sale date must be after the manufacture date.",
+  })
+  public saleDate: Date;
 }
 ```
 
@@ -1178,18 +1084,18 @@ Validating a `Product` instance's `saleDate` could look something like this:
 ```typescript
 const product = new Product(/* initialize properties */);
 const validationResult = ValidateDependency(
-    product,
-    product.saleDate,
-    {
-        name: "SaleDateAfterManufactureDate",
-        getDependencies: () => ({ manufactureDate: product.manufactureDate }),
-        validate: (saleDate, { manufactureDate }) => saleDate >= manufactureDate,
-        message: "Sale date must be after the manufacture date.",
-    }
+        product,
+        product.saleDate,
+        {
+          name: "SaleDateAfterManufactureDate",
+          getDependencies: () => ({ manufactureDate: product.manufactureDate }),
+          validate: (saleDate, { manufactureDate }) => saleDate >= manufactureDate,
+          message: "Sale date must be after the manufacture date.",
+        }
 );
 
 if (!validationResult.isValid) {
-    console.error(validationResult.errors);
+  console.error(validationResult.errors);
 }
 ```
 
@@ -1242,9 +1148,9 @@ export class AgricultureProduct {
   // Additional properties as needed.
 
   constructor(
-    harvestDate: Date,
-    saleDate: Date,
-    // Other constructor parameters.
+          harvestDate: Date,
+          saleDate: Date,
+          // Other constructor parameters.
   ) {
     this.harvestDate = harvestDate;
     this.saleDate = saleDate;
@@ -1264,14 +1170,14 @@ import { Dependency } from "../decorators/DependencyValidator";
 import { AgricultureProduct } from "../models/AgricultureProduct";
 
 export const configureAgricultureProductValidations = () => {
-    Dependency({
-        name: "SaleDateAfterHarvestDate",
-        getDependencies: (instance) => ({ harvestDate: instance.harvestDate }),
-        validate: (saleDate, { harvestDate }) => saleDate >= harvestDate,
-        message: "The sale date cannot be before the harvest date.",
-    })(AgricultureProduct.prototype, "saleDate");
+  Dependency({
+    name: "SaleDateAfterHarvestDate",
+    getDependencies: (instance) => ({ harvestDate: instance.harvestDate }),
+    validate: (saleDate, { harvestDate }) => saleDate >= harvestDate,
+    message: "The sale date cannot be before the harvest date.",
+  })(AgricultureProduct.prototype, "saleDate");
 
-    // Repeat for other properties needing validation.
+  // Repeat for other properties needing validation.
 };
 ```
 
@@ -1309,11 +1215,11 @@ import { Accessors } from "rest-data-validator";
 
 @Accessors({ includePrivate: true })
 class Example {
-    private _property: string;
+  private _property: string;
 
-    constructor(property: string) {
-        this._property = property;
-    }
+  constructor(property: string) {
+    this._property = property;
+  }
 }
 ```
 
@@ -1333,8 +1239,8 @@ The `Getter` decorator simplifies the creation of a getter for a specific proper
 import { Getter } from "rest-data-validator";
 
 class Example {
-    @Getter({ enumerable: true })
-    private _property: string = 'default';
+  @Getter({ enumerable: true })
+  private _property: string = 'default';
 }
 ```
 
@@ -1352,8 +1258,8 @@ The `Setter` decorator allows for the automatic creation of a setter for a speci
 import { Setter } from "rest-data-validator";
 
 class Example {
-    @Setter({ writable: true })
-    private _property: string = 'default';
+  @Setter({ writable: true })
+  private _property: string = 'default';
 }
 ```
 

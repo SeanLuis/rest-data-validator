@@ -36,7 +36,7 @@ export class StringStrategy extends ValidationStrategy {
       }
     ]);
 
-    const property = this.classes[0].getProperty(answers.property);
+    const property = this.classes[0].getProperties().find(p => p.getName() === answers.property);
     if (property) {
       property.addDecorator({
         name: 'String',

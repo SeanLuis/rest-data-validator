@@ -9,8 +9,7 @@
     "sourceMap": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "declaration": true,
-    "declarationDir": "./dist/types"
+    "declaration": true
   },
   "include": ["src/**/*"]
 }

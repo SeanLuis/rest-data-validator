@@ -88,8 +88,10 @@ export {
     clearAllContexts
 } from './providers/ContextProvider';
 
-
-
+/**
+ * This module exports various types.
+ * @module Types
+ */
 export {
     simpleValidatorFactory,
     combinedValidatorFactory

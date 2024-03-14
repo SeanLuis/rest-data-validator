@@ -21,7 +21,7 @@ export class ModelGenerator {
     fs.mkdirSync(path.dirname(fullPath), { recursive: true });
 
     fs.writeFileSync(fullPath, modelTemplate);
-    console.log(`Modelo ${className} generado con éxito en ${fullPath}`);
+    console.log(`Model ${className} successfully generated in ${fullPath}`);
   }
 
   private static formatClassName(name: string): string {
