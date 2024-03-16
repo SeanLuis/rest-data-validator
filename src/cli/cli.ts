@@ -7,21 +7,21 @@ import { ValidationsGenerator } from "./generators/ValidationsGenerator";
 program
   .version("1.0.0")
   .description(
-    "CLI para la generación de modelos y aplicación de validaciones"
+    "CLI for generating models and applying validations"
   );
 
 program
   .command("generate:model <name> [path]")
-  .description("Genera un nuevo modelo")
+  .description("Generate a new model")
   .action((name: string, path: string = "") => {
     ModelGenerator.generate(name, path);
   });
 
 program
-  .command("generate:validations <modelName>")
-  .description("Aplica validaciones a un modelo existente")
-  .action((modelName: string) => {
-    ValidationsGenerator.generate(modelName);
+  .command("generate:validations <modelPath>")
+  .description("Apply validations to an existing model")
+  .action((modelPath: string) => {
+    ValidationsGenerator.generate(modelPath);
   });
 
 program.parse(process.argv);
