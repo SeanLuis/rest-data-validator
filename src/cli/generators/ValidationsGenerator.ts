@@ -76,6 +76,20 @@ export class ValidationsGenerator {
 
     const strategy = new strategies[answers.validationType](project, sourceFile, classes);
 
+    // Add import if it doesn't exist
+    let importDeclaration = sourceFile.getImportDeclaration(declaration => declaration.getModuleSpecifierValue() === 'rest-data-validator');
+    if (!importDeclaration) {
+      importDeclaration = sourceFile.addImportDeclaration({
+        namedImports: [answers.validationType],
+        moduleSpecifier: 'rest-data-validator'
+      });
+    } else {
+      const namedImports = importDeclaration.getNamedImports();
+      if (!namedImports.find(i => i.getText() === answers.validationType)) {
+        importDeclaration.addNamedImport(answers.validationType);
+      }
+    }
+
     await strategy.execute();
 
     sourceFile.formatText();
