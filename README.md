@@ -1,6 +1,6 @@
 # REST Data Validator
 
-![Jest Coverage](https://img.shields.io/badge/Jest%20Coverage-97.25%25-success?style=flat)
+![Jest Coverage](https://img.shields.io/badge/Jest%20Coverage-98.50%25-success?style=flat)
 [![Codecov](https://codecov.io/gh/SeanLuis/rest-data-validator/graph/badge.svg?token=rhWlGJspdW)](https://codecov.io/gh/SeanLuis/rest-data-validator)
 [![Package Build](https://github.com/SeanLuis/rest-data-validator/actions/workflows/build.yml/badge.svg)](https://github.com/SeanLuis/rest-data-validator/actions/workflows/build.yml)
 [![Version](https://badge.fury.io/js/rest-data-validator.svg)](https://badge.fury.io/js/rest-data-validator)
