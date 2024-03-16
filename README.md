@@ -28,6 +28,10 @@ REST Data Validator is a versatile library designed to offer comprehensive valid
   - Basic Example
   - Using Decorators for Validation
   - Custom Validation Rules
+- Rest CLI
+  - Commands
+  - Model Generation
+  - Validation Generation
 - Validators and Decorators
   - Validation Decorators
     - Class Decorator
@@ -64,10 +68,6 @@ REST Data Validator is a versatile library designed to offer comprehensive valid
     - Accessors Decorator
     - Getter Decorator
     - Setter Decorator
-  - Rest CLI
-    - Commands
-    - Model Generation
-    - Validation Generation
 - Roadmap
 - Contributing
 - Support Us
