@@ -40,10 +40,10 @@ export class ArrayStrategy extends ValidationStrategy {
       },
     ]);
 
-    const validatorFunction = `(item: number) => ({
-      isValid: item >= ${answers.minLength} ? ['Item must be equal to or greater than ${answers.minLength}'] : [],
-      errors: item <= ${answers.maxLength} ? ['Item must be equal to or less than ${answers.maxLength}'] : []
-    })`;
+    const validatorFunction = answers.minLength || answers.maxLength ? `(item: number) => ({
+      isValid: ${answers.minLength ? `item >= ${answers.minLength}` : 'true'} ? ['Item must be equal to or greater than ${answers.minLength}'] : [],
+      errors: ${answers.maxLength ? `item <= ${answers.maxLength}` : 'true'} ? ['Item must be equal to or less than ${answers.maxLength}'] : []
+    })` : 'undefined';
 
     const property = this.classes[0]
       .getProperties()
@@ -54,10 +54,10 @@ export class ArrayStrategy extends ValidationStrategy {
         name: "Array",
         arguments: [
           `{
-            minLength: ${answers.minLength},
-            maxLength: ${answers.maxLength},
+            ${answers.minLength ? `minLength: ${answers.minLength},` : ""}
+            ${answers.maxLength ? `maxLength: ${answers.maxLength},` : ""}
             unique: ${answers.unique},
-            validator:${validatorFunction},
+            validator: ${validatorFunction},
             message: "${answers.message}"
           }`,
         ],

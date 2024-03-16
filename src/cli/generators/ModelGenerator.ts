@@ -4,9 +4,6 @@ import path from "path";
 import inquirer from "inquirer";
 import { trim } from "../..";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 export class ModelGenerator {
   static async generate(name: string, modelPath: string) {
     const className = this.formatClassName(name);
@@ -15,7 +12,7 @@ export class ModelGenerator {
 
     const modelTemplate = this.createModelTemplate(className, properties);
 
-    const pathToProjectRoot = path.join(__dirname, "..", "..");
+    const pathToProjectRoot = process.cwd();
     const fullPath = path.join(pathToProjectRoot, modelPath, `${className}.ts`);
 
     fs.mkdirSync(path.dirname(fullPath), { recursive: true });
@@ -93,8 +90,8 @@ export class ModelGenerator {
     className: string,
     properties: any[]
   ): string {
-    const importStatement = `import "reflect-metadata";\nimport { ClassValidator, Accessors } from "../../src";\n\n`;
-    const classValidatorDecorator = `@ClassValidator\n`;
+    const importStatement = `import "reflect-metadata";\nimport { ClassValidator, Accessors } from "rest-data-validator";\n\n`;
+    const classValidatorDecorator = `@ClassValidator\n@Accessors\n`;
 
     const propertiesStr = properties
       .map((prop) => `  public ${prop.name}: ${prop.type};`)
