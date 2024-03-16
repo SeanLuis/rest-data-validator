@@ -1,7 +1,8 @@
 // @ts-nocheck
 
 import "reflect-metadata";
-import { String, Number, Contextual, ClassValidator, setContext, clearAllContexts, getContext, clearContext } from "../../src";
+import { String, Number, Contextual, ClassValidator } from "../../src";
+import { setGlobalContext, getGlobalContext, setContext, getContext, clearContext, clearAllContexts } from "../../src";
 
 @ClassValidator
 class SecureDocument {
@@ -272,5 +273,38 @@ describe("EthereumTransaction Validation", () => {
       21000,
       50
     )).toThrow("Daily spending limit exceeded.");
+  });
+});
+
+describe("ContextProvider", () => {
+  afterEach(() => {
+    clearAllContexts();
+  });
+
+  it("should set and get the global context correctly", () => {
+    const globalContext = { key: "value" };
+    setGlobalContext(globalContext);
+
+    const retrievedGlobalContext = getGlobalContext();
+    expect(retrievedGlobalContext).toEqual(globalContext);
+  });
+
+  it("should return the global context when getting a non-existent context", () => {
+    const globalContext = { key: "value" };
+    setGlobalContext(globalContext);
+
+    const retrievedContext = getContext("nonExistentContext");
+    expect(retrievedContext).toEqual(globalContext);
+  });
+
+  it("should return the specific context when it exists", () => {
+    const globalContext = { key: "value" };
+    setGlobalContext(globalContext);
+
+    const specificContext = { specificKey: "specificValue" };
+    setContext("specificContext", specificContext);
+
+    const retrievedContext = getContext("specificContext");
+    expect(retrievedContext).toEqual(specificContext);
   });
 });

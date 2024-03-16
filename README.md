@@ -174,7 +174,6 @@ function customUsernameValidator(value: string): ValidationResult {
 const result = validateCustom("user123", customUsernameValidator);
 console.log(result);
 ```
-
 ## Roadmap
 
 The `rest-data-validator` project aims to continually evolve with the needs of developers and the dynamics of RESTful API design. Below is a tentative roadmap of features and improvements we're exploring:

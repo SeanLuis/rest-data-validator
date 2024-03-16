@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { Accessors } from '../../../src';
+import {Accessors} from '../../../src';
 
 interface AccessorsMethods {
     getProp(): string;
