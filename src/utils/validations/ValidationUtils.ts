@@ -15,7 +15,8 @@ import {
     validateRegex,
     validateString,
     validatePassword,
-    validateDependency
+    validateDependency,
+    validateSecurity
 } from "../../validators";
 import { validateMetadataKey } from "./MetadataKeys";
 
@@ -75,7 +76,7 @@ export class ValidationUtils {
                         result = validatePassword(obj[propertyName], validation.options);
                         break;
                     case 'custom':
-                        result = validateCustom(obj[propertyName], validation.options); // Handle the 'custom' validation type
+                        result = validateCustom(obj[propertyName], validation.options);
                         break;
                     case 'nested':
                         result = validateNested(obj[propertyName], validation.options);
@@ -85,6 +86,9 @@ export class ValidationUtils {
                         break;
                     case 'dependency':
                         result = validateDependency(obj, obj[propertyName], validation.options);
+                        break;
+                    case 'security':
+                        result = validateSecurity(obj[propertyName], validation.options);
                         break;
                     default:
                         result = { isValid: false, errors: [`Validation type '${validation.type}' is not supported.`] };
