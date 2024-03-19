@@ -3,6 +3,31 @@
  */
 
 /**
+ * This module exports various interfaces.
+ * @module Interfaces
+ */
+export {
+  IArrayValidationOptions,
+  IChainValidationOptions,
+  IContextualValidationOptions,
+  ICustomValidationOptions,
+  IDateValidationOptions,
+  IDependencyValidationOptions,
+  IDomainValidationOptions,
+  IEmailValidationOptions,
+  IEnumValidationOptions,
+  IFileValidationOptions,
+  INestedValidationOptions,
+  INumberValidationOptions,
+  IPasswordValidationOptions,
+  IRangeValidationOptions,
+  IRegexValidationOptions,
+  ISecurityValidationOptions,
+  IStringValidationOptions,
+  IValidationOptionsBase
+} from "./interfaces";
+
+/**
  * This module exports various validation functions.
  * @module Validations
  */
@@ -104,9 +129,10 @@ export {
   combinedValidatorFactory,
 } from "./types/NestedValidatorFactory";
 
+import * as interfaces from "./interfaces";
 import * as validators from "./validators";
 import * as decorators from "./decorators";
 import * as sanitizers from "./sanitizers";
 import * as events from "./events";
 
-export { validators, decorators, sanitizers, events };
+export { interfaces, validators, decorators, sanitizers, events };

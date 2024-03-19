@@ -68,6 +68,10 @@ REST Data Validator is a versatile library designed to offer comprehensive valid
     - Accessors Decorator
     - Getter Decorator
     - Setter Decorator
+  - Security Utility
+    - Security Validation
+    - Security Decorator
+    - Security Events
 - Roadmap
 - Contributing
 - Support Us
