@@ -14,3 +14,4 @@ export { PasswordStrategy } from "./PasswordStrategy";
 export { RangeStrategy } from "./RangeStrategy";
 export { RegexStrategy } from "./RegexStrategy";
 export { StringStrategy } from "./StringStrategy";
+export { SecurityStrategy } from "./SecurityStrategy";

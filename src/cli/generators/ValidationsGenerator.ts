@@ -17,7 +17,8 @@ import {
   PasswordStrategy,
   RangeStrategy,
   RegexStrategy,
-  StringStrategy
+  StringStrategy,
+  SecurityStrategy
 } from '../strategies';
 
 const validationTypes = [
@@ -37,6 +38,7 @@ const validationTypes = [
   'Email',
   'Password',
   'Dependency',
+  'Security'
 ];
 
 const strategies: any = {
@@ -55,7 +57,8 @@ const strategies: any = {
   Password: PasswordStrategy,
   Range: RangeStrategy,
   Regex: RegexStrategy,
-  String: StringStrategy
+  String: StringStrategy,
+  Security: SecurityStrategy
 };
 
 export class ValidationsGenerator {
