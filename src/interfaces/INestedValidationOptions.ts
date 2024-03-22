@@ -1,4 +1,4 @@
-import { ValidationResult } from "../types/ValidationResult";
+import { IValidationResult } from "../interfaces";
 import { IValidationOptionsBase } from "./IValidationOptionsBase";
 
 /**
@@ -10,7 +10,7 @@ import { IValidationOptionsBase } from "./IValidationOptionsBase";
  * @returns The validation result.
  */
 export interface IValidator<T> {
-    validate(value: T | any[], validationOptions?: Record<string, any>): ValidationResult;
+    validate(value: T | any[], validationOptions?: Record<string, any>): IValidationResult;
 }
   
 /**

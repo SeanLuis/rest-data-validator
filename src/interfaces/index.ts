@@ -16,3 +16,7 @@ export { IRegexValidationOptions } from './IRegexValidationOptions';
 export { ISecurityValidationOptions } from './ISecurityValidationOptions';
 export { IStringValidationOptions } from './IStringValidationOptions';
 export { IValidationOptionsBase } from './IValidationOptionsBase';
+export { IValidationResult } from './IValidationResult';
+export { IAccessors } from './accessors/IAccessors';
+export { IGetter } from './accessors/IGetter';
+export { ISetter } from './accessors/ISetter';

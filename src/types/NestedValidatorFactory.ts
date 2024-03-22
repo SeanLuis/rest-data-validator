@@ -1,5 +1,5 @@
-import { INestedValidationOptions, IValidator } from "../interfaces/INestedValidationOptions";
-import { ValidationResult } from "./ValidationResult";
+import { IValidator } from "../interfaces/INestedValidationOptions";
+import { INestedValidationOptions, IValidationResult } from "../interfaces";
 
 type ValidatorFactoryOptions<T> = {
   condition: (value: T) => boolean;
@@ -8,7 +8,7 @@ type ValidatorFactoryOptions<T> = {
 
 export const simpleValidatorFactory = <T>({ condition, errorMessage }: ValidatorFactoryOptions<T>): IValidator<T> => {
     return {
-        validate: (value: T): ValidationResult => {
+        validate: (value: T): IValidationResult => {
             const errors: string[] = [];
 
             if (!condition(value)) {
@@ -24,7 +24,7 @@ type ValidatorUnion = { validator: IValidator<any>, typeGuard: (value: any) => b
 
 export const combinedValidatorFactory = (validators: ValidatorUnion[]): IValidator<any> => {
     return {
-        validate: (value: any, options?: INestedValidationOptions<any>): ValidationResult => {
+        validate: (value: any, options?: INestedValidationOptions<any>): IValidationResult => {
             const errors: string[] = [];
 
             validators.forEach(({ validator, typeGuard }) => {

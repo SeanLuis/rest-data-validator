@@ -1,5 +1,4 @@
-import { INestedValidationOptions } from '../interfaces/INestedValidationOptions';
-import { ValidationResult } from '../types/ValidationResult';
+import { INestedValidationOptions, IValidationResult } from '../interfaces';
 
 /**
  * Recursively validates an object's nested properties based on provided validation options.
@@ -7,12 +6,12 @@ import { ValidationResult } from '../types/ValidationResult';
  * @template T - The expected type of the elements in the nested properties.
  * @param {Record<string, any>} value - The object containing properties to validate.
  * @param {INestedValidationOptions<T>} options - The nested validation options.
- * @returns {ValidationResult} An object containing the validation result.
+ * @returns {IValidationResult} An object containing the validation result.
  */
 export const validateNested = <T>(
     value: any,
     options: INestedValidationOptions<T>
-): ValidationResult => {
+): IValidationResult => {
     const errors: string[] = [];
 
     if (Array.isArray(value)) {

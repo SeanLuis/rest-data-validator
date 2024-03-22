@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { IDependencyValidationOptions } from "../interfaces/IDependencyValidationOptions";
+import { IDependencyValidationOptions } from "../interfaces";
 import { addValidationMetadata } from "../metadata/AddValidationMetadata";
 
 /**

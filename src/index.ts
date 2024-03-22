@@ -24,7 +24,8 @@ export {
   IRegexValidationOptions,
   ISecurityValidationOptions,
   IStringValidationOptions,
-  IValidationOptionsBase
+  IValidationOptionsBase,
+  IValidationResult
 } from "./interfaces";
 
 /**

@@ -1,5 +1,4 @@
-import { IEmailValidationOptions } from '../interfaces/IEmailValidationOptions';
-import { ValidationResult } from '../types/ValidationResult';
+import { IEmailValidationOptions, IValidationResult } from '../interfaces';
 
 /**
  * The validateEmail function validates an email based on provided options or a default pattern.
@@ -9,9 +8,9 @@ import { ValidationResult } from '../types/ValidationResult';
  * @function
  * @param {string} email - The email to validate.
  * @param {IEmailValidationOptions} options - The validation options including a custom regex pattern and a custom error message.
- * @returns {ValidationResult} A ValidationResult object that contains a boolean indicating if the email is valid and an array of error messages.
+ * @returns {IValidationResult} A IValidationResult object that contains a boolean indicating if the email is valid and an array of error messages.
  */
-export const validateEmail = (email: string, options: IEmailValidationOptions = {}): ValidationResult => {
+export const validateEmail = (email: string, options: IEmailValidationOptions = {}): IValidationResult => {
     // Define the default email regex pattern.
     const emailRegex = /^[a-zA-Z0-9_'^&/+-]{1,64}(?:\.[a-zA-Z0-9_'^&/+-]{1,64})*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,24}$/;
 

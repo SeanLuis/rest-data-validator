@@ -1,5 +1,4 @@
-import { IStringValidationOptions } from '../interfaces/IStringValidationOptions';
-import { ValidationResult } from '../types/ValidationResult';
+import { IStringValidationOptions, IValidationResult } from '../interfaces';
 
 /**
  * The validateString function validates a string based on provided options.
@@ -10,9 +9,9 @@ import { ValidationResult } from '../types/ValidationResult';
  * @function
  * @param {string} value - The string to validate.
  * @param {IStringValidationOptions} options - The validation options.
- * @returns {ValidationResult} A ValidationResult object that contains a boolean indicating if the string is valid and an array of error messages.
+ * @returns {IValidationResult} A IValidationResult object that contains a boolean indicating if the string is valid and an array of error messages.
  */
-export const validateString = (value: string, options: IStringValidationOptions = {}): ValidationResult => {
+export const validateString = (value: string, options: IStringValidationOptions = {}): IValidationResult => {
     const errors: string[] = [];
 
     const addError = (specificMessage: string) => {

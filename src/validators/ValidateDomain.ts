@@ -1,5 +1,4 @@
-import { IDomainValidationOptions } from '../interfaces/IDomainValidationOptions';
-import { ValidationResult } from '../types/ValidationResult';
+import { IDomainValidationOptions, IValidationResult } from '../interfaces';
 import { readFileSync } from 'fs';
 
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -15,12 +14,12 @@ const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"
  * @function
  * @param {string} value - The domain value to validate.
  * @param {IDomainValidationOptions} options - The validation options.
- * @returns {ValidationResult} A ValidationResult object that contains a boolean indicating if the domain value is valid and an array of error messages.
+ * @returns {IValidationResult} A IValidationResult object that contains a boolean indicating if the domain value is valid and an array of error messages.
  */
 export const validateDomain = (
     value: string,
     options: IDomainValidationOptions
-): ValidationResult => {
+): IValidationResult => {
     const errors: string[] = [];
 
     const verifyCodeFromJson = (path: string, property: string, code: string): boolean => {

@@ -1,4 +1,4 @@
-import { IChainValidationOptions } from "../interfaces/IChainValidationOptions";
+import { IChainValidationOptions } from "../interfaces";
 import { ValidationChain } from "../types/ValidationChain";
 
 /**

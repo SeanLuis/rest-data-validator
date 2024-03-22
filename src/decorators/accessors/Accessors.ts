@@ -1,4 +1,4 @@
-import { IAccessors } from "../../interfaces/accessors/IAccessors";
+import { IAccessors } from "../../interfaces";
 
 /**
  * Decorator function that automatically creates getters and setters for properties.

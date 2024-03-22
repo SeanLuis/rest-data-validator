@@ -1,4 +1,4 @@
-import { IGetter } from "../../interfaces/accessors/IGetter";
+import { IGetter } from "../../interfaces";
 
 /**
  * Decorator function that automatically creates a getter for a property.

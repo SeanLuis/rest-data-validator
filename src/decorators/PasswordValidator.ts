@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { IPasswordValidationOptions } from '../interfaces/IPasswordValidationOptions';
+import { IPasswordValidationOptions } from '../interfaces';
 import { addValidationMetadata } from "../metadata/AddValidationMetadata";
 
 /**

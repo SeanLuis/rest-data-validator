@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { IContextualValidationOptions } from '../interfaces/IContextualValidationOptions';
+import { IContextualValidationOptions } from '../interfaces';
 import { addValidationMetadata } from "../metadata/AddValidationMetadata";
 
 /**

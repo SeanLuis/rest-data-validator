@@ -33,45 +33,45 @@ REST Data Validator is a versatile library designed to offer comprehensive valid
   - Model Generation
   - Validation Generation
 - Validators and Decorators
-  - Validation Decorators
-    - Class Decorator
-    - String Decorator
-    - Number Decorator
-    - Email Decorator
-    - Password Decorator
-    - Date Decorator
-    - Enum Decorator
-    - File Decorator
-    - Range Decorator
-    - Regex Decorator
-    - Custom Decorator
-    - Domain Decorator
-    - Array Decorator
-    - Nested Decorator
-    - Contextual Decorator
-  - Sanitizer Functions
-  - Validation Utilities
-    - Async Validators
-    - Nested Validators
-    - Contextual Validators
-    - Dependency Validators
-      - Dependency Decorator
-        - Introduction
-        - Usage
-        - Example
-      - Dependency Function
-        - Introduction
-        - Usage
-        - Example
-      - Separating Validation Logic in a Clean Architecture Approach
-  - Decorators Utility
-    - Accessors Decorator
-    - Getter Decorator
-    - Setter Decorator
-  - Security Utility
-    - Security Validation
-    - Security Decorator
-    - Security Events
+  - ClassValidator
+  - Number
+  - Email
+  - Password
+  - Date
+  - Enum
+  - File
+  - Range
+  - Regex
+  - Custom
+  - Domain
+  - Array
+  - Nested
+  - Contextual
+  - Dependency
+  - Security
+- Sanitizer Functions
+- Validation Utilities
+  - Async Validators
+  - Nested Validators
+  - Contextual Validators
+  - Dependency Validators
+    - Dependency Decorator
+      - Introduction
+      - Usage
+      - Example
+    - Dependency Function
+      - Introduction
+      - Usage
+      - Example
+    - Separating Validation Logic in a Clean Architecture Approach
+- Decorators Utilities
+  - Accessors Decorator
+  - Getter Decorator
+  - Setter Decorator
+- Security Utilities
+  - Security Validation
+  - Security Decorator
+  - Security Events
 - Roadmap
 - Contributing
 - Support Us
@@ -134,8 +134,7 @@ import {
   String,
   Number,
   Enum,
-  ClassValidator,
-  validate,
+  ClassValidator
 } from "rest-data-validator";
 
 enum Role {
@@ -167,9 +166,9 @@ profile.role = Role.User;
 For more complex validation scenarios, custom validators can be created and used:
 
 ```typescript
-import { ValidationResult, validateCustom } from "rest-data-validator";
+import { IValidationResult, validateCustom } from "rest-data-validator";
 
-function customUsernameValidator(value: string): ValidationResult {
+function customUsernameValidator(value: string): IValidationResult {
   const isValid = /^[a-zA-Z0-9]+$/.test(value);
   return {
     isValid,
@@ -182,15 +181,16 @@ function customUsernameValidator(value: string): ValidationResult {
 const result = validateCustom("user123", customUsernameValidator);
 console.log(result);
 ```
+
 ## Roadmap
 
 The `rest-data-validator` project aims to continually evolve with the needs of developers and the dynamics of RESTful API design. Below is a tentative roadmap of features and improvements we're exploring:
 
 ### Upcoming Features
 
-- [x] **Nested Validation Support**: Implement validation for complex, nested data structures to accommodate intricate API schemas.
+- [X] **Nested Validation Support**: Implement validation for complex, nested data structures to accommodate intricate API schemas.
 
-- [x] **Asynchronous Validators**: Introduce validators capable of handling asynchronous operations, useful for database lookups or external API validations.
+- [X] **Asynchronous Validators**: Introduce validators capable of handling asynchronous operations, useful for database lookups or external API validations.
 
 - [ ] **Internationalization**: Offer localized error messages to better serve a global user base.
 
@@ -200,7 +200,7 @@ The `rest-data-validator` project aims to continually evolve with the needs of d
 
 - [ ] **Runtime Type System Integration**: Explore compatibility with runtime type validation libraries to enhance JavaScript validation capabilities.
 
-- [ ] **CLI Tooling**: Build CLI tools for generating validator schemas from TypeScript type definitions, aiding in rapid development cycles.
+- [X] **CLI Tooling**: Build CLI tools for generating validator schemas from TypeScript type definitions, aiding in rapid development cycles.
 
 - [ ] **Plugin Architecture**: Create an extensible plugin system allowing custom validators and sanitizers, fostering community-driven enhancements.
 
