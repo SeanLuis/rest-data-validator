@@ -1,4 +1,4 @@
-import { ValidationResult } from "../../types/ValidationResult";
+import { IValidationResult } from "../../interfaces";
 
 import {
     validateArray,
@@ -25,21 +25,21 @@ import { validateMetadataKey } from "./MetadataKeys";
  * This class uses the reflect-metadata library to retrieve metadata and various validators to validate the properties.
  *
  * @class
- * @method validate - This static method validates an object based on metadata attached to its properties. It takes one parameter: the object to validate. It returns a ValidationResult object that contains a boolean indicating if the object is valid and an array of error messages.
+ * @method validate - This static method validates an object based on metadata attached to its properties. It takes one parameter: the object to validate. It returns a IValidationResult object that contains a boolean indicating if the object is valid and an array of error messages.
  */
 export class ValidationUtils {
     /**
      * Validates an object based on metadata attached to its properties.
      * @param {any} obj - The object to validate.
-     * @returns {ValidationResult} A ValidationResult object that contains a boolean indicating if the object is valid and an array of error messages.
+     * @returns {IValidationResult} A IValidationResult object that contains a boolean indicating if the object is valid and an array of error messages.
      */
-    static validate(obj: any): ValidationResult {
+    static validate(obj: any): IValidationResult {
         const errors: string[] = [];
         for (const propertyName of Object.keys(obj)) {
             const validations = Reflect.getMetadata(validateMetadataKey, obj, propertyName) || [];
 
             for (const validation of validations) {
-                let result: ValidationResult = { isValid: true, errors: [] };
+                let result: IValidationResult = { isValid: true, errors: [] };
 
                 switch (validation.type) {
                     case 'array':

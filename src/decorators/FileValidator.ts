@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { IFileValidationOptions } from '../interfaces/IFileValidationOptions';
+import { IFileValidationOptions } from '../interfaces';
 import { addValidationMetadata } from "../metadata/AddValidationMetadata";
 
 /**

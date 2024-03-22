@@ -1,4 +1,4 @@
-import { ISetter } from "../../interfaces/accessors/ISetter";
+import { ISetter } from "../../interfaces";
 
 /**
  * Decorator function that automatically creates a setter for a property.

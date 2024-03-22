@@ -1,11 +1,10 @@
-import { IDependencyValidationOptions } from '../interfaces/IDependencyValidationOptions';
-import { ValidationResult } from '../types/ValidationResult';
+import { IDependencyValidationOptions, IValidationResult } from '../interfaces';
 
 export const validateDependency = (
   obj: any,
   value: any,
   options: IDependencyValidationOptions
-): ValidationResult => {
+): IValidationResult => {
   const dependencies = options.getDependencies(obj);
   const isValid = options.validate(value, dependencies);
 

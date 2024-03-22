@@ -1,5 +1,4 @@
-import { IRegexValidationOptions } from "../interfaces/IRegexValidationOptions";
-import { ValidationResult } from "../types/ValidationResult";
+import { IRegexValidationOptions, IValidationResult } from "../interfaces";
 
 /**
  * The validateRegex function validates a string based on a provided regular expression pattern.
@@ -14,12 +13,12 @@ import { ValidationResult } from "../types/ValidationResult";
  * @function
  * @param {string} value - The string to validate.
  * @param {IRegexValidationOptions} options - The validation options.
- * @returns {ValidationResult} A ValidationResult object that contains a boolean indicating if the value is valid and an array of error messages.
+ * @returns {IValidationResult} A IValidationResult object that contains a boolean indicating if the value is valid and an array of error messages.
  */
 export const validateRegex = (
     value: string,
     options: IRegexValidationOptions
-): ValidationResult => {
+): IValidationResult => {
     let errors: string[] = [];
     let isValid = true;
 

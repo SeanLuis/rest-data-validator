@@ -1,5 +1,4 @@
-import { IPasswordValidationOptions } from '../interfaces/IPasswordValidationOptions';
-import { ValidationResult } from '../types/ValidationResult';
+import { IPasswordValidationOptions, IValidationResult } from '../interfaces';
 
 /**
  * The validatePassword function validates a password string based on provided options.
@@ -9,9 +8,9 @@ import { ValidationResult } from '../types/ValidationResult';
  * @function
  * @param {string} value - The password string to validate.
  * @param {IPasswordValidationOptions} options - The validation options for passwords.
- * @returns {ValidationResult} A ValidationResult object that contains a boolean indicating if the password is valid and an array of error messages.
+ * @returns {IValidationResult} A IValidationResult object that contains a boolean indicating if the password is valid and an array of error messages.
  */
-export const validatePassword = (value: string, options: IPasswordValidationOptions = {}): ValidationResult => {
+export const validatePassword = (value: string, options: IPasswordValidationOptions = {}): IValidationResult => {
     const errors: string[] = [];
     const specialCharactersRegex = /[!@#$%^&*(),.?":{}|<>]/;
 

@@ -1,5 +1,4 @@
-import { IEnumValidationOptions } from '../interfaces/IEnumValidationOptions';
-import { ValidationResult } from '../types/ValidationResult';
+import { IEnumValidationOptions, IValidationResult } from '../interfaces';
 
 /**
  * The validateEnum function validates if a value is a member of a specific enumeration.
@@ -10,9 +9,9 @@ import { ValidationResult } from '../types/ValidationResult';
  * @template T - The type of the enumeration.
  * @param {T} value - The value to validate.
  * @param {IEnumValidationOptions<T>} options - The validation options.
- * @returns {ValidationResult} A ValidationResult object that contains a boolean indicating if the value is a valid enumeration member and an array of error messages.
+ * @returns {IValidationResult} A IValidationResult object that contains a boolean indicating if the value is a valid enumeration member and an array of error messages.
  */
-export const validateEnum = <T>(value: T, options: IEnumValidationOptions<T>): ValidationResult => {
+export const validateEnum = <T>(value: T, options: IEnumValidationOptions<T>): IValidationResult => {
     const errors: string[] = [];
 
     if (!options.enum.includes(value)) {

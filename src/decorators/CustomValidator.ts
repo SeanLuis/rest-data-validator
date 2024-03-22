@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { ICustomValidationOptions } from '../interfaces/ICustomValidationOptions';
+import { ICustomValidationOptions } from '../interfaces';
 import { addValidationMetadata } from "../metadata/AddValidationMetadata";
 
 /**

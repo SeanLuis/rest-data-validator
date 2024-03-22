@@ -1,5 +1,5 @@
 import { IChainValidationOptions } from "../interfaces/IChainValidationOptions";
-import { ValidationResult } from "./ValidationResult";
+import { IValidationResult } from "../interfaces";
 
 /**
  * Represents a validation chain function.
@@ -7,4 +7,4 @@ import { ValidationResult } from "./ValidationResult";
  * @param options - The options for the validation chain.
  * @returns The result of the validation.
  */
-export type ValidationChain = (value: any, options: IChainValidationOptions) => ValidationResult;
+export type ValidationChain = (value: any, options: IChainValidationOptions) => IValidationResult;

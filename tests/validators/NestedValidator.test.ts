@@ -1,7 +1,7 @@
 import { validateNested } from "../../src";
 import { INestedValidationOptions, IValidator } from "../../src/interfaces/INestedValidationOptions";
 import { combinedValidatorFactory, simpleValidatorFactory } from "../../src";
-import { ValidationResult } from "../../src/types/ValidationResult";
+import { IValidationResult } from "../../src";
 
 const stringValidator: IValidator<string> = simpleValidatorFactory<string>({
   condition: value => value === 'valid',
@@ -217,7 +217,7 @@ it('should fail validation for complex (class) nested structures', () => {
 
 // Creamos un validador que acepta opciones
 const isUserValidatorWithOptions: IValidator<any> = {
-  validate: (value: any, options?: any): ValidationResult => {
+  validate: (value: any, options?: any): IValidationResult => {
     const isValid = value instanceof User && value.name.startsWith(options.prefix) && value.age > options.minAge;
     return {
       isValid,
@@ -252,7 +252,7 @@ it('should validate with options', () => {
 // This validator expects the User object to have a name that starts with a specific prefix
 // and the user's age to be greater than a minimum. These criteria are passed through the options.
 const isProductValidatorWithOptions: IValidator<any> = {
-  validate: (product: any, options?: any): ValidationResult => {
+  validate: (product: any, options?: any): IValidationResult => {
     const isValid = product instanceof Product && product.name.startsWith(options.prefix) && product.price > options.minPrice;
     return {
       isValid,
@@ -266,7 +266,7 @@ const isProductValidatorWithOptions: IValidator<any> = {
 // and the price to be greater than a minimum price. For Order, we check that the associated user and
 // products pass their respective validations.
 const isOrderValidatorWithOptions: IValidator<any> = {
-  validate: (order: any, options?: any): ValidationResult => {
+  validate: (order: any, options?: any): IValidationResult => {
     const isUserValid = order.user instanceof User && order.user.name.startsWith(options.prefix) && order.user.age > options.minAge;
     const areProductsValid = Array.isArray(order.products) && order.products.every((product: Product) => product instanceof Product && product.name.startsWith(options.prefix) && product.price > options.minPrice);
     const isValid = order instanceof Order && isUserValid && areProductsValid;

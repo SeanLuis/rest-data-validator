@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { IDateValidationOptions } from '../interfaces/IDateValidationOptions';
+import { IDateValidationOptions } from '../interfaces';
 import { addValidationMetadata } from "../metadata/AddValidationMetadata";
 
 /**

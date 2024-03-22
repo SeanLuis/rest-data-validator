@@ -1,5 +1,4 @@
-import { IFileValidationOptions } from '../interfaces/IFileValidationOptions';
-import { ValidationResult } from '../types/ValidationResult';
+import { IFileValidationOptions, IValidationResult } from '../interfaces';
 import { IGenericFile } from "../utils/file/IGenericFile";
 
 /**
@@ -14,12 +13,12 @@ import { IGenericFile } from "../utils/file/IGenericFile";
  * @function
  * @param {IGenericFile} file - The file to validate.
  * @param {IFileValidationOptions} options - The validation options.
- * @returns {ValidationResult} A ValidationResult object that contains a boolean indicating if the file is valid and an array of error messages.
+ * @returns {IValidationResult} A IValidationResult object that contains a boolean indicating if the file is valid and an array of error messages.
  */
 export const validateFile = (
     file: IGenericFile,
     options: IFileValidationOptions = {}
-): ValidationResult => {
+): IValidationResult => {
     const errors: string[] = [];
 
     const addError = (defaultMessage: string, customMessage?: string) => {

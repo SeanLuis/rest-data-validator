@@ -1,5 +1,4 @@
-import { IDateValidationOptions } from '../interfaces/IDateValidationOptions';
-import { ValidationResult } from '../types/ValidationResult';
+import { IDateValidationOptions, IValidationResult } from '../interfaces';
 
 /**
  * The validateDate function validates a date string based on provided options.
@@ -8,12 +7,12 @@ import { ValidationResult } from '../types/ValidationResult';
  * @function
  * @param {string} value - The date string to validate.
  * @param {IDateValidationOptions} [options={}] - The validation options.
- * @returns {ValidationResult} A ValidationResult object that contains a boolean indicating if the date is valid and an array of error messages.
+ * @returns {IValidationResult} A IValidationResult object that contains a boolean indicating if the date is valid and an array of error messages.
  */
 export const validateDate = (
     value: string,
     options: IDateValidationOptions = {}
-): ValidationResult => {
+): IValidationResult => {
     const errors: string[] = [];
     const date = new Date(value);
 

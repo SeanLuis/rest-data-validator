@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { IEmailValidationOptions } from '../interfaces/IEmailValidationOptions';
+import { IEmailValidationOptions } from '../interfaces';
 import { addValidationMetadata } from "../metadata/AddValidationMetadata";
 
 /**

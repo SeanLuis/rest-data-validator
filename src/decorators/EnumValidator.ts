@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { IEnumValidationOptions } from '../interfaces/IEnumValidationOptions';
+import { IEnumValidationOptions } from '../interfaces';
 import { addValidationMetadata } from "../metadata/AddValidationMetadata";
 
 /**

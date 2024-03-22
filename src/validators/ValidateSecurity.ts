@@ -1,12 +1,11 @@
 // validateSecurity.ts
-import { ISecurityValidationOptions } from "../interfaces/ISecurityValidationOptions";
-import { ValidationResult } from "../types/ValidationResult";
+import { ISecurityValidationOptions, IValidationResult } from "../interfaces";
 import { securityStrategies } from "../utils/validations/SecurityStrategies";
 
 export const validateSecurity = (
   value: any,
   options: ISecurityValidationOptions
-): ValidationResult => {
+): IValidationResult => {
   const validateFn =
     securityStrategies[options.type as keyof typeof securityStrategies];
   if (!validateFn) {

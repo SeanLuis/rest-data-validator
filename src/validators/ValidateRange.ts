@@ -1,5 +1,4 @@
-import { ValidationResult } from "../types/ValidationResult";
-import { IRangeValidationOptions } from "../interfaces/IRangeValidationOptions";
+import { IRangeValidationOptions, IValidationResult } from "../interfaces";
 import { isValidDate } from "../utils/date/DateValidation";
 
 /**
@@ -21,12 +20,12 @@ import { isValidDate } from "../utils/date/DateValidation";
  * @function
  * @param {T} value - The value to validate. T can be a number or a Date.
  * @param {IRangeValidationOptions<T>} options - The validation options.
- * @returns {ValidationResult} A ValidationResult object that contains a boolean indicating if the value is valid and an array of error messages.
+ * @returns {IValidationResult} A IValidationResult object that contains a boolean indicating if the value is valid and an array of error messages.
  */
 export function validateRange<T extends number | Date | string>(
     value: T,
     options: IRangeValidationOptions<T>
-): ValidationResult {
+): IValidationResult {
     const errors: string[] = [];
 
     const addError = (specificErrorMessage: string | undefined, defaultMessage: string) => {

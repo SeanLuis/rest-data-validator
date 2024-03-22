@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { IArrayValidationOptions } from '../interfaces/IArrayValidationOptions';
+import { IArrayValidationOptions } from '../interfaces';
 import { addValidationMetadata } from "../metadata/AddValidationMetadata";
 
 /**

@@ -1,5 +1,4 @@
-import { INumberValidationOptions } from '../interfaces/INumberValidationOptions';
-import { ValidationResult } from '../types/ValidationResult';
+import { INumberValidationOptions, IValidationResult } from '../interfaces';
 
 /**
  * The validateNumber function validates a number based on provided options.
@@ -15,12 +14,12 @@ import { ValidationResult } from '../types/ValidationResult';
  * @function
  * @param {number} value - The number to validate.
  * @param {INumberValidationOptions} options - The validation options.
- * @returns {ValidationResult} A ValidationResult object that contains a boolean indicating if the number is valid and an array of error messages.
+ * @returns {IValidationResult} A IValidationResult object that contains a boolean indicating if the number is valid and an array of error messages.
  */
 export const validateNumber = (
     value: number,
     options: INumberValidationOptions = {}
-): ValidationResult => {
+): IValidationResult => {
     const errors: string[] = [];
 
     const addError = (defaultMessage: string) => {

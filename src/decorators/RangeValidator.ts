@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { IRangeValidationOptions } from '../interfaces/IRangeValidationOptions';
+import { IRangeValidationOptions } from '../interfaces';
 import { addValidationMetadata } from "../metadata/AddValidationMetadata";
 
 /**

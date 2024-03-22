@@ -1,5 +1,4 @@
-import { IArrayValidationOptions } from '../interfaces/IArrayValidationOptions';
-import { ValidationResult } from '../types/ValidationResult';
+import { IArrayValidationOptions, IValidationResult } from '../interfaces';
 
 /**
  * The validateArray function validates an array based on provided options.
@@ -9,12 +8,12 @@ import { ValidationResult } from '../types/ValidationResult';
  * @template T - The type of the elements in the array.
  * @param {T[]} values - The array to validate.
  * @param {IArrayValidationOptions<T>} [options={}] - The validation options.
- * @returns {ValidationResult} A ValidationResult object that contains a boolean indicating if the array is valid and an array of error messages.
+ * @returns {IValidationResult} A IValidationResult object that contains a boolean indicating if the array is valid and an array of error messages.
  */
 export const validateArray = <T>(
     values: T[],
     options: IArrayValidationOptions<T> = {}
-): ValidationResult => {
+): IValidationResult => {
     const errors: string[] = [];
 
     if (!Array.isArray(values)) {
