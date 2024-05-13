@@ -1,4 +1,6 @@
-import { INumberValidationOptions, IValidationResult } from '../interfaces';
+import {ContextValidation} from "../context/ContextValidation";
+import {shouldValidate} from "../utils/validations/ValidationUtils";
+import {INumberValidationOptions, IValidationGroupOptions, IValidationResult} from "../interfaces";
 
 /**
  * The validateNumber function validates a number based on provided options.
@@ -14,13 +16,20 @@ import { INumberValidationOptions, IValidationResult } from '../interfaces';
  * @function
  * @param {number} value - The number to validate.
  * @param {INumberValidationOptions} options - The validation options.
- * @returns {IValidationResult} A IValidationResult object that contains a boolean indicating if the number is valid and an array of error messages.
+ * @param {IValidationGroupOptions} groups - The groups options.
+ * @returns {IValidationResult} A ValidationResult object that contains a boolean indicating if the number is valid and an array of error messages.
  */
 export const validateNumber = (
     value: number,
-    options: INumberValidationOptions = {}
+    options: INumberValidationOptions = {},
+    groups: IValidationGroupOptions = {}
 ): IValidationResult => {
     const errors: string[] = [];
+    const contextGroups = ContextValidation.getInstance().getGroups();
+
+    if (contextGroups.length > 0 && !shouldValidate(contextGroups, groups))  {
+        return { isValid: true, errors: [] };
+    }
 
     const addError = (defaultMessage: string) => {
         errors.push(options.message || defaultMessage);

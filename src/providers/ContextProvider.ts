@@ -1,4 +1,3 @@
-// ContextProvider.ts
 /**
  * The ContextProvider class provides a way to manage and access different contexts.
  */

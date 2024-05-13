@@ -25,6 +25,7 @@ export {
   ISecurityValidationOptions,
   IStringValidationOptions,
   IValidationOptionsBase,
+  IValidationGroupOptions,
   IValidationResult
 } from "./interfaces";
 
@@ -120,6 +121,14 @@ export {
   clearContext,
   clearAllContexts,
 } from "./providers/ContextProvider";
+
+/**
+ * This module exports various contexts functions.
+ * @module Context
+ */
+export {
+  ContextValidation
+} from "./context/ContextValidation";
 
 /**
  * This module exports various types.

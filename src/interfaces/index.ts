@@ -1,4 +1,5 @@
 export { IArrayValidationOptions } from './IArrayValidationOptions';
+export { IValidationGroupOptions } from './IValidationGroupOptions';
 export { IChainValidationOptions } from './IChainValidationOptions';
 export { IContextualValidationOptions } from './IContextualValidationOptions';
 export { ICustomValidationOptions } from './ICustomValidationOptions';
