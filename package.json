@@ -15,7 +15,7 @@
     "test:debug": "jest --runInBand",
     "test": "jest --coverage --coverageReporters=text lcov cobertura",
     "check:updates": "ncu -u",
-    "exec:updates": "pnpm install"
+    "exec:updates": "npm install"
   },
   "bin": {
     "rest-cli": "./dist/cli/cli.js"
