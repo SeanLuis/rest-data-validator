@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import "reflect-metadata";
-import { String, Number, Contextual, ClassValidator } from "../../src";
+import {String, Number, Contextual, ClassValidator, ContextValidation, validateContextual} from "../../src";
 import { setGlobalContext, getGlobalContext, setContext, getContext, clearContext, clearAllContexts } from "../../src";
 
 @ClassValidator
@@ -11,7 +11,7 @@ class SecureDocument {
     getContext: () => getContext("documentAccess"),
     validate: (value, context) => context.userRole === "admin",
     message: "User does not have admin role.",
-  })
+  }, { groups: ['ADMIN'] })
   @Contextual({
     name: "TimeValidator",
     getContext: () => getContext("documentAccess").time,
@@ -19,19 +19,20 @@ class SecureDocument {
       new Date(context.currentTime) >= new Date(context.allowedStartTime) &&
       new Date(context.currentTime) <= new Date(context.allowedEndTime),
     message: "Access is not allowed at this time.",
-  })
+  }, { groups: ['TIME_ACCESS'] })
   @Contextual({
     name: "LocationValidator",
     getContext: () => getContext("documentAccess").location,
     validate: (value, context) => context.userLocation === context.allowedLocation,
     message: "Access from this location is not allowed.",
-  })
+  }, { groups: ['LOCATION_ACCESS'] })
   content: string;
 
   constructor(content: string) {
     this.content = content;
   }
 }
+
 
 describe("SecureDocument with Advanced Contextual Validation", () => {
   beforeEach(() => {
@@ -48,37 +49,64 @@ describe("SecureDocument with Advanced Contextual Validation", () => {
         allowedLocation: "New York",
       },
     });
+
+    // Simulate the active groups being set correctly for the context
+    jest.spyOn(ContextValidation.getInstance(), 'getGroups').mockReturnValue(['ADMIN', 'TIME_ACCESS', 'LOCATION_ACCESS']);
   });
 
   afterEach(() => {
     // Clear contexts after each test
     clearAllContexts();
+    jest.restoreAllMocks(); // Restore mocks to clear any overrides
   });
 
   it("should allow access for admin role within allowed time and location", () => {
     expect(() => new SecureDocument("Top Secret Document")).not.toThrow();
   });
 
-  it("should allow access for admin role within allowed time and location", () => {
-    expect(() => new SecureDocument("Top Secret Document")).not.toThrow();
+  it("should not apply validation logic when the 'ADMIN' group is not active", () => {
+    // Sets that the active group does not include 'ADMIN'.
+    jest.spyOn(ContextValidation.getInstance(), 'getGroups').mockReturnValue(['USER']);
+
+    // Create an instance of the document and capture the validation result.
+    const document = new SecureDocument("Top Secret Document");
+
+    // Here we need access to the validation function which is called internally.
+    // Assuming we can access that function or its result:
+    const validationResult = validateContextual(
+      document.content,
+      {
+        name: "UserRoleValidator",
+        getContext: () => ({ userRole: "basic" }),  // Contexto simulado
+        validate: (value, context) => context.userRole === "admin",
+        message: "User does not have admin role."
+      },
+      { groups: ['ADMIN'] }
+    );
+
+    // Verify that the validation result is valid because the group is not correct.
+    expect(validationResult.isValid).toBe(true);
+    expect(validationResult.errors).toHaveLength(0);
   });
+
 
   it("should deny access outside of allowed time", () => {
     const updatedContext = { ...getContext("documentAccess") };
-    updatedContext.time.currentTime = "2023-03-15T17:00:00Z"; // Fuera del rango permitido
+    updatedContext.time.currentTime = "2023-03-15T17:00:00Z"; // Outside the allowed time range
     setContext("documentAccess", updatedContext);
 
     expect(() => new SecureDocument("Top Secret Document")).toThrow("Access is not allowed at this time.");
   });
 
-  it("should deny access from disallowed location", () => {
+  it("should deny access from a disallowed location", () => {
     const updatedContext = { ...getContext("documentAccess") };
-    updatedContext.location.userLocation = "London"; // Ubicación no permitida
+    updatedContext.location.userLocation = "London"; // Not allowed location
     setContext("documentAccess", updatedContext);
 
     expect(() => new SecureDocument("Top Secret Document")).toThrow("Access from this location is not allowed.");
   });
 });
+
 
 @ClassValidator
 class CropBatch {

@@ -1,4 +1,6 @@
-import { IEnumValidationOptions, IValidationResult } from '../interfaces';
+import {IEnumValidationOptions, IValidationGroupOptions, IValidationResult} from '../interfaces';
+import {ContextValidation} from "../context/ContextValidation";
+import {shouldValidate} from "../utils/validations/ValidationUtils";
 
 /**
  * The validateEnum function validates if a value is a member of a specific enumeration.
@@ -9,17 +11,26 @@ import { IEnumValidationOptions, IValidationResult } from '../interfaces';
  * @template T - The type of the enumeration.
  * @param {T} value - The value to validate.
  * @param {IEnumValidationOptions<T>} options - The validation options.
- * @returns {IValidationResult} A IValidationResult object that contains a boolean indicating if the value is a valid enumeration member and an array of error messages.
+ * @param {IValidationGroupOptions} groups - The groups options.
+ * @returns {IValidationResult} A ValidationResult object that contains a boolean indicating if the value is a valid enumeration member and an array of error messages.
  */
-export const validateEnum = <T>(value: T, options: IEnumValidationOptions<T>): IValidationResult => {
-    const errors: string[] = [];
+export const validateEnum = <T>(
+  value: T, options: IEnumValidationOptions<T>,
+  groups: IValidationGroupOptions = {}
+): IValidationResult => {
+  const errors: string[] = [];
+  const contextGroups = ContextValidation.getInstance().getGroups();
 
-    if (!options.enum.includes(value)) {
-        errors.push(options.message || `Value is not a valid enumeration member.`);
-    }
+  if (contextGroups.length > 0 && !shouldValidate(contextGroups, groups)) {
+    return {isValid: true, errors: []};
+  }
 
-    return {
-        isValid: errors.length === 0,
-        errors: errors
-    };
+  if (!options.enum.includes(value)) {
+    errors.push(options.message || `Value is not a valid enumeration member.`);
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors: errors
+  };
 };
