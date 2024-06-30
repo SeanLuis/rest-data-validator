@@ -1,7 +1,9 @@
 import {IValidationGroupOptions, IValidationResult} from "../../interfaces";
 
 import {
+  validateAlpha,
   validateArray,
+  validateContains,
   validateContextual,
   validateCustom,
   validateDate,
@@ -89,6 +91,12 @@ export class ValidationUtils {
             break;
           case 'security':
             result = validateSecurity(obj[propertyName], validation.options, validation.groups);
+            break;
+          case 'contains':
+            result = validateContains(obj[propertyName], validation.options, validation.groups);
+            break;
+          case 'alpha':
+            result = validateAlpha(obj[propertyName], validation.options, validation.groups);
             break;
           default:
             result = {isValid: false, errors: [`Validation type '${validation.type}' is not supported.`]};

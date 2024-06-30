@@ -15,3 +15,5 @@ export { validateRegex } from "./ValidateRegex";
 export { validateString } from "./ValidateString";
 export { validateDependency } from "./ValidateDependency";
 export { validateSecurity } from "./ValidateSecurity";
+export { validateContains } from "./ValidateContains";
+export { validateAlpha } from "./ValidateAlpha";
