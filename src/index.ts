@@ -7,8 +7,10 @@
  * @module Interfaces
  */
 export {
+  IAlphaValidationOptions,
   IArrayValidationOptions,
   IChainValidationOptions,
+  IContainsValidationOptions,
   IContextualValidationOptions,
   ICustomValidationOptions,
   IDateValidationOptions,
@@ -51,6 +53,8 @@ export {
   validatePassword,
   validateDependency,
   validateSecurity,
+  validateContains,
+  validateAlpha
 } from "./validators";
 
 /**
@@ -79,6 +83,8 @@ export {
   Setter,
   Dependency,
   Security,
+  Contains,
+  Alpha
 } from "./decorators";
 
 /**

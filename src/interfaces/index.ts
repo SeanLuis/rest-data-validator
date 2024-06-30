@@ -1,6 +1,8 @@
+export { IAlphaValidationOptions } from './IAlphaValidationOptions';
 export { IArrayValidationOptions } from './IArrayValidationOptions';
 export { IValidationGroupOptions } from './IValidationGroupOptions';
 export { IChainValidationOptions } from './IChainValidationOptions';
+export { IContainsValidationOptions } from './IContainsValidationOptions';
 export { IContextualValidationOptions } from './IContextualValidationOptions';
 export { ICustomValidationOptions } from './ICustomValidationOptions';
 export { IDateValidationOptions } from './IDateValidationOptions';

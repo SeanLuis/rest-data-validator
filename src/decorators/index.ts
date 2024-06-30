@@ -17,3 +17,5 @@ export { Dependency } from "./DependencyValidator";
 export { Accessors, Getter, Setter } from "./accessors";
 export { Password } from "./PasswordValidator";
 export { Security } from "./SecurityValidator";
+export { Contains } from "./ContainsValidator";
+export { Alpha } from "./AlphaValidator"
