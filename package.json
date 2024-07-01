@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "type-check": "tsc --noEmit",
-    "build:js": "babel src --out-dir dist --extensions '.ts,.tsx' --source-maps",
+    "build:js": "babel src --out-dir dist --extensions '.ts,.tsx' --source-maps true",
     "build:types": "tsc --emitDeclarationOnly",
     "build": "npm run build:js && npm run build:types",
     "test:debug": "jest --runInBand",
