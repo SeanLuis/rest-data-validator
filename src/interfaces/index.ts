@@ -1,5 +1,6 @@
 export * from './IAlphaValidationOptions';
 export * from './IArrayValidationOptions';
+export * from './IBICValidationOptions';
 export * from './IValidationGroupOptions';
 export * from './IChainValidationOptions';
 export * from './IContainsValidationOptions';
@@ -11,6 +12,7 @@ export * from './IDomainValidationOptions';
 export * from './IEmailValidationOptions';
 export * from './IEnumValidationOptions';
 export * from './IFileValidationOptions';
+export * from './IISO31661Alpha2ValidationOptions';
 export * from './INestedValidationOptions';
 export * from './INumberValidationOptions';
 export * from './IPasswordValidationOptions';

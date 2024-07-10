@@ -1,3 +1,4 @@
+
 # REST Data Validator
 
 ![Jest Coverage](https://img.shields.io/badge/Jest%20Coverage-98.50%25-success?style=flat)
@@ -7,7 +8,7 @@
 
 REST Data Validator is a versatile library designed to offer comprehensive validation for data in RESTful APIs. It supports a wide range of data types, validation rules, and is designed with extensibility in mind, making it ideal for ensuring data integrity and compliance with API specifications.
 
-### For detailed **documentation**, visit: [REST Data Validator Documentation](https://rest-data-validator.netlify.app/)
+### For more detailed, visit: [.:: Documentation ::.](https://rest-data-validator.netlify.app/)
 
 ![Package home preview](preview.png)
 
@@ -19,67 +20,6 @@ REST Data Validator is a versatile library designed to offer comprehensive valid
 - **Framework Agnostic**: Can be used with any server-side framework or library, such as Express, Koa, or Fastify.
 - **Full TypeScript Support**: Leverages TypeScript for type safety and enhanced developer experience.
 - **Custom Error Messages**: Allows defining custom error messages for each validation rule to provide clear and specific feedback.
-
-# REST Data Validator
-
-- Features
-- Installation
-- Usage
-  - Basic Example
-  - Using Decorators for Validation
-  - Custom Validation Rules
-- Rest CLI
-  - Commands
-  - Model Generation
-  - Validation Generation
-- Validators and Decorators
-  - ClassValidator
-  - Number
-  - Email
-  - Password
-  - Date
-  - Enum
-  - File
-  - Range
-  - Regex
-  - Custom
-  - Domain
-  - Array
-  - Nested
-  - Contextual
-  - Dependency
-  - Security
-  - Alpha
-  - Contains
-- Group-Based Validation
-- Sanitizer Functions
-- Validation Utilities
-  - Async Validators
-  - Nested Validators
-  - Contextual Validators
-  - Dependency Validators
-    - Dependency Decorator
-      - Introduction
-      - Usage
-      - Example
-    - Dependency Function
-      - Introduction
-      - Usage
-      - Example
-    - Separating Validation Logic in a Clean Architecture Approach
-- Decorators Utilities
-  - Accessors Decorator
-  - Getter Decorator
-  - Setter Decorator
-- Security Utilities
-  - Security Validation
-  - Security Decorator
-  - Security Events
-- Roadmap
-- Contributing
-- Support Us
-- Author
-- License
 
 ## Installation
 
@@ -93,6 +33,78 @@ Or using Yarn:
 yarn add rest-data-validator
 ```
 
+### Using Decorators for Validation
+
+Decorators provide a declarative way to add validation rules directly to your class properties.
+
+### Custom Validation Rules
+
+You can easily extend the library to include custom validation rules and logic.
+
+## Rest CLI
+
+### Commands
+
+The CLI provides various commands to help you generate and manage validation schemas.
+
+### Model Generation
+
+Generate models with predefined validation rules quickly.
+
+### Validation Generation
+
+Add validation rules to existing models interactively.
+
+## Validators and Decorators
+
+- **ClassValidator**: Validates a class based on its decorators.
+- **Number**: Validates numerical properties.
+- **Email**: Validates email addresses.
+- **Password**: Validates password strength.
+- **Date**: Validates date properties.
+- **Enum**: Validates that a value is part of a specific enum.
+- **File**: Validates file properties.
+- **Range**: Validates that a number is within a specified range.
+- **Regex**: Validates using a regular expression.
+- **Custom**: Allows for custom validation logic.
+- **Domain**: Validates domain names.
+- **Array**: Validates array properties.
+- **Nested**: Validates nested objects.
+- **Contextual**: Contextual validation based on other properties.
+- **Dependency**: Validation based on other property values.
+- **Security**: Validates security-related properties.
+- **Alpha**: Validates that a string contains only letters.
+- **Contains**: Validates that a string contains a specific substring.
+- **BIC**: Validates Bank Identification Codes (BIC).
+- **ISO31661Alpha2**: Validates ISO 3166-1 alpha-2 country codes.
+
+## Group-Based Validation
+
+Define validation groups to conditionally apply validation rules.
+
+## Sanitizer Functions
+
+Sanitize input data before validation.
+
+## Validation Utilities
+
+- **Async Validators**: Handle asynchronous validation logic.
+- **Nested Validators**: Validate nested objects and arrays.
+- **Contextual Validators**: Apply validation rules based on other properties.
+- **Dependency Validators**: Ensure properties are validated based on other property values.
+
+## Decorators Utilities
+
+- **Accessors Decorator**: Validate properties with getter and setter accessors.
+- **Getter Decorator**: Validate properties accessed via getters.
+- **Setter Decorator**: Validate properties accessed via setters.
+
+## Security Utilities
+
+- **Security Validation**: Validate security-related properties.
+- **Security Decorator**: Decorate properties with security validation.
+- **Security Events**: Handle security-related events.
+
 ## Roadmap
 
 The `rest-data-validator` project aims to continually evolve with the needs of developers and the dynamics of RESTful API design. Below is a tentative roadmap of features and improvements we're exploring:
@@ -100,23 +112,14 @@ The `rest-data-validator` project aims to continually evolve with the needs of d
 ### Upcoming Features
 
 - [X] **Nested Validation Support**: Implement validation for complex, nested data structures to accommodate intricate API schemas.
-
 - [X] **Asynchronous Validators**: Introduce validators capable of handling asynchronous operations, useful for database lookups or external API validations.
-
 - [ ] **Internationalization**: Offer localized error messages to better serve a global user base.
-
 - [ ] **Sanitization Enhancements**: Expand sanitization utilities for preprocessing data, ensuring robust input handling before validation.
-
 - [X] **Framework Middleware**: Develop middleware for seamless integration with popular server frameworks like Express and NestJS.
-
 - [ ] **Runtime Type System Integration**: Explore compatibility with runtime type validation libraries to enhance JavaScript validation capabilities.
-
 - [X] **CLI Tooling**: Build CLI tools for generating validator schemas from TypeScript type definitions, aiding in rapid development cycles.
-
 - [ ] **Plugin Architecture**: Create an extensible plugin system allowing custom validators and sanitizers, fostering community-driven enhancements.
-
 - [X] **Performance Optimization**: Profile and optimize the core validation logic to efficiently handle large datasets and reduce overhead in high-throughput environments.
-
 - [ ] **GUI for Schema Building**: Provide a graphical interface for constructing and exporting validation schemas, streamlining the setup process for `rest-data-validator`.
 
 We welcome community input and contributions to help shape the future of `rest-data-validator`. If you have ideas or features you’d like to see, please open an issue to start the conversation.

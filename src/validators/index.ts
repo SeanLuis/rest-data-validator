@@ -17,3 +17,5 @@ export { validateDependency } from "./ValidateDependency";
 export { validateSecurity } from "./ValidateSecurity";
 export { validateContains } from "./ValidateContains";
 export { validateAlpha } from "./ValidateAlpha";
+export { validateBIC } from "./ValidateBIC";
+export { validateISO31661Alpha2 } from "./ValidateISO31661Alpha2";

@@ -15,3 +15,5 @@ export { RangeStrategy } from "./RangeStrategy";
 export { RegexStrategy } from "./RegexStrategy";
 export { StringStrategy } from "./StringStrategy";
 export { SecurityStrategy } from "./SecurityStrategy";
+export { BICStrategy } from "./BICStrategy";
+export { ISO31661Alpha2Strategy } from "./ISO31661Alpha2Strategy";

@@ -19,3 +19,5 @@ export { Password } from "./PasswordValidator";
 export { Security } from "./SecurityValidator";
 export { Contains } from "./ContainsValidator";
 export { Alpha } from "./AlphaValidator"
+export { BIC } from "./BICValidator"
+export { ISO31661Alpha2 } from "./ISO31661Alpha2Validator"

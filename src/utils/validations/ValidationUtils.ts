@@ -1,4 +1,4 @@
-import {IValidationGroupOptions, IValidationResult} from "../../interfaces";
+import { IValidationGroupOptions, IValidationResult } from "../../interfaces";
 
 import {
   validateAlpha,
@@ -18,9 +18,11 @@ import {
   validateRange,
   validateRegex,
   validateSecurity,
-  validateString
+  validateString,
+  validateBIC,
+  validateISO31661Alpha2
 } from "../../validators";
-import {validateMetadataKey} from "./MetadataKeys";
+import { validateMetadataKey } from "./MetadataKeys";
 
 /**
  * The ValidationUtils class provides a static method to validate an object based on metadata attached to its properties.
@@ -41,7 +43,7 @@ export class ValidationUtils {
       const validations = Reflect.getMetadata(validateMetadataKey, obj, propertyName) || [];
 
       for (const validation of validations) {
-        let result: IValidationResult = {isValid: true, errors: []};
+        let result: IValidationResult = { isValid: true, errors: [] };
 
         switch (validation.type) {
           case 'array':
@@ -98,8 +100,14 @@ export class ValidationUtils {
           case 'alpha':
             result = validateAlpha(obj[propertyName], validation.options, validation.groups);
             break;
+          case 'BIC':
+            result = validateBIC(obj[propertyName], validation.options, validation.groups);
+            break;
+          case 'ISO31661Alpha2':
+            result = validateISO31661Alpha2(obj[propertyName], validation.options, validation.groups);
+            break;
           default:
-            result = {isValid: false, errors: [`Validation type '${validation.type}' is not supported.`]};
+            result = { isValid: false, errors: [`Validation type '${validation.type}' is not supported.`] };
             break;
         }
 
@@ -121,7 +129,7 @@ export class ValidationUtils {
  * @param groups The groups of the current user.
  * @param validationGroups The groups allowed by the validation.
  */
-export const shouldValidate = (groups: string[], validationGroups: IValidationGroupOptions = {groups: []}): boolean => {
+export const shouldValidate = (groups: string[], validationGroups: IValidationGroupOptions = { groups: [] }): boolean => {
   if (!validationGroups || !validationGroups.groups || validationGroups.groups.length === 0) {
     return true;
   }
