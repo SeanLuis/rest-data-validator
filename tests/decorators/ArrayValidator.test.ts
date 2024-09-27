@@ -1,4 +1,3 @@
-import "reflect-metadata";
 import { ClassValidator, Array, ContextValidation } from "../../src";
 
 @ClassValidator

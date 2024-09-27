@@ -1,5 +1,4 @@
 import fs from "fs";
-import { fileURLToPath } from "url";
 import path from "path";
 import inquirer from "inquirer";
 import { trim } from "../..";
@@ -90,7 +89,7 @@ export class ModelGenerator {
     className: string,
     properties: any[]
   ): string {
-    const importStatement = `import "reflect-metadata";\nimport { ClassValidator, Accessors } from "rest-data-validator";\n\n`;
+    const importStatement = `import "reflect-metadata";\nimport { ClassValidator, Accessors } from "../../src";\n\n`;
     const classValidatorDecorator = `@ClassValidator\n@Accessors\n`;
 
     const propertiesStr = properties

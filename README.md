@@ -16,6 +16,8 @@ REST Data Validator is a versatile library designed to offer comprehensive valid
 
 - **Comprehensive Validation**: Supports validation of strings, numbers, emails, dates, enums, files, and custom formats.
 - **Decorator-based Validation**: Utilizes TypeScript decorators for easy and declarative validation directly in your class models.
+- **Schema File Provider**: Load and convert schema definitions from JSON or YAML files into validation schemas, allowing for flexible and manageable validation configurations.
+- **Extensive Validation Schemas**: Offers a wide range of validation schemas to validate various data types and structures in a scalable and flexible manner.
 - **Flexible and Extensible**: Easily extendable to include custom validation rules and logic.
 - **Framework Agnostic**: Can be used with any server-side framework or library, such as Express, Koa, or Fastify.
 - **Full TypeScript Support**: Leverages TypeScript for type safety and enhanced developer experience.
@@ -40,6 +42,37 @@ Decorators provide a declarative way to add validation rules directly to your cl
 ### Custom Validation Rules
 
 You can easily extend the library to include custom validation rules and logic.
+
+## Schema File Provider
+
+The `SchemaFileProvider` allows you to externalize your validation schemas into JSON or YAML files. This makes the validation process more flexible and easier to manage, especially for large or complex schemas.
+
+### Key Features
+
+- **Load Schemas from Files**: Load schema definitions from ```JSON``` or ```YAML``` files.
+- **Convert Definitions to Schemas**: Convert loaded schema definitions into validation schemas that can be used throughout your application.
+
+## Validation Schemas
+
+REST Data Validator provides a comprehensive set of validation schemas to validate various data types and structures. These schemas are designed to be flexible and reusable, enabling developers to build complex validation logic easily.
+
+### Available Schemas
+
+- **String**: Validates string values with support for constraints like minimum and maximum length.
+- **Number**: Validates numerical values with support for constraints like minimum and maximum values.
+- **Boolean**: Validates boolean values.
+- **Object**: Validates objects based on a schema definition for each property.
+- **Array**: Validates arrays and allows setting constraints on the array's length and its elements' schema.
+- **Union**: Validates a value that can match any one of the provided schemas.
+- **Enum**: Validates that a value is one of a predefined set of allowed values.
+- **Date**: Validates date values with support for constraints on the date range.
+- **Tuple**: Validates arrays with fixed length and specific types at each index.
+- **Record**: Validates objects where all keys and values match specified schemas.
+- **Nullable**: Allows a value to be `null` or satisfy another schema.
+- **Any**: Accepts any value without restrictions.
+- **Lazy**: Supports defining schemas that are evaluated lazily, useful for recursive or conditional schemas.
+- **Literal**: Validates that a value matches a specific literal value.
+- **Transform**: Allows transforming the value during validation by applying a transformation function before validating.
 
 ## Rest CLI
 
@@ -120,7 +153,7 @@ The `rest-data-validator` project aims to continually evolve with the needs of d
 - [X] **CLI Tooling**: Build CLI tools for generating validator schemas from TypeScript type definitions, aiding in rapid development cycles.
 - [ ] **Plugin Architecture**: Create an extensible plugin system allowing custom validators and sanitizers, fostering community-driven enhancements.
 - [X] **Performance Optimization**: Profile and optimize the core validation logic to efficiently handle large datasets and reduce overhead in high-throughput environments.
-- [ ] **GUI for Schema Building**: Provide a graphical interface for constructing and exporting validation schemas, streamlining the setup process for `rest-data-validator`.
+- [X] **GUI for Schema Building**: Provide a graphical interface for constructing and exporting validation schemas, streamlining the setup process for `rest-data-validator`.
 
 We welcome community input and contributions to help shape the future of `rest-data-validator`. If you have ideas or features you’d like to see, please open an issue to start the conversation.
 

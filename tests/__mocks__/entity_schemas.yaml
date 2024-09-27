@@ -1,0 +1,41 @@
+user:
+  type: object
+  required: [username, password]
+  properties:
+    username:
+      type: string
+      minLength: 3
+      maxLength: 30
+    password:
+      type: string
+      minLength: 8
+
+employee:
+  type: object
+  required: [employeeId, department]
+  properties:
+    employeeId:
+      type: string
+    department:
+      type: string
+
+tenant:
+  type: object
+  required: [tenantId, plan]
+  properties:
+    tenantId:
+      type: string
+    plan:
+      type: enum
+      allowedValues: [basic, premium]
+
+package:
+  type: object
+  required: [packageName, packageSize]
+  properties:
+    packageName:
+      type: string
+    packageSize:
+      type: number
+      minimum: 1
+      maximum: 100

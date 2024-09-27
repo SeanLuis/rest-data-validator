@@ -1,7 +1,11 @@
-import {IFileValidationOptions, IValidationGroupOptions, IValidationResult} from '../interfaces';
-import {IGenericFile} from "../utils/file/IGenericFile";
-import {ContextValidation} from "../context/ContextValidation";
-import {shouldValidate} from "../utils/validations/ValidationUtils";
+import {
+  IFileValidationOptions,
+  IValidationGroupOptions,
+  IValidationResult,
+} from "../interfaces";
+import { IGenericFile } from "../utils/file/IGenericFile";
+import { ContextValidation } from "../context/ContextValidation";
+import { shouldValidate } from "../utils/validations/ValidationUtils";
 
 /**
  * The validateFile function validates a file based on provided options.
@@ -27,7 +31,7 @@ export const validateFile = (
   const contextGroups = ContextValidation.getInstance().getGroups();
 
   if (contextGroups.length > 0 && !shouldValidate(contextGroups, groups)) {
-    return {isValid: true, errors: []};
+    return { isValid: true, errors: [] };
   }
 
   const addError = (defaultMessage: string, customMessage?: string) => {
@@ -39,32 +43,58 @@ export const validateFile = (
   }
 
   if (options.maxSize && file.size > options.maxSize) {
-    addError(`File size exceeds the maximum allowed limit of ${options.maxSize} bytes.`, options.message);
+    addError(
+      `File size exceeds the maximum allowed limit of ${options.maxSize} bytes.`,
+      options.message
+    );
   }
 
   if (options.minSize && file.size < options.minSize) {
-    addError(`File size is below the minimum required limit of ${options.minSize} bytes.`, options.message);
+    addError(
+      `File size is below the minimum required limit of ${options.minSize} bytes.`,
+      options.message
+    );
   }
 
-  const fileExtension = file.originalName.split('.').pop()?.toLowerCase();
-  if (options.allowedExtensions && fileExtension && !options.allowedExtensions.includes(fileExtension)) {
+  const fileExtension = file.originalName.split(".").pop()?.toLowerCase();
+  if (
+    options.allowedExtensions &&
+    fileExtension &&
+    !options.allowedExtensions.includes(fileExtension)
+  ) {
     addError(`Disallowed file extension: .${fileExtension}.`, options.message);
   }
 
-  if (options.disallowedExtensions && fileExtension && options.disallowedExtensions.includes(fileExtension)) {
-    addError(`File extension is explicitly disallowed: .${fileExtension}.`, options.message);
+  if (
+    options.disallowedExtensions &&
+    fileExtension &&
+    options.disallowedExtensions.includes(fileExtension)
+  ) {
+    addError(
+      `File extension is explicitly disallowed: .${fileExtension}.`,
+      options.message
+    );
   }
 
-  if (options.validateFileName && !options.validateFileName(file.originalName)) {
-    addError(`File name validation failed for: ${file.originalName}.`, options.message);
+  if (
+    options.validateFileName &&
+    !options.validateFileName(file.originalName)
+  ) {
+    addError(
+      `File name validation failed for: ${file.originalName}.`,
+      options.message
+    );
   }
 
-  if (options.validateFileContent && !options.validateFileContent(file.buffer)) {
+  if (
+    options.validateFileContent &&
+    !options.validateFileContent(file.buffer)
+  ) {
     addError(`File content validation failed.`, options.message);
   }
 
   return {
     isValid: errors.length === 0,
-    errors: errors
+    errors: errors,
   };
 };
