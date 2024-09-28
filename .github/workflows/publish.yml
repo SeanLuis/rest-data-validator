@@ -8,17 +8,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
           node-version: "18"
-          cache: "pnpm"
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 9
+
+      # Instalar una versión específica de pnpm dependiendo de la versión de Node.js
+      - name: Install pnpm
+        run: |
+          if [[ "${{ matrix.node-version }}" == "16" ]]; then
+            npm install -g pnpm@7 # Versión compatible con Node.js 16.x
+          else
+            npm install -g pnpm@9 # Para Node.js 18.x y superiores
+          fi
+
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: |
+          if [ -f pnpm-lock.yaml ]; then
+            echo "pnpm-lock.yaml encontrado, ejecutando instalación con frozen lockfile"
+            pnpm install --prefer-frozen-lockfile || pnpm install
+          else
+            echo "pnpm-lock.yaml no encontrado, ejecutando instalación normal"
+            pnpm install
+          fi
+
       - name: Run tests
         run: pnpm test
 
@@ -27,23 +41,40 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
           node-version: "18"
           registry-url: "https://registry.npmjs.org"
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 9
+
+      # Instalar una versión específica de pnpm dependiendo de la versión de Node.js
+      - name: Install pnpm
+        run: |
+          if [[ "${{ matrix.node-version }}" == "16" ]]; then
+            npm install -g pnpm@7 # Versión compatible con Node.js 16.x
+          else
+            npm install -g pnpm@9 # Para Node.js 18.x y superiores
+          fi
+
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: |
+          if [ -f pnpm-lock.yaml ]; then
+            echo "pnpm-lock.yaml encontrado, ejecutando instalación con frozen lockfile"
+            pnpm install --prefer-frozen-lockfile || pnpm install
+          else
+            echo "pnpm-lock.yaml no encontrado, ejecutando instalación normal"
+            pnpm install
+          fi
+
       - name: Build
         run: pnpm run build
+
       - name: Automated Version Bump
         id: bump_version
         uses: phips28/gh-action-bump-version@master
@@ -51,6 +82,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag-prefix: "v"
+
       - name: Publish to npm
         run: pnpm publish --access public
         env:
