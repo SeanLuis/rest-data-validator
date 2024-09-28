@@ -27,11 +27,13 @@ jobs:
             npm install -g pnpm@9 # Para Node.js 18.x y superiores
           fi
 
-      - name: Verify pnpm installation
-        run: pnpm --version
-
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: |
+          if [ -f pnpm-lock.yaml ]; then
+            pnpm install --frozen-lockfile
+          else
+            pnpm install
+          fi
 
       - name: Run tests with Jest
         run: pnpm test -- --coverage
