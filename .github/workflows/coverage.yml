@@ -18,16 +18,12 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
 
-      # Instalar una versión específica de pnpm dependiendo de la versión de Node.js
+      # Instalar pnpm manualmente y verificar su instalación
       - name: Install pnpm
         run: |
-          if [[ "${{ matrix.node-version }}" == "16" ]]; then
-            npm install -g pnpm@7 # Versión compatible con Node.js 16.x
-          else
-            npm install -g pnpm@9 # Para Node.js 18.x y superiores
-          fi
+          npm install -g pnpm
+          pnpm --version
 
       # Verificar si el archivo pnpm-lock.yaml existe, y manejar instalación dependiendo de su presencia
       - name: Install Dependencies
