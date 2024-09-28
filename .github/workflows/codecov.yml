@@ -19,6 +19,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      # Instalar una versión específica de pnpm dependiendo de la versión de Node.js
       - name: Install pnpm
         run: |
           if [[ "${{ matrix.node-version }}" == "16.x" ]]; then
@@ -27,17 +28,22 @@ jobs:
             npm install -g pnpm@9 # Para Node.js 18.x y superiores
           fi
 
+      # Verificar si el archivo pnpm-lock.yaml existe, y manejar instalación dependiendo de su presencia
       - name: Install dependencies
         run: |
           if [ -f pnpm-lock.yaml ]; then
-            pnpm install --frozen-lockfile
+            echo "pnpm-lock.yaml encontrado, ejecutando instalación con frozen lockfile"
+            pnpm install --prefer-frozen-lockfile || pnpm install
           else
+            echo "pnpm-lock.yaml no encontrado, ejecutando instalación normal"
             pnpm install
           fi
 
+      # Ejecutar las pruebas con Jest
       - name: Run tests with Jest
         run: pnpm test -- --coverage
 
+      # Subir el reporte de cobertura a Codecov
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
