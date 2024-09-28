@@ -3,9 +3,11 @@
  * 
  * @interface
  * @property {boolean} isValid - Indicates if the validation passed.
- * @property {string[]} [errors] - Optional. The error messages, if any.
+ * @property {string[]} [errors] - The error messages, if any.
+ * @property {any} value - Optional. The input value, if any.
  */
 export interface IValidationResult {
     isValid: boolean;
-    errors?: string[];
+    errors: string[];
+    value?: any;
 }

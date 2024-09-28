@@ -1,9 +1,9 @@
-export default {
-  preset: 'ts-jest',
-  testEnvironment: 'node',
+module.exports = {
+  preset: 'ts-jest/presets/default-esm',
+  testEnvironment: 'jest-environment-node',
   roots: ['<rootDir>/tests'],
   testMatch: [
-    '**/?(*.)+(spec|test).[jt]s?(x)',
+    '**/?(*.)+(spec|test).[jt]s?(x)'
   ],
   collectCoverage: true,
   collectCoverageFrom: ['<rootDir>/src/**/*.{js,ts}'],
@@ -12,6 +12,18 @@ export default {
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.json',
-    },
-  }
+      useESM: true
+    }
+  },
+  extensionsToTreatAsEsm: ['.ts'],
+  moduleNameMapper: {
+    "^rest-data-validator$": "<rootDir>/dist/index.js"
+  },
+  transform: {
+    '^.+\\.ts$': 'ts-jest'
+  },
+  transformIgnorePatterns: [
+    "/node_modules/",
+    "<rootDir>/dist/"
+  ]
 };

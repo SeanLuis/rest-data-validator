@@ -33,8 +33,8 @@ export { securityEvents } from "./events";
 export * from "./sanitizers";
 
 /**
- * This module exports various providers functions.
- * @module Providers
+ * This module exports various context providers functions.
+ * @module ContextProviders
  */
 export {
   getContext,
@@ -44,6 +44,29 @@ export {
   clearContext,
   clearAllContexts,
 } from "./providers/ContextProvider";
+
+/**
+ * This module exports various schema providers functions.
+ * @module SchemaProviders
+ */
+export {
+  convertToSchema,
+  loadSchemaFromFile,
+  getSchema
+} from "./providers/SchemaFileProvider";
+
+/**
+ * This module exports various schema validation types.
+ * @module Schemas
+ */
+export * from "./schemas/types";
+
+
+/**
+ * This module exports various schema validation functions.
+ * @module Schemas
+ */
+export { SchemaValidator } from "./schemas/SchemaValidator";
 
 /**
  * This module exports various contexts functions.
@@ -67,5 +90,6 @@ import * as validators from "./validators";
 import * as decorators from "./decorators";
 import * as sanitizers from "./sanitizers";
 import * as events from "./events";
+import * as schemas from "./schemas/types";
 
-export { interfaces, validators, decorators, sanitizers, events };
+export { interfaces, validators, decorators, sanitizers, events, schemas };

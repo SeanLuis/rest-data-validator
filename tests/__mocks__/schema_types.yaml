@@ -1,0 +1,101 @@
+stringSchema:
+  type: string
+  minLength: 3
+  maxLength: 10
+  required: true
+
+numberSchema:
+  type: number
+  minimum: 1
+  maximum: 100
+  required: true
+
+booleanSchema:
+  type: boolean
+  required: true
+
+objectSchema:
+  type: object
+  required: [name, age]
+  properties:
+    name:
+      type: string
+      minLength: 3
+      required: true
+    age:
+      type: number
+      minimum: 18
+      required: true
+
+arraySchema:
+  type: array
+  items:
+    type: string
+  minItems: 1
+  maxItems: 5
+  required: true
+
+unionSchema:
+  type: union
+  schemas:
+    - type: string
+    - type: number
+
+enumSchema:
+  type: enum
+  allowedValues:
+    - RED
+    - GREEN
+    - BLUE
+
+literalSchema:
+  type: literal
+  value: 'exactValue'
+
+nullableSchema:
+  type: nullable
+  schema:
+    type: string
+
+tupleSchema:
+  type: tuple
+  items:
+    - type: string
+    - type: number
+
+transformSchema:
+  type: transform
+  schema:
+    type: string
+  transformFn: 'return value.toUpperCase();'
+
+recordSchema:
+  type: record
+  keySchema:
+    type: string
+  valueSchema:
+    type: number
+
+anySchema:
+  type: any
+
+lazySchema:
+  type: lazy
+  nullable: true
+  required: false
+  propertyName: 'self'
+  schema:
+    type: object
+    nullable: true  
+    properties:
+      self:
+        type: lazy
+        nullable: true
+        required: false
+        propertyName: 'self'
+        schema:
+          type: any
+          nullable: true  
+          required: false
+
+

@@ -42,8 +42,16 @@ export const toBoolean: SanitizerFunction<string, boolean> = (value: string) => 
 
 /**
  * Removes all HTML tags from a string.
+ * Repeats until no more tags can be removed to handle complex cases.
  */
-export const stripHtml: SanitizerFunction<string, string> = (value: string) => value.replace(/<[^>]*>?/gm, '');
+export const stripHtml: SanitizerFunction<string, string> = (value: string): string => {
+  let previousValue;
+  do {
+    previousValue = value;
+    value = value.replace(/<[^>]*>?/gm, "");
+  } while (value !== previousValue);
+  return value;
+};
 
 /**
  * Encodes a string to be used in a URL.

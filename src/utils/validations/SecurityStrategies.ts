@@ -2,23 +2,27 @@
  * Object containing security strategies for validating input values.
  */
 export const securityStrategies = {
-  // XSS (Cross-Site Scripting)
+  /**
+   * Checks if the input string contains potential XSS vectors.
+   * It checks against a series of regular expressions representing common XSS injection patterns.
+   * Returns true if no potential XSS is found, false otherwise.
+   */
   xss: (value: string): boolean => {
     const patterns = [
-      /<script.*?>.*?<\/script>/is, // Basic XSS
-      /<iframe.*?>.*?<\/iframe>/is, // Iframe injection
-      /<object.*?>.*?<\/object>/is, // Object injection
-      /javascript:/is, // Direct JavaScript execution
-      /onerror\s*=\s*["'].*?["']/is, // Onerror attribute
-      /<img.*?onerror=.*?>/is, // Image error handling
-      /<link.*?>/is, // Link injection
-      /<style.*?>.*?<\/style>/is, // Style tags
-      /<svg.*?>/is, // SVG injection
-      /<audio.*?>/is, // Audio tag injection
-      /<video.*?>/is, // Video tag injection
-      /<body.*?>/is, // Body injection
-      /<embed.*?>/is, // Embed tag injection
-      /<frame.*?>/is, // Frame injection
+        /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, // Improved regex for <script> tags
+        /<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, // Improved regex for <iframe> tags
+        /<object\b[^<]*(?:(?!<\/object>)<[^<]*)*<\/object>/gi, // Improved regex for <object> tags
+        /javascript:\s*/i, // Checks for "javascript:" URI
+        /onerror\s*=\s*["'][^"']*["']/gi, // Checks for onerror attribute
+        /<img\b[^<]*onerror=.*?>/gi, // Improved regex for <img> with onerror
+        /<link\b[^<]*>/gi, // Checks for <link> tags
+        /<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, // Improved regex for <style> tags
+        /<svg\b[^<]*>/gi, // Checks for <svg> tags
+        /<audio\b[^<]*>/gi, // Checks for <audio> tags
+        /<video\b[^<]*>/gi, // Checks for <video> tags
+        /<body\b[^<]*>/gi, // Checks for <body> tags
+        /<embed\b[^<]*>/gi, // Checks for <embed> tags
+        /<frame\b[^<]*>/gi, // Checks for <frame> tags
     ];
     return !patterns.some((pattern) => pattern.test(value));
   },

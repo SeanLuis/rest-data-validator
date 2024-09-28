@@ -18,13 +18,18 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
 
       - name: Install Dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Run Jest Tests with Coverage
-        run: npm test -- --coverage
+        run: pnpm test -- --coverage
 
       - name: Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0
