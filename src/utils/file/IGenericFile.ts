@@ -9,8 +9,8 @@
  * @property {Buffer} buffer - Optional: the content of the file as a Buffer, if necessary for content validation.
  */
 export interface IGenericFile {
-    originalName: string; // The original name of the uploaded file
-    size: number; // The size of the file in bytes
-    mimeType: string; // The MIME type of the file
-    buffer: Buffer; // Optional: the content of the file as a Buffer, if necessary for content validation
+    originalName: string;
+    size: number;
+    mimeType: string;
+    buffer: Buffer;
 }

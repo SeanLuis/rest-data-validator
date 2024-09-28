@@ -1,0 +1,63 @@
+{
+  "user": {
+    "type": "object",
+    "properties": {
+      "username": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 30,
+        "required": true
+      },
+      "password": {
+        "type": "string",
+        "minLength": 8,
+        "required": true
+      }
+    },
+    "required": ["username", "password"]
+  },
+  "employee": {
+    "type": "object",
+    "properties": {
+      "employeeId": {
+        "type": "string",
+        "required": true
+      },
+      "department": {
+        "type": "string",
+        "required": true
+      }
+    },
+    "required": ["employeeId", "department"]
+  },
+  "tenant": {
+    "type": "object",
+    "properties": {
+      "tenantId": {
+        "type": "string",
+        "required": true
+      },
+      "plan": {
+        "type": "enum",
+        "allowedValues": ["basic", "premium"]
+      }
+    },
+    "required": ["tenantId", "plan"]
+  },
+  "package": {
+    "type": "object",
+    "properties": {
+      "packageName": {
+        "type": "string",
+        "required": true
+      },
+      "packageSize": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 100,
+        "required": true
+      }
+    },
+    "required": ["packageName", "packageSize"]
+  }
+}
