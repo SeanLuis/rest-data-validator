@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   preset: 'ts-jest/presets/default-esm',
   testEnvironment: 'jest-environment-node',
   roots: ['<rootDir>/tests'],

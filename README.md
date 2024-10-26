@@ -25,14 +25,22 @@ REST Data Validator is a versatile library designed to offer comprehensive valid
 
 ## Installation
 
+Npm:
+
 ```bash
-npm install rest-data-validator
+npm install rest-data-validator@latest
 ```
 
-Or using Yarn:
+Yarn:
 
 ```bash
-yarn add rest-data-validator
+yarn add rest-data-validator@latest
+```
+
+Pnpm:
+
+```bash
+pnpm add rest-data-validator@latest
 ```
 
 ### Using Decorators for Validation

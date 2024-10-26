@@ -3,25 +3,30 @@
   "version": "2.0.18",
   "description": "A versatile data validation library for RESTful APIs, supporting a wide range of data types and validation rules.",
   "main": "dist/index.js",
-  "module": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist/**/*"
   ],
   "exports": {
     ".": {
+      "require": "./dist/index.js",
       "import": "./dist/index.mjs"
     },
     "./cli": {
+      "require": "./dist/cli/cli.js",
       "import": "./dist/cli/cli.mjs"
     }
   },
   "bin": {
-    "rest-cli": "./dist/cli/cli.mjs"
+    "rest-cli": "./dist/cli/cli.js"
   },
+  "type": "module",
   "scripts": {
     "type-check": "tsc --noEmit",
-    "build": "tsup",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsup && npm run postbuild",
+    "postbuild": "find dist -name '*.cts' -type f -delete",
     "build:test": "tsc --module commonjs --outDir dist",
     "test:debug": "jest --runInBand",
     "test": "jest --coverage --coverageReporters=text lcov cobertura",
