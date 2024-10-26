@@ -14,13 +14,12 @@ jobs:
         with:
           node-version: "18"
 
-      # Instalar una versión específica de pnpm dependiendo de la versión de Node.js
       - name: Install pnpm
         run: |
           if [[ "${{ matrix.node-version }}" == "16" ]]; then
-            npm install -g pnpm@7 # Versión compatible con Node.js 16.x
+            npm install -g pnpm@7
           else
-            npm install -g pnpm@9 # Para Node.js 18.x y superiores
+            npm install -g pnpm@9
           fi
 
       - name: Install dependencies
@@ -53,13 +52,12 @@ jobs:
           node-version: "18"
           registry-url: "https://registry.npmjs.org"
 
-      # Instalar una versión específica de pnpm dependiendo de la versión de Node.js
       - name: Install pnpm
         run: |
           if [[ "${{ matrix.node-version }}" == "16" ]]; then
-            npm install -g pnpm@7 # Versión compatible con Node.js 16.x
+            npm install -g pnpm@7
           else
-            npm install -g pnpm@9 # Para Node.js 18.x y superiores
+            npm install -g pnpm@9
           fi
 
       - name: Install dependencies
@@ -77,14 +75,15 @@ jobs:
 
       - name: Automated Version Bump
         id: bump_version
-        uses: phips28/gh-action-bump-version@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: TriPSs/conventional-changelog-action@v5
         with:
-          tag-prefix: "v"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          preset: angular
+          tag-prefix: v
+          skip-on-empty: false
 
       - name: Publish to npm
         run: pnpm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        if: steps.bump_version.outputs.newTag != ''
+        if: steps.bump_version.outputs.version != ''
